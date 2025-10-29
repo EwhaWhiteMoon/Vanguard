@@ -53,7 +53,6 @@ public class Unit : MonoBehaviour//, IDamageable, IHealable, IAbilityUser
     // ===== ��ų �ߵ� =====
     private void TryCastSkill()
     {
-        /*
         if (Config.DefaultSkill == null) return;
         var skill = Config.DefaultSkill;
 
@@ -75,7 +74,6 @@ public class Unit : MonoBehaviour//, IDamageable, IHealable, IAbilityUser
                 skill.Execute(this);
             }
         }
-        */
     }
 
     // ===== ���� ���� =====
