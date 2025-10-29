@@ -1,41 +1,41 @@
 /*
- * ·±Å¸ÀÓ À¯´Ö º»Ã¼, °ÔÀÓ ³» ¸ðµç À¯´Ö(ÇÃ·¹ÀÌ¾î/Àû/¼ÒÈ¯¼ö µî)ÀÇ ·±Å¸ÀÓ ½ºÅÈ°ú »óÅÂ¸¦ °ü¸®ÇÏ´Â ÇÙ½É Å¬·¡½º.
+ * ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Ã·ï¿½ï¿½Ì¾ï¿½/ï¿½ï¿½/ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½È°ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ù½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½.
  */
 
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class Unit : MonoBehaviour, IDamageable, IHealable, IAbilityUser
+public class Unit : MonoBehaviour//, IDamageable, IHealable, IAbilityUser
 {
-    [SerializeField] private UnitConfig config;    // À¯´ÖÀÇ ±âº» ¼³Á¤ (ScriptableObject)
+    [SerializeField] private UnitConfig config;    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ (ScriptableObject)
 
     public UnitConfig Config => config;
     public int TeamId => config ? config.TeamId : 0;
 
-    public StatBlock Stats { get; private set; }   // ÇöÀç À¯´ÖÀÇ ½ºÅÈ »óÅÂ
+    public StatBlock Stats { get; private set; }   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float CurrentHealth { get; private set; }
     public float CurrentMana { get; private set; }
 
     private float _skillTimer;
 
-    // ===== Unity »ý¸íÁÖ±â =====
+    // ===== Unity ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ =====
     private void Awake()
     {
-        // StatBlock ÃÊ±âÈ­
+        // StatBlock ï¿½Ê±ï¿½È­
         Stats = new StatBlock();
 
-        // SO¿¡¼­ ±âº» ½ºÅÈ º¹»ç
+        // SOï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         CopyBases(config.EntryStats, Stats);
 
-        // HP, MP ÃÊ±âÈ­
+        // HP, MP ï¿½Ê±ï¿½È­
         CurrentHealth = Mathf.Max(1f, Stats.GetValue(StatKind.MaxHealth));
         CurrentMana = Mathf.Min(Stats.GetValue(StatKind.ManaMax),
-                                Stats.GetValue(StatKind.ManaMax) * 0.2f); // ½ÃÀÛ MP 20%
+                                Stats.GetValue(StatKind.ManaMax) * 0.2f); // ï¿½ï¿½ï¿½ï¿½ MP 20%
     }
 
     private void Update()
     {
-        // ¸¶³ª Àç»ý
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         var regen = Stats.GetValue(StatKind.ManaRegenPerSec);
         if (regen > 0)
         {
@@ -45,14 +45,15 @@ public class Unit : MonoBehaviour, IDamageable, IHealable, IAbilityUser
             );
         }
 
-        // ½ºÅ³ ÀÚµ¿ ½ÃÀü / Äð´Ù¿î Ã³¸®
+        // ï¿½ï¿½Å³ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½Ù¿ï¿½ Ã³ï¿½ï¿½
         _skillTimer += Time.deltaTime;
         TryCastSkill();
     }
 
-    // ===== ½ºÅ³ ¹ßµ¿ =====
+    // ===== ï¿½ï¿½Å³ ï¿½ßµï¿½ =====
     private void TryCastSkill()
     {
+        /*
         if (Config.DefaultSkill == null) return;
         var skill = Config.DefaultSkill;
 
@@ -74,19 +75,10 @@ public class Unit : MonoBehaviour, IDamageable, IHealable, IAbilityUser
                 skill.Execute(this);
             }
         }
+        */
     }
 
-    public void GainManaOnHit()
-    {
-        float gain = Stats.GetValue(StatKind.ManaOnHit);
-        if (gain > 0)
-        {
-            CurrentMana = Mathf.Min(Stats.GetValue(StatKind.ManaMax),
-                                    CurrentMana + gain);
-        }
-    }
-
-    // ===== ½ºÅÈ º¹»ç =====
+    // ===== ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ =====
     private static void CopyBases(StatBlock from, StatBlock to)
     {
         foreach (StatKind k in System.Enum.GetValues(typeof(StatKind)))
@@ -97,7 +89,7 @@ public class Unit : MonoBehaviour, IDamageable, IHealable, IAbilityUser
         }
     }
 
-    // ===== ÇÇÇØ / È¸º¹ =====
+    // ===== ï¿½ï¿½ï¿½ï¿½ / È¸ï¿½ï¿½ =====
     public void TakeDamage(float rawDamage, GameObject source)
     {
         float def = Mathf.Max(0f, Stats.GetValue(StatKind.Defense));
@@ -118,7 +110,7 @@ public class Unit : MonoBehaviour, IDamageable, IHealable, IAbilityUser
                                   CurrentHealth + amount);
     }
 
-    // ===== ¸®¼Ò½º ¼Òºñ =====
+    // ===== ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½Òºï¿½ =====
     public bool SpendResource(float amount)
     {
         if (CurrentMana < amount) return false;
@@ -126,12 +118,14 @@ public class Unit : MonoBehaviour, IDamageable, IHealable, IAbilityUser
         return true;
     }
 
-    // ===== »ç¸Á =====
+    // ===== ï¿½ï¿½ï¿½ =====
     private void Die()
     {
+        /*
         var sm = FindObjectOfType<SynergyManager>();
-        if (sm) sm.Unregister(this); // ½Ã³ÊÁö ÇØÁ¦
+        if (sm) sm.Unregister(this); // ï¿½Ã³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         Destroy(gameObject);
+        */
     }
 }
