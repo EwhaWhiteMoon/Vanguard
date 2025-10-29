@@ -1,5 +1,5 @@
-/*
- * ¹öÇÁÁö¼Ó°ü
+ï»¿/*
+ * ë²„í”„ì§€ì†ê´€ë¦¬
  */
 using UnityEngine;
 using System.Collections.Generic;
@@ -13,14 +13,14 @@ public class StatusRunner : MonoBehaviour
         public int Stack;
     }
 
-    private readonly List<Running> _running = new();
+    private readonly List<Running> _running = new();  //í˜„ì¬ ì ìš© ì¤‘ì¸ ìƒíƒœíš¨ê³¼ ëª©ë¡
     private Unit _unit;
 
-    private void Awake() => _unit = GetComponent<Unit>();
+    private void Awake() => _unit = GetComponent<Unit>();  // ì´ ì»´í¬ë„ŒíŠ¸ê°€ ë¶™ì€ ìœ ë‹› ì°¸ì¡°
 
-    public void Apply(StatusEffect effect, float? durationOverride = null)
+    public void Apply(StatusEffect effect, float? durationOverride = null)  // ë²„í”„ ì ìš© ë° ê°±ì‹ 
     {
-        // ½ºÅÃ ±ÔÄ¢
+        // ìŠ¤íƒ ê·œì¹™
         var run = _running.Find(r => r.Effect == effect);
         if (run == null)
         {
@@ -31,8 +31,8 @@ public class StatusRunner : MonoBehaviour
         else
         {
             if (effect.IsStackable) run.Stack++;
-            run.TimeLeft = durationOverride ?? effect.Duration; // °»½Å
-            effect.OnApply(_unit, run.Stack); // ½ºÅÃ °»½Å ¹İ¿µ(¼±ÅÃ)
+            run.TimeLeft = durationOverride ?? effect.Duration; // ê°±ì‹ 
+            effect.OnApply(_unit, run.Stack); // ìŠ¤íƒ ê°±ì‹  ë°˜ì˜(ì„ íƒ)
         }
     }
 

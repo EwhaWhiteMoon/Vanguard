@@ -19,7 +19,7 @@ public class UnitConfig : ScriptableObject
 
     [Header("Identity")]
     public UnitClass UnitClass;     //직업 및 클래스
-    public UnitGrade Grade;               
+    public UnitGrade Grade;         //unit 등급
 
     // [Header("Skill")]
     // public SkillBase DefaultSkill;
