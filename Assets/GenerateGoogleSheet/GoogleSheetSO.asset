@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96765d3ecb997e64fb595dff0856626b, type: 3}
+  m_Name: GoogleSheetSO
+  m_EditorClassIdentifier: Assembly-CSharp::GoogleSheetSO
+  sheet1List:
+  - ID: Warrior
+    Name: Warrior
+    SpriteID: Warrior
+    Hp: 100
+    Mp: 10
+    Atk: 10
+    Speed: 1
+    Def: 1
+    AtkSpeed: 1
+    Crit: 1
+    SkillId: Punch
+  - ID: Archer
+    Name: Archer
+    SpriteID: Archer
+    Hp: 60
+    Mp: 10
+    Atk: 10
+    Speed: 1
+    Def: 1
+    AtkSpeed: 1
+    Crit: 1
+    SkillId: Punch
+  - ID: Tank
+    Name: Tank
+    SpriteID: Tank
+    Hp: 150
+    Mp: 10
+    Atk: 10
+    Speed: 1
+    Def: 1
+    AtkSpeed: 1
+    Crit: 1
+    SkillId: Punch
+  - ID: Magic
+    Name: Magic
+    SpriteID: Magic
+    Hp: 50
+    Mp: 10
+    Atk: 10
+    Speed: 1
+    Def: 1
+    AtkSpeed: 1
+    Crit: 1
+    SkillId: Punch
+  - ID: Assa
+    Name: Assa
+    SpriteID: Assa
+    Hp: 60
+    Mp: 10
+    Atk: 10
+    Speed: 1
+    Def: 1
+    AtkSpeed: 1
+    Crit: 1
+    SkillId: Punch

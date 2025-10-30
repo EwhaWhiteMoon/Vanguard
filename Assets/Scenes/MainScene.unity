@@ -119,6 +119,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &37989457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 37989459}
+  - component: {fileID: 37989458}
+  m_Layer: 0
+  m_Name: GoogleSheetManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &37989458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37989457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e51917d10725c7468bef1ac0dadfff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoogleSheetManager
+  isAccessGoogleSheet: 1
+  googleSheetUrl: https://script.google.com/macros/s/AKfycbxPi_OYnqePLsWKqhxbqCB-dBjrKoBhNgq8trtJob9SgiqqJD8Nx6-Eo1OI-STer5ep/exec
+  availSheets: Sheet1/Sheet2
+  generateFolderPath: /GenerateGoogleSheet
+  googleSheetSO: {fileID: 11400000, guid: 5cdcfc59e36ea3a43a53ce6166468fed, type: 2}
+--- !u!4 &37989459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37989457}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -103.97709, y: 53.25403, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &178696637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,3 +1341,4 @@ SceneRoots:
   - {fileID: 2109914231}
   - {fileID: 1785508653}
   - {fileID: 249410868}
+  - {fileID: 37989459}
