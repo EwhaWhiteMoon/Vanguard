@@ -77,9 +77,23 @@ public class Unit : MonoBehaviour
         */
     }
 
+    public void GainManaOnHit()  //공격성공시 MP 획득
+    {
+        /*
+        float gain = Stats.GetValue(StatKind.ManaOnHit);
+        if (gain > 0)
+        {
+            CurrentMana = Mathf.Min(Stats.GetValue(StatKind.ManaMax),
+                                    CurrentMana + gain);
+        }
+        */
+    }
+
+
     // ===== 스탯 복사 =====
     private static void CopyBases(StatBlock from, StatBlock to)
     {
+
         foreach (StatKind k in System.Enum.GetValues(typeof(StatKind)))
         {
             float baseVal = from.GetBase(k);
