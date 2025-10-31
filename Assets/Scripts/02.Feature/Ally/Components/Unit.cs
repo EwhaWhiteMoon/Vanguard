@@ -1,7 +1,44 @@
 /*
  * 런타임 유닛 본체
  */
+using System;
 
+[Serializable]
+public class Unit
+{
+    public string Name;
+    public int TeamId;
+    public UnitClass UnitClass;
+    public UnitGrade Grade;
+
+    public StatBlock Stats = new();
+    public float CurrentHealth;
+    public float CurrentMana;
+
+    // 생성자: UnitConfig 기반으로 데이터 초기화
+    public Unit(UnitConfig config)
+    {
+        if (config == null) throw new ArgumentNullException(nameof(config));
+
+        Name = config.Name;
+        TeamId = config.TeamId;
+        UnitClass = config.UnitClass;
+        Grade = config.Grade;
+
+        // 기본 스탯 복사 (CopyBaseFrom은 StatBlock에 구현됨)
+        Stats.CopyBaseFrom(config.EntryStats);
+
+        // HP / MP 초기화
+        CurrentHealth = Math.Max(1f, Stats.GetValue(StatKind.MaxHealth));
+        CurrentMana = Math.Min(Stats.GetValue(StatKind.ManaMax),
+                                 Stats.GetValue(StatKind.ManaMax) * 0.2f);
+    }
+}
+
+
+
+// 메서드 제거 및 Monobehavior 제거를 위한 주석 처리
+/*
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -77,14 +114,14 @@ public class Unit : MonoBehaviour
 
     public void GainManaOnHit()  //공격성공시 MP 획득
     {
-        /*
-        float gain = Stats.GetValue(StatKind.ManaOnHit);
-        if (gain > 0)
-        {
-            CurrentMana = Mathf.Min(Stats.GetValue(StatKind.ManaMax),
-                                    CurrentMana + gain);
-        }
-        */
+        
+        //float gain = Stats.GetValue(StatKind.ManaOnHit);
+        //if (gain > 0)
+        //{
+        //   CurrentMana = Mathf.Min(Stats.GetValue(StatKind.ManaMax),
+        //                            CurrentMana + gain);
+        //}
+        
     }
 
 
@@ -99,6 +136,8 @@ public class Unit : MonoBehaviour
                 to.SetBase(k, baseVal);
         }
     }
+    
+
 
     // ===== 피해 / 회복 =====
     public void TakeDamage(float rawDamage, GameObject source)  // 방어력 /감소율 계산 후 HP차감
@@ -132,11 +171,12 @@ public class Unit : MonoBehaviour
     // ===== 사망  =====
     private void Die()
     {
-        /*
-        var sm = FindObjectOfType<SynergyManager>();
-        if (sm) sm.Unregister(this); // 시너지 해제
+        
+        //var sm = FindObjectOfType<SynergyManager>();
+        //if (sm) sm.Unregister(this); // 시너지 해제
 
-        Destroy(gameObject);
-        */
+        //Destroy(gameObject);
+        
     }
 }
+*/

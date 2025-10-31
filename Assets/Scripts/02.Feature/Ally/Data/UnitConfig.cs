@@ -3,9 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game/Unit Config")]
 public class UnitConfig : ScriptableObject
 {
+    /*
     [Header("Presentation")]
     public string DisplayName;   // 유닛이름 (UI표시용)
     public GameObject Prefab;  // 유닛이 사용할 프리팹 오브젝트
+    */
+    [Header("Basic Info")]
+    public string Name;  //유닛 이름
+    public Sprite Portrait;  // Sprite 추가
 
     [Header("Team/Tags")]
     public int TeamId; // 0,1,2... 같은 간단한 팀 번호 표시

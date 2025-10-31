@@ -23,7 +23,7 @@ public class SynergyManager : MonoBehaviour
         if (!_units.Contains(unit))
             _units.Add(unit); // 유닛 추적 집합에 추가
 
-        var cls = unit.Config.UnitClass; // 유닛 클래스 가져오기
+        var cls = unit.UnitClass; // 유닛 클래스 가져오기  (unit 구조 변경에 따른 config 제거)
         _counts.TryGetValue(cls, out var c); // _counts에서 현재 유닛의 카운트 가져오기
         _counts[cls] = c + 1; // 카운트 증가
 
@@ -36,7 +36,7 @@ public class SynergyManager : MonoBehaviour
         if (_units.Contains(u))
             _units.Remove(u); // 유닛 추적 집합에서 제거
         
-        var cls = u.Config.UnitClass; // 유닛 클래스 가져오기
+        var cls = u.UnitClass; // 유닛 클래스 가져오기  (unit 구조 변경에 따른 config 제거)
 
         if (_counts.TryGetValue(cls, out var c))
             _counts[cls] = Mathf.Max(0, c - 1); // 하나 줄임 (0 아래로는 안되려고 안전장치 걸어둠)
@@ -64,7 +64,7 @@ public class SynergyManager : MonoBehaviour
         // 등록된 유닛에 대해 시너지 효과 적용
         foreach (var u in _units)
         {
-            if (u.Config.UnitClass != cls) continue;
+            if (u.UnitClass != cls) continue;  //(unit 구조 변경에 따른 config 제거)
 
             var key = (u, cls);
             if (_applied.TryGetValue(key, out var prevMods))
