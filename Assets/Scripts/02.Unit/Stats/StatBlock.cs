@@ -1,4 +1,4 @@
-// StatBlock.cs
+﻿// StatBlock.cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +15,10 @@ public class StatBlock
 
     public float GetBase(StatKind kind)
     {
+        
         foreach (var e in _bases) if (e.Kind == kind) return e.Base;
         return 0f;
+        
     }
 
     public void SetBase(StatKind kind, float value)
@@ -63,4 +65,14 @@ public class StatBlock
     }
 
     public void ClearAllModifiers() => _mods.Clear();
+
+    public void CopyBaseFrom(StatBlock from)  //Unit.copyBase에서 이동 다른 statBlock의 base값 복사
+    {
+        if (from == null || from._bases == null) return;
+
+        foreach (var entry in from._bases)
+        {
+            SetBase(entry.Kind, entry.Base);
+        }
+    }
 }
