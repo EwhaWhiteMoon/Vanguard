@@ -3,11 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game/Unit Config")]
 public class UnitConfig : ScriptableObject
 {
-    /*
     [Header("Presentation")]
-    public string DisplayName;   // 유닛이름 (UI표시용)
     public GameObject Prefab;  // 유닛이 사용할 프리팹 오브젝트
-    */
+    public TeamVisualSet TeamVisualSet; // 팀별 시각효과 세트
+
     [Header("Basic Info")]
     public string Name;  //유닛 이름
     public Sprite Portrait;  // Sprite 추가
@@ -25,7 +24,4 @@ public class UnitConfig : ScriptableObject
     [Header("Identity")]
     public UnitClass UnitClass;     //직업 및 클래스
     public UnitGrade Grade;         //unit 등급
-
-    [Header("Skill")]
-    public SkillBase DefaultSkill;
 }
