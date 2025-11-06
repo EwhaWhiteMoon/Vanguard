@@ -283,17 +283,24 @@ public class GoogleSheetManager : MonoBehaviour
     }
 
     void OnValidate()
-    {
-        if (refeshTrigger)
         {
-            bool isCompleted = CreateGoogleSheetSO();
-            if (isCompleted)
+            if (refeshTrigger)
             {
-                refeshTrigger = false;
-                Debug.Log($"Fetch done.");
+                UnityEditor.EditorApplication.delayCall += () =>
+                {
+                    if (refeshTrigger) 
+                    {
+                        bool isCompleted = CreateGoogleSheetSO();
+                        if (isCompleted)
+                        {
+                            Debug.Log($"Fetch done.");
+                        }
+                        
+                        refeshTrigger = false;
+                    }
+                };
             }
         }
-    }
 #endif
 
     static GoogleSheetManager GetInstance()
