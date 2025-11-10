@@ -14,6 +14,10 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindFirstObjectByType<T>();
+                if (_instance == null)
+                {
+                    Debug.LogError($"No instance of {typeof(T)} found in the scene.");
+                }
             }
             return _instance;
         }
@@ -21,13 +25,13 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        _instance = GetComponent<T>();
+        _instance = this as T;
         DontDestroyOnLoad(gameObject); //Scene 전환 시 사라지지 않음.
     }
 }
