@@ -5,7 +5,7 @@ public interface IEffectManager
     /// <summary>
     /// 특정 효과 재생 (예: 파티클, 프리팹, 애니메이션)
     /// </summary>
-    void PlayEffect(string effectName, UnityEngine.Vector3 position);
+    void PlayEffect(string effectName, UnityEngine.Vector3 position, Quaternion rotation = default);
     
 
     /// <summary>
