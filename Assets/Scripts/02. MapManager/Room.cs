@@ -1,15 +1,6 @@
 public class Room
 {
-
-    public RoomType Type;
-    public int PrizeTable;
-    public int EnemyTable;
-    public bool isVisited;
-    public Room()
-    {
-        Type = RoomType.Empty;
-        PrizeTable = 0;
-        EnemyTable = 0;
-        isVisited = false;
-    }
+    public RoomType Type = RoomType.Wall;
+    public int PrizeTable = 0; // 사용하는 Prize Table의 번호
+    public int EnemyTable = 0; // 사용하는 Enemy Table의 번호
 }
