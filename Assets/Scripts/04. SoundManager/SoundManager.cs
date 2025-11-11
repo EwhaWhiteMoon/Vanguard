@@ -2,103 +2,156 @@
 using UnityEngine;
 
 /// <summary>
-/// 게임 내 전역 사운드 관리 매니저
-/// - BGM 및 SFX(AudioClip) 재생 및 제어 담당.
-/// - MonoSingleton<T> 기반으로 전역 접근 가능.
-/// - BGM/SFX를 각각 별도의 AudioSource로 관리.
+/// 전역 사운드 매니저
+/// - MonoSingleton으로 전체 접근 가능
+/// - 메뉴, 층, 방, 이벤트 BGM 관리
+/// - 유닛의 OnDamaged/OnDied 이벤트 기반 SFX 자동 재생
 /// </summary>
+/// 
+
+/// <summary>
+/// 사용 예시
+/// 
+/// 1. GameManager.cs
+///     SoundManager.Instance.PlayMenuBGM();  // 메뉴 진입 시
+/// 
+/// 2. MapManager.cs
+///     SoundManager.Instance.PlayBGM("Adventure"); // 층 진입
+///     SoundManager.Instance.SwitchRoomBGM();      // 방 이동
+///     SoundManager.Instance.PlayEventRoomBGM();   // 이벤트 방
+///
+/// 3. UnitFactory.cs
+///     SoundManager.Instance.RegisterUnit(unit);   // 유닛 이벤트 등록
+/// </summary>
+
+[DisallowMultipleComponent]
 public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
 {
     [Header("Audio Sources")]
-    [SerializeField] private AudioSource bgmSource; // 배경음 재생용 AudioSource
-    [SerializeField] private AudioSource sfxSource; // 효과음 재생용 AudioSource
+    [SerializeField] private AudioSource bgmSource;   // BGM 재생 전용 오디오 소스
+    [SerializeField] private AudioSource sfxSource;   // SFX 재생 전용 오디오 소스
 
-    [Header("Audio Clips")]
-    [SerializeField] private List<AudioClip> audioClips = new(); // 인스펙터에서 등록 가능한 사운드 목록
+    [Header("Menu Music")]
+    [SerializeField] private AudioClip menuBGM;       // 메뉴 화면용 BGM
 
-    // 클립 이름으로 빠르게 찾기 위한 Dictionary
-    private readonly Dictionary<string, AudioClip> _clipMap = new();
+    [Header("SFX Clips")]
+    [SerializeField] private AudioClip hitClip;       // 유닛 피격 효과음
+    [SerializeField] private AudioClip deathClip;     // 유닛 사망 효과음
 
-    /// <summary>
-    /// Start 시점에 등록된 모든 AudioClip을 딕셔너리에 저장.
-    /// </summary>
-    private void Start()
+    [Header("BGM Themes (층별)")]
+    [SerializeField] private List<BGMTheme> bgmThemes; // 층별 테마 리스트
+    private BGMTheme currentTheme;                     // 현재 활성화된 테마
+
+    [Header("Event Room BGM")]
+    [SerializeField] private List<AudioClip> eventRoomBGMs; // 이벤트 방 전용 BGM 리스트
+
+    
+    // BGM 관련
+    /// <summary>메뉴 BGM을 재생</summary>
+    public void PlayMenuBGM()
     {
-        foreach (var clip in audioClips)
-        {
-            if (!_clipMap.ContainsKey(clip.name))
-                _clipMap.Add(clip.name, clip);
-        }
-    }
-
-    /// <summary>
-    /// 지정된 이름의 배경음(BGM)을 재생.
-    /// </summary>
-    public void PlayBGM(string clipName, float volume = 1f, bool loop = true)
-    {
-        if (!_clipMap.TryGetValue(clipName, out var clip))
-        {
-            Debug.LogWarning($"[SoundManager] BGM '{clipName}' not found!");
-            return;
-        }
-
-        bgmSource.clip = clip;
-        bgmSource.volume = volume;
-        bgmSource.loop = loop;
+        if (menuBGM == null) return;
+        bgmSource.clip = menuBGM;
+        bgmSource.loop = true;
         bgmSource.Play();
     }
 
-    /// <summary>
-    /// 지정된 이름의 효과음(SFX)을 재생.
-    /// </summary>
-    public void PlaySFX(string clipName, float volume = 1f)
+    /// <summary>층(테마) 이름으로 BGM 테마를 찾아 재생</summary>
+    public void PlayBGM(string themeName)
     {
-        if (_clipMap.TryGetValue(clipName, out var clip))
-            sfxSource.PlayOneShot(clip, volume);
-        else
-            Debug.LogWarning($"[SoundManager] SFX '{clipName}' not found!");
+        currentTheme = bgmThemes.Find(t => t.ThemeName == themeName);
+        if (currentTheme == null)
+        {
+            Debug.LogWarning($"[SoundManager] Theme '{themeName}' not found!");
+            return;
+        }
+        PlayRandomBGMFromTheme();
     }
 
-    /// <summary>
-    /// 현재 재생 중인 BGM을 중지.
-    /// </summary>
+    /// <summary>현재 테마 안에서 랜덤한 방 BGM을 재생</summary>
+    public void SwitchRoomBGM()
+    {
+        PlayRandomBGMFromTheme();
+    }
+
+    /// <summary>이벤트 방 전용 BGM을 재생</summary>
+    public void PlayEventRoomBGM()
+    {
+        if (eventRoomBGMs.Count == 0) return;
+        var clip = eventRoomBGMs[Random.Range(0, eventRoomBGMs.Count)];
+        bgmSource.clip = clip;
+        bgmSource.loop = true;
+        bgmSource.Play();
+    }
+
+    /// <summary>현재 재생 중인 BGM을 정지</summary>
     public void StopBGM()
     {
-        if (bgmSource.isPlaying)
-            bgmSource.Stop();
+        bgmSource.Stop();
     }
 
-    /// <summary>
-    /// 전체 마스터 볼륨(전체 오디오)에 영향을 줌.
-    /// </summary>
-    public void SetMasterVolume(float volume)
+
+    // 🔊 SFX 관련
+    /// <summary>효과음 이름으로 해당 SFX를 재생</summary>
+    public void PlaySFX(string soundName)
     {
-        AudioListener.volume = Mathf.Clamp01(volume);
+        AudioClip clip = soundName switch
+        {
+            "Hit" => hitClip,
+            "Death" => deathClip,
+            _ => null
+        };
+        if (clip != null)
+            sfxSource.PlayOneShot(clip);
     }
 
-    /// <summary>
-    /// BGM 전용 볼륨 조정.
-    /// </summary>
-    public void SetBGMVolume(float volume)
+
+    // 볼륨 설정 관련
+
+    public void SetMasterVolume(float value) => AudioListener.volume = value;
+    public void SetBGMVolume(float value) => bgmSource.volume = value;
+    public void SetSFXVolume(float value) => sfxSource.volume = value;
+
+
+    // 유닛 이벤트 등록 / 해제 관련
+    /// <summary>유닛의 OnDamaged / OnDied 이벤트를 등록</summary>
+    public void RegisterUnit(Unit unit)
     {
-        bgmSource.volume = Mathf.Clamp01(volume);
+        if (unit == null) return;
+        unit.OnDamaged += (_, _) => PlaySFX("Hit");
+        unit.OnDied += (_) => PlaySFX("Death");
     }
 
-    /// <summary>
-    /// SFX 전용 볼륨 조정.
-    /// </summary>
-    public void SetSFXVolume(float volume)
+    /// <summary>유닛 이벤트 등록을 해제</summary>
+    public void UnregisterUnit(Unit unit)
     {
-        sfxSource.volume = Mathf.Clamp01(volume);
+        if (unit == null) return;
+        unit.OnDamaged -= (_, _) => PlaySFX("Hit");
+        unit.OnDied -= (_) => PlaySFX("Death");
     }
 
-    /// <summary>
-    /// 런타임 중 새로운 오디오 클립을 등록.
-    /// </summary>
-    public void RegisterClip(AudioClip clip)
+
+    // 내부 기능
+    private void PlayRandomBGMFromTheme()
     {
-        if (clip == null) return;
-        if (!_clipMap.ContainsKey(clip.name))
-            _clipMap.Add(clip.name, clip);
+        if (currentTheme == null || currentTheme.BGMs.Count == 0) return;
+        var clip = currentTheme.BGMs[Random.Range(0, currentTheme.BGMs.Count)];
+        bgmSource.clip = clip;
+        bgmSource.loop = true;
+        bgmSource.Play();
     }
+
+    
 }
+
+/// <summary>
+/// 층별 테마 데이터 구조
+/// </summary>
+[System.Serializable]
+public class BGMTheme
+{
+    public string ThemeName;       // ex: "Adventure", "Happiness"
+    public List<AudioClip> BGMs;   // 각 방마다 다른 곡들
+}
+
+
