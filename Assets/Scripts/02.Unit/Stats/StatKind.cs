@@ -14,5 +14,6 @@ public enum StatKind
     ManaRegenPerSec,        // 초당 MP 재생(옵션)
     CooldownReducePct,      // 쿨감 % (0~1)
     StatusPower,            // 상태이상 강도(스턴/슬로우 등
+    Range // 사거리
 }
 
