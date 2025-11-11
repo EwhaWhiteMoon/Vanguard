@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 게임 내 전역 사운드 관리 매니저
 /// - BGM 및 SFX(AudioClip) 재생 및 제어 담당.
-/// - MonoSingleton<T> 기반으로 어느 씬에서도 접근 가능.
+/// - MonoSingleton<T> 기반으로 전역 접근 가능.
 /// - BGM/SFX를 각각 별도의 AudioSource로 관리.
 /// </summary>
 public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
