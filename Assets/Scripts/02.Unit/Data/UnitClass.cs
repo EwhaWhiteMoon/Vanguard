@@ -5,6 +5,7 @@ public enum UnitClass
     Warrior,
     Ranger,
     Mage,
-    Rogue,
-    Support
+    Assassin,
+    Tanker,
+    Healer
 }

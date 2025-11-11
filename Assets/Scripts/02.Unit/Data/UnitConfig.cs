@@ -5,7 +5,6 @@ public class UnitConfig : ScriptableObject
 {
     [Header("Presentation")]
     public GameObject Prefab;  // 유닛이 사용할 프리팹 오브젝트
-    public TeamVisualSet TeamVisualSet; // 팀별 시각효과 세트
 
     [Header("Basic Info")]
     public string Name;  //유닛 이름

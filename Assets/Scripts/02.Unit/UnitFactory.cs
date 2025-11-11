@@ -14,12 +14,12 @@ public static class UnitFactory
         var behaviour = go.GetComponent<UnitBehaviour>();
         if (behaviour == null) behaviour = go.AddComponent<UnitBehaviour>();
 
-        // 3) 팀 스킨 적용
-        TeamVisualSet.TeamSkin? skin = null;
-        if (config.TeamVisualSet && config.TeamVisualSet.TryGet(teamId, out var s)) skin = s;
+        // 3) 위치 설정
 
-        // 4) 초기화
-        behaviour.Initialize(data, config, skin);
+        // 4) sprite / 스킨 설정
+
+        // 5) 초기화
+        behaviour.Initialize(data, config);
 
         return (data, behaviour);
     }
