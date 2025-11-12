@@ -16,16 +16,16 @@ public class unit
 {
 	public int ID;
 	public string Job;
-	public int Hp;
-	public int Mp;
-	public int Atk;
-	public int Def;
+	public float Hp;
+	public float Mp;
+	public float Atk;
+	public float Def;
 	public float Speed;
 	public float AtkSpeed;
-	public int Crit;
-	public int CritD;
-	public int HpRegen;
-	public int MpRegen;
+	public float Crit;
+	public float CritD;
+	public float HpRegen;
+	public float MpRegen;
 	public int Aggro;
 	public string Skill;
 }

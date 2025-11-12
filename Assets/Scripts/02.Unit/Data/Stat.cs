@@ -17,6 +17,8 @@ public class Stat
         Range = 2f,                     // 사거리
         AggroValue = 0f;                // 어그로 수치
 
+    public Stat() { }
+    
     public Stat(Stat s)
     {
         MaxHealth = s.MaxHealth;

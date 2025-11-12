@@ -15,13 +15,13 @@ public class UnitGameObj : MonoBehaviour
     public ICombatManager combatManager; // unit의 list를 받아오는 기능(지금은...)
     public void Init(UnitData data, int team, ICombatManager combatManager)
     {
-        unitData = data;
-        spriteRenderer.sprite = unitData.sprite;
-        Team = team;
-        this.combatManager = combatManager;
+        // unitData = data;
+        // spriteRenderer.sprite = unitData.sprite;
+        // Team = team;
+        // this.combatManager = combatManager;
         
-        stat = new Stat(unitData.stat);
-        HP = stat.MaxHealth;
+        // stat = new Stat(unitData.stat);
+        // HP = stat.MaxHealth;
     }
 
     private void Update()
