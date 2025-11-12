@@ -52,6 +52,7 @@ public class UnitData
         }
 
         // unitClass에 해당하는 유닛 정보 찾기
+        // TODO : 이게 cell의 번호가 아니라 실제 unitID를 참조하게 하는 방법 없을까요? O(1)시간 안에 접근할 수 있게 미리 Dict를 만들어 둔다던가?
         if (_so.unitList.Count > 0 && _so.unitList.Count > (int)unitClass)
         {
             unit unitInfo = _so.unitList[(int)unitClass];
@@ -68,7 +69,7 @@ public class UnitData
                     CritChance = unitInfo.Crit,
                     CritMultiplier = unitInfo.CritD,
                     ManaMax = unitInfo.Mp,
-                    Range = 5f,
+                    Range = unitInfo.Range,
                 };
             }
             else

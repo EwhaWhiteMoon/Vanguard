@@ -112,25 +112,6 @@ public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
     public void SetBGMVolume(float value) => bgmSource.volume = value;
     public void SetSFXVolume(float value) => sfxSource.volume = value;
 
-
-    // 유닛 이벤트 등록 / 해제 관련
-    /// <summary>유닛의 OnDamaged / OnDied 이벤트를 등록</summary>
-    public void RegisterUnit(Unit unit)
-    {
-        if (unit == null) return;
-        unit.OnDamaged += (_, _) => PlaySFX("Hit");
-        unit.OnDied += (_) => PlaySFX("Death");
-    }
-
-    /// <summary>유닛 이벤트 등록을 해제</summary>
-    public void UnregisterUnit(Unit unit)
-    {
-        if (unit == null) return;
-        unit.OnDamaged -= (_, _) => PlaySFX("Hit");
-        unit.OnDied -= (_) => PlaySFX("Death");
-    }
-
-
     // 내부 기능
     private void PlayRandomBGMFromTheme()
     {

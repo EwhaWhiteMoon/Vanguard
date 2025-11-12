@@ -23,7 +23,6 @@ public partial class UnitNavigateAction : Action
 
 
         float dist = Vector3.Distance(Unit.Value.gameObject.transform.position, Target.Value.transform.position);
-        Debug.Log("Distance to Target: " + dist + ", Range: " + Unit.Value.stat.Range);
         if (dist <= Unit.Value.stat.Range)
         {
             Unit.Value.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;

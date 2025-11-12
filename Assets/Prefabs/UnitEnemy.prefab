@@ -141,8 +141,6 @@ MonoBehaviour:
     Range: 2
     AggroValue: 0
   Team: 0
-  HP: 0
-  BeforeHP: -1
   HPText: {fileID: 2433103659234665359}
   spriteRenderer: {fileID: 4191696996274288239}
 --- !u!50 &4109441447498918856
@@ -216,7 +214,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.25, y: 0.3}
   m_EdgeRadius: 0
 --- !u!95 &6823839231927216930
 Animator:

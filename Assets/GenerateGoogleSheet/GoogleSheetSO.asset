@@ -13,93 +13,280 @@ MonoBehaviour:
   m_Name: GoogleSheetSO
   m_EditorClassIdentifier: Assembly-CSharp::GoogleSheetSO
   unitList:
-  - ID: 0
-    Job: "\uC804\uC0AC"
+  - unitID: 0
+    Job: "\uC804\uC0AC1"
     Hp: 100
     Mp: 50
     Atk: 10
     Def: 1
     Speed: 1
     AtkSpeed: 1
-    Crit: 10
-    CritD: 130
+    Crit: 0.1
+    CritD: 1.3
     HpRegen: 1
     MpRegen: 5
-    Aggro: 1
+    Aggro: 0
+    Range: 0.5
     Skill: "\uBC94\uC704\uACF5\uACA9"
-  - ID: 1
-    Job: "\uAD81\uC218"
+  - unitID: 1
+    Job: "\uAD81\uC2181"
     Hp: 75
     Mp: 50
     Atk: 14
     Def: 0
     Speed: 1
     AtkSpeed: 1.3
-    Crit: 10
-    CritD: 130
+    Crit: 0.1
+    CritD: 1.3
     HpRegen: 1
     MpRegen: 5
-    Aggro: 2
+    Aggro: 0
+    Range: 3
     Skill: "\uB2E8\uC77C"
-  - ID: 2
-    Job: "\uB9C8\uBC95\uC0AC"
+  - unitID: 2
+    Job: "\uB9C8\uBC95\uC0AC1"
     Hp: 65
     Mp: 80
     Atk: 12
     Def: 0
     Speed: 0.8
     AtkSpeed: 0.8
-    Crit: 10
-    CritD: 130
+    Crit: 0.1
+    CritD: 1.3
     HpRegen: 1
     MpRegen: 5
-    Aggro: 5
+    Aggro: 0
+    Range: 4
     Skill: "\uBC94\uC704\uACF5\uACA9"
-  - ID: 3
-    Job: "\uC554\uC0B4\uC790"
+  - unitID: 11
+    Job: "\uC804\uC0AC2"
+    Hp: 180
+    Mp: 50
+    Atk: 18
+    Def: 1
+    Speed: 1
+    AtkSpeed: 1
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 0.5
+    Skill: "\uBC94\uC704\uACF5\uACA9"
+  - unitID: 21
+    Job: "\uB9C8\uBC95\uC0AC2"
+    Hp: 117
+    Mp: 80
+    Atk: 22
+    Def: 0
+    Speed: 0.8
+    AtkSpeed: 0.8
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 4
+    Skill: "\uBC94\uC704\uACF5\uACA9"
+  - unitID: 22
+    Job: "\uC804\uC0AC3"
+    Hp: 320
+    Mp: 50
+    Atk: 32
+    Def: 1
+    Speed: 1
+    AtkSpeed: 1
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 0.5
+    Skill: "\uBC94\uC704\uACF5\uACA9"
+  - unitID: 22
+    Job: "\uB9C8\uBC95\uC0AC3"
+    Hp: 208
+    Mp: 80
+    Atk: 38
+    Def: 0
+    Speed: 0.8
+    AtkSpeed: 0.8
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 4
+    Skill: "\uBC94\uC704\uACF5\uACA9"
+  - unitID: 30
+    Job: "\uC554\uC0B4\uC7901"
     Hp: 70
     Mp: 50
     Atk: 16
     Def: 0
     Speed: 1.2
     AtkSpeed: 1.2
-    Crit: 10
-    CritD: 130
+    Crit: 0.1
+    CritD: 1.3
     HpRegen: 1
     MpRegen: 5
-    Aggro: 3
+    Aggro: 0
+    Range: 1
     Skill: "\uB2E8\uC77C\uACF5\uACA9"
-  - ID: 4
-    Job: "\uD0F1\uCEE4"
+  - unitID: 31
+    Job: "\uC554\uC0B4\uC7902"
+    Hp: 126
+    Mp: 50
+    Atk: 29
+    Def: 0
+    Speed: 1.2
+    AtkSpeed: 1.2
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 1
+    Skill: "\uB2E8\uC77C\uACF5\uACA9"
+  - unitID: 32
+    Job: "\uC554\uC0B4\uC7903"
+    Hp: 224
+    Mp: 50
+    Atk: 51
+    Def: 0
+    Speed: 1.2
+    AtkSpeed: 1.2
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 1
+    Skill: "\uB2E8\uC77C\uACF5\uACA9"
+  - unitID: 33
+    Job: "\uAD81\uC2182"
+    Hp: 135
+    Mp: 50
+    Atk: 25
+    Def: 0
+    Speed: 1
+    AtkSpeed: 1.3
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 3
+    Skill: "\uB2E8\uC77C"
+  - unitID: 40
+    Job: "\uD0F1\uCEE41"
     Hp: 130
     Mp: 50
     Atk: 7
     Def: 2
     Speed: 0.9
     AtkSpeed: 0.8
-    Crit: 10
-    CritD: 130
+    Crit: 0.1
+    CritD: 1.3
     HpRegen: 1
     MpRegen: 5
     Aggro: 0
+    Range: 1
     Skill: "\uC5B4\uADF8\uB85C? "
-  - ID: 5
-    Job: "\uD790\uB7EC"
+  - unitID: 41
+    Job: "\uD0F1\uCEE42"
+    Hp: 234
+    Mp: 50
+    Atk: 13
+    Def: 2
+    Speed: 0.9
+    AtkSpeed: 0.8
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 1
+    Skill: "\uC5B4\uADF8\uB85C? "
+  - unitID: 42
+    Job: "\uD0F1\uCEE43"
+    Hp: 416
+    Mp: 50
+    Atk: 22
+    Def: 2
+    Speed: 0.9
+    AtkSpeed: 0.8
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 1
+    Skill: "\uC5B4\uADF8\uB85C? "
+  - unitID: 44
+    Job: "\uAD81\uC2183"
+    Hp: 240
+    Mp: 50
+    Atk: 45
+    Def: 0
+    Speed: 1
+    AtkSpeed: 1.3
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 3
+    Skill: "\uB2E8\uC77C"
+  - unitID: 50
+    Job: "\uD790\uB7EC1"
     Hp: 80
     Mp: 100
     Atk: 8
     Def: 0
     Speed: 0.8
     AtkSpeed: 0.8
-    Crit: 10
-    CritD: 130
+    Crit: 0.1
+    CritD: 1.3
     HpRegen: 1
     MpRegen: 5
-    Aggro: 4
+    Aggro: 0
+    Range: 2
+    Skill: "\uD300\uD68C\uBCF5"
+  - unitID: 51
+    Job: "\uD790\uB7EC2"
+    Hp: 144
+    Mp: 100
+    Atk: 14
+    Def: 0
+    Speed: 0.8
+    AtkSpeed: 0.8
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 2
+    Skill: "\uD300\uD68C\uBCF5"
+  - unitID: 52
+    Job: "\uD790\uB7EC3"
+    Hp: 256
+    Mp: 100
+    Atk: 26
+    Def: 0
+    Speed: 0.8
+    AtkSpeed: 0.8
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 2
     Skill: "\uD300\uD68C\uBCF5"
   itemList:
-  - name: "\uAC80"
-    job: "\uC804\uC0AC"
+  - itemID: 0
+    Name: "\uAC80"
+    Job: "\uC804\uC0AC"
     Hp: 0
     Mp: 0
     Atk: 1
@@ -111,8 +298,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uACF5\uACA9\uB825 +1, \uCE58\uBA85\uD0C0 \uD53C\uD574 +5%"
-  - name: "\uB3C4\uB07C"
-    job: "\uC804\uC0AC"
+  - itemID: 1
+    Name: "\uB3C4\uB07C"
+    Job: "\uC804\uC0AC"
     Hp: 0
     Mp: 0
     Atk: 2
@@ -124,8 +312,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uACF5\uACA9\uB825 +2"
-  - name: "\uD22C\uAD6C"
-    job: "\uC804\uC0AC"
+  - itemID: 2
+    Name: "\uD22C\uAD6C"
+    Job: "\uC804\uC0AC"
     Hp: 0
     Mp: 0
     Atk: 0
@@ -137,8 +326,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uBC29\uC5B4\uB825 +1"
-  - name: "\uAC11\uC637"
-    job: "\uC804\uC0AC"
+  - itemID: 3
+    Name: "\uAC11\uC637"
+    Job: "\uC804\uC0AC"
     Hp: 10
     Mp: 0
     Atk: 0
@@ -150,8 +340,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uCCB4\uB825 +10"
-  - name: "\uD65C"
-    job: "\uAD81\uC218"
+  - itemID: 10
+    Name: "\uD65C"
+    Job: "\uAD81\uC218"
     Hp: 0
     Mp: 0
     Atk: 0
@@ -163,8 +354,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uACF5\uACA9\uC18D\uB3C4 +5%"
-  - name: "\uD654\uC0B4"
-    job: "\uAD81\uC218"
+  - itemID: 11
+    Name: "\uD654\uC0B4"
+    Job: "\uAD81\uC218"
     Hp: 0
     Mp: 0
     Atk: 0
@@ -176,8 +368,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uCE58\uBA85\uD0C0 \uD655\uB960 +4%"
-  - name: "\uC190\uBAA9\uBCF4\uD638\uB300"
-    job: "\uAD81\uC218"
+  - itemID: 12
+    Name: "\uC190\uBAA9\uBCF4\uD638\uB300"
+    Job: "\uAD81\uC218"
     Hp: 0
     Mp: 0
     Atk: 0
@@ -189,8 +382,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uACF5\uACA9\uC18D\uB3C4 +3%, \uCE58\uBA85\uD0C0 \uD53C\uD574 +4%"
-  - name: "\uAC00\uBCBC\uC6B4 \uC2E0\uBC1C"
-    job: "\uAD81\uC218"
+  - itemID: 13
+    Name: "\uAC00\uBCBC\uC6B4 \uC2E0\uBC1C"
+    Job: "\uAD81\uC218"
     Hp: 0
     Mp: 0
     Atk: 0
@@ -202,8 +396,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uC774\uB3D9\uC18D\uB3C4 +0.2"
-  - name: "\uC9C0\uD321\uC774"
-    job: "\uB9C8\uBC95\uC0AC"
+  - itemID: 20
+    Name: "\uC9C0\uD321\uC774"
+    Job: "\uB9C8\uBC95\uC0AC"
     Hp: 0
     Mp: 0
     Atk: 0
@@ -215,8 +410,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 2
     description: "MP \uD68C\uBCF5 +2"
-  - name: "\uB9C8\uBC95\uC11C"
-    job: "\uB9C8\uBC95\uC0AC"
+  - itemID: 21
+    Name: "\uB9C8\uBC95\uC11C"
+    Job: "\uB9C8\uBC95\uC0AC"
     Hp: 0
     Mp: 5
     Atk: 0
@@ -228,8 +424,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 1
     description: "MP +5, MP \uD68C\uBCF5 +1"
-  - name: "\uB9C8\uB825\uAD6C\uC2AC"
-    job: "\uB9C8\uBC95\uC0AC"
+  - itemID: 22
+    Name: "\uB9C8\uB825\uAD6C\uC2AC"
+    Job: "\uB9C8\uBC95\uC0AC"
     Hp: 0
     Mp: 4
     Atk: 1
@@ -241,8 +438,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uACF5\uACA9\uB825 +1, MP +4"
-  - name: "\uB85C\uBE0C"
-    job: "\uB9C8\uBC95\uC0AC"
+  - itemID: 23
+    Name: "\uB85C\uBE0C"
+    Job: "\uB9C8\uBC95\uC0AC"
     Hp: 6
     Mp: 0
     Atk: 0
@@ -254,8 +452,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uCCB4\uB825 +6, \uBC29\uC5B4\uB825 +1"
-  - name: "\uB2E8\uAC80"
-    job: "\uC554\uC0B4\uC790"
+  - itemID: 30
+    Name: "\uB2E8\uAC80"
+    Job: "\uC554\uC0B4\uC790"
     Hp: 0
     Mp: 0
     Atk: 0
@@ -267,8 +466,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uCE58\uBA85\uD0C0 \uD655\uB960 +5%"
-  - name: "\uB9F9\uB3C5\uBCD1"
-    job: "\uC554\uC0B4\uC790"
+  - itemID: 31
+    Name: "\uB9F9\uB3C5\uBCD1"
+    Job: "\uC554\uC0B4\uC790"
     Hp: 0
     Mp: 0
     Atk: 1
@@ -280,8 +480,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uACF5\uACA9\uB825 +1, \uCE58\uBA85\uD0C0 \uD53C\uD574 +5%"
-  - name: "\uD6C4\uB4DC"
-    job: "\uC554\uC0B4\uC790"
+  - itemID: 32
+    Name: "\uD6C4\uB4DC"
+    Job: "\uC554\uC0B4\uC790"
     Hp: 0
     Mp: 0
     Atk: 0
@@ -293,8 +494,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uACF5\uACA9\uC18D\uB3C4 +5%"
-  - name: "\uAC00\uBCBC\uC6B4 \uC0C1\uC758"
-    job: "\uC554\uC0B4\uC790"
+  - itemID: 33
+    Name: "\uAC00\uBCBC\uC6B4 \uC0C1\uC758"
+    Job: "\uC554\uC0B4\uC790"
     Hp: 0
     Mp: 0
     Atk: 0
@@ -306,8 +508,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uC774\uB3D9\uC18D\uB3C4 +0.2"
-  - name: "\uBC29\uD328"
-    job: "\uD0F1\uCEE4"
+  - itemID: 40
+    Name: "\uBC29\uD328"
+    Job: "\uD0F1\uCEE4"
     Hp: 0
     Mp: 0
     Atk: 0
@@ -319,8 +522,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uBC29\uC5B4\uB825 +2"
-  - name: "\uCCA0\uAC11"
-    job: "\uD0F1\uCEE4"
+  - itemID: 41
+    Name: "\uCCA0\uAC11"
+    Job: "\uD0F1\uCEE4"
     Hp: 10
     Mp: 0
     Atk: 0
@@ -332,8 +536,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uCCB4\uB825 +10"
-  - name: "\uC804\uD22C\uC7A5\uAC11"
-    job: "\uD0F1\uCEE4"
+  - itemID: 42
+    Name: "\uC804\uD22C\uC7A5\uAC11"
+    Job: "\uD0F1\uCEE4"
     Hp: 0
     Mp: 0
     Atk: 0
@@ -345,8 +550,9 @@ MonoBehaviour:
     HpRegen: 0.5
     MpRegen: 0
     description: "\uBC29\uC5B4\uB825 +1, \uCCB4\uB825\uD68C\uBCF5 +0.5"
-  - name: "\uAC74\uD2C0\uB9BF"
-    job: "\uD0F1\uCEE4"
+  - itemID: 43
+    Name: "\uAC74\uD2C0\uB9BF"
+    Job: "\uD0F1\uCEE4"
     Hp: 10
     Mp: 0
     Atk: 0
@@ -358,8 +564,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uCCB4\uB825 +10"
-  - name: "\uC131\uC218"
-    job: "\uD790\uB7EC"
+  - itemID: 50
+    Name: "\uC131\uC218"
+    Job: "\uD790\uB7EC"
     Hp: 5
     Mp: 5
     Atk: 0
@@ -371,8 +578,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uCCB4\uB825 +5, MP +5"
-  - name: "\uAE30\uB3C4\uAD6C\uC2AC"
-    job: "\uD790\uB7EC"
+  - itemID: 51
+    Name: "\uAE30\uB3C4\uAD6C\uC2AC"
+    Job: "\uD790\uB7EC"
     Hp: 0
     Mp: 5
     Atk: 0
@@ -384,8 +592,9 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "MP +5, \uACF5\uACA9\uC18D\uB3C4 +3%"
-  - name: "\uC131\uC11C"
-    job: "\uD790\uB7EC"
+  - itemID: 52
+    Name: "\uC131\uC11C"
+    Job: "\uD790\uB7EC"
     Hp: 0
     Mp: 0
     Atk: 1
@@ -397,8 +606,9 @@ MonoBehaviour:
     HpRegen: 0.5
     MpRegen: 0
     description: "\uACF5\uACA9\uB825 +1, \uCCB4\uB825\uD68C\uBCF5 +0.5"
-  - name: "\uCE58\uC720 \uB85C\uBE0C"
-    job: "\uD790\uB7EC"
+  - itemID: 53
+    Name: "\uCE58\uC720 \uB85C\uBE0C"
+    Job: "\uD790\uB7EC"
     Hp: 5
     Mp: 0
     Atk: 0
@@ -411,7 +621,8 @@ MonoBehaviour:
     MpRegen: 1
     description: "MP \uD68C\uBCF5 +1, \uCCB4\uB825 +5"
   synergyList:
-  - synergyName: "\uC804\uC0AC"
+  - synergyID: 0
+    synergyName: "\uC804\uC0AC"
     requiredCount: 2
     Hp: 0
     Mp: 0
@@ -424,7 +635,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uC804\uC0AC"
+  - synergyID: 1
+    synergyName: "\uC804\uC0AC"
     requiredCount: 3
     Hp: 15
     Mp: 0
@@ -437,7 +649,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uC804\uC0AC"
+  - synergyID: 2
+    synergyName: "\uC804\uC0AC"
     requiredCount: 4
     Hp: 0
     Mp: 0
@@ -450,7 +663,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uAD81\uC218"
+  - synergyID: 10
+    synergyName: "\uAD81\uC218"
     requiredCount: 2
     Hp: 0
     Mp: 0
@@ -463,7 +677,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uAD81\uC218"
+  - synergyID: 11
+    synergyName: "\uAD81\uC218"
     requiredCount: 3
     Hp: 0
     Mp: 0
@@ -476,7 +691,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uAD81\uC218"
+  - synergyID: 12
+    synergyName: "\uAD81\uC218"
     requiredCount: 4
     Hp: 0
     Mp: 0
@@ -489,7 +705,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uB9C8\uBC95\uC0AC"
+  - synergyID: 20
+    synergyName: "\uB9C8\uBC95\uC0AC"
     requiredCount: 2
     Hp: 0
     Mp: 5
@@ -502,7 +719,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uB9C8\uBC95\uC0AC"
+  - synergyID: 21
+    synergyName: "\uB9C8\uBC95\uC0AC"
     requiredCount: 3
     Hp: 0
     Mp: 5
@@ -515,7 +733,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uB9C8\uBC95\uC0AC"
+  - synergyID: 22
+    synergyName: "\uB9C8\uBC95\uC0AC"
     requiredCount: 4
     Hp: 0
     Mp: 0
@@ -528,7 +747,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 2
     specialEffect: null
-  - synergyName: "\uC554\uC0B4\uC790"
+  - synergyID: 30
+    synergyName: "\uC554\uC0B4\uC790"
     requiredCount: 2
     Hp: 0
     Mp: 0
@@ -541,7 +761,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uC554\uC0B4\uC790"
+  - synergyID: 31
+    synergyName: "\uC554\uC0B4\uC790"
     requiredCount: 3
     Hp: 0
     Mp: 0
@@ -554,7 +775,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uC554\uC0B4\uC790"
+  - synergyID: 32
+    synergyName: "\uC554\uC0B4\uC790"
     requiredCount: 4
     Hp: 0
     Mp: 0
@@ -567,7 +789,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: FirstAtkCrit
-  - synergyName: "\uD0F1\uCEE4"
+  - synergyID: 40
+    synergyName: "\uD0F1\uCEE4"
     requiredCount: 2
     Hp: 15
     Mp: 0
@@ -580,7 +803,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uD0F1\uCEE4"
+  - synergyID: 41
+    synergyName: "\uD0F1\uCEE4"
     requiredCount: 3
     Hp: 0
     Mp: 0
@@ -593,7 +817,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uD0F1\uCEE4"
+  - synergyID: 42
+    synergyName: "\uD0F1\uCEE4"
     requiredCount: 4
     Hp: 0
     Mp: 0
@@ -606,7 +831,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: DmgReduce_5
-  - synergyName: "\uD790\uB7EC"
+  - synergyID: 50
+    synergyName: "\uD790\uB7EC"
     requiredCount: 2
     Hp: 0
     Mp: 5
@@ -619,7 +845,8 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uD790\uB7EC"
+  - synergyID: 51
+    synergyName: "\uD790\uB7EC"
     requiredCount: 3
     Hp: 0
     Mp: 0
@@ -632,7 +859,8 @@ MonoBehaviour:
     HpRegen: 0.5
     MpRegen: 0
     specialEffect: null
-  - synergyName: "\uD790\uB7EC"
+  - synergyID: 52
+    synergyName: "\uD790\uB7EC"
     requiredCount: 4
     Hp: 5
     Mp: 0

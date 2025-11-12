@@ -36,10 +36,4 @@ public interface ISoundManager
 
     /// <summary>SFX 볼륨을 설정</summary>
     void SetSFXVolume(float value);
-
-    /// <summary>유닛 이벤트(피격, 사망 등)를 사운드 시스템에 등록</summary>
-    void RegisterUnit(Unit unit);
-
-    /// <summary>유닛 이벤트 등록을 해제</summary>
-    void UnregisterUnit(Unit unit);
 }

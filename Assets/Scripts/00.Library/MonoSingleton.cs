@@ -14,6 +14,11 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindFirstObjectByType<T>();
+                if (_instance == null)
+                {
+                    Debug.LogError(typeof(T).Name + " could not find an instance of type " + typeof(T).Name);
+                    return null;
+                }
             }
             return _instance;
         }
@@ -21,7 +26,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
