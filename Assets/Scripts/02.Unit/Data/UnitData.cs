@@ -52,9 +52,10 @@ public class UnitData
         }
 
         // unitClass에 해당하는 유닛 정보 찾기
-        if (_so.unitList.Count > 0 && _so.unitList.Count < (int)unitClass)
+        if (_so.unitList.Count > 0 && _so.unitList.Count > (int)unitClass)
         {
             unit unitInfo = _so.unitList[(int)unitClass];
+
             if (stat == null)
             {
                 this.BaseStat = new Stat
