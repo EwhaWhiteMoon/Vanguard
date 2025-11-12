@@ -13,9 +13,13 @@ public interface IEffectManager
     /// <summary>현재 활성화된 모든 이펙트를 제거</summary>
     void ClearAllEffects();
 
+    
+    /*
     /// <summary>유닛 이벤트(OnDamaged, OnDied)를 이펙트 시스템에 등록</summary>
     void RegisterUnit(Unit unit, Transform visualRoot);
 
     /// <summary>유닛 이벤트 등록을 해제</summary>
     void UnregisterUnit(Unit unit);
+    */
+
 }

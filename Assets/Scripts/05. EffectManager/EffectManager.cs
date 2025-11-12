@@ -32,6 +32,7 @@ public class EffectManager : MonoSingleton<EffectManager>, IEffectManager
     /// <summary>특정 위치에 이펙트를 생성하고 일정 시간 후 자동 파괴</summary>
     public void PlayEffect(string effectName, Vector3 position)
     {
+
         GameObject prefab = effectName switch
         {
             "Hit" => hitEffectPrefab,
@@ -55,6 +56,8 @@ public class EffectManager : MonoSingleton<EffectManager>, IEffectManager
         activeEffects.Clear();
     }
 
+    /*
+
     /// <summary> 유닛의 OnDamaged, OnDied 이벤트에 이펙트를 등록 </summary>
     public void RegisterUnit(Unit unit, Transform visualRoot)
     {
@@ -70,5 +73,6 @@ public class EffectManager : MonoSingleton<EffectManager>, IEffectManager
         unit.OnDamaged -= (_, _) => { };
         unit.OnDied -= (_) => { };
     }
+    */
 
 }
