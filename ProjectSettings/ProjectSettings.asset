@@ -293,7 +293,6 @@ PlayerSettings:
   androidSymbolsSizeThreshold: 800
   m_BuildTargetIcons: []
   m_BuildTargetPlatformIcons:
-<<<<<<< HEAD
   - m_BuildTarget: iPhone
     m_Icons:
     - m_Textures: []
@@ -391,8 +390,6 @@ PlayerSettings:
       m_Height: 1024
       m_Kind: 4
       m_SubKind: App Store
-=======
->>>>>>> 448c03a434de6d8234ecf0062e1a37764f563bf1
   - m_BuildTarget: Android
     m_Icons:
     - m_Textures: []
@@ -483,6 +480,13 @@ PlayerSettings:
     - m_Textures: []
       m_Width: 36
       m_Height: 36
+      m_Kind: 0
+      m_SubKind: 
+  - m_BuildTarget: VisionOS
+    m_Icons:
+    - m_Textures: []
+      m_Width: 1024
+      m_Height: 1024
       m_Kind: 0
       m_SubKind: 
   m_BuildTargetBatching: []
@@ -790,7 +794,7 @@ PlayerSettings:
   gcIncremental: 1
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform: {}
-  editorAssembliesCompatibilityLevel: 2
+  editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Vanguard
@@ -867,7 +871,7 @@ PlayerSettings:
   hmiCpuConfiguration: 
   hmiLogStartupTiming: 0
   qnxGraphicConfPath: 
-  apiCompatibilityLevel: 3
+  apiCompatibilityLevel: 6
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
