@@ -23,6 +23,7 @@ public class UnitObj : MonoBehaviour
         // 스탯 설정해야함.
         this.stat = new Stat(unitData.BaseStat);
         this.HP = HP == -1 ? unitData.BaseStat.MaxHealth : HP;
+        HPText.text = this.HP.ToString("N0");
     }
 
     private void Update()
@@ -34,7 +35,7 @@ public class UnitObj : MonoBehaviour
         }
     }
 
-    public void Attack(UnitGameObj target)
+    public void Attack(UnitObj target)
     {
         target.TakeDamage(stat.Attack * (Random.Range(0f, 1f) < stat.CritChance ? stat.CritMultiplier : 1f));
     }

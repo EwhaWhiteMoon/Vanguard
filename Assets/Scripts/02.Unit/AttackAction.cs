@@ -8,8 +8,8 @@ using Unity.Properties;
 [NodeDescription(name: "Attack", story: "[Unit] attacks [Target]", category: "Action", id: "ac1498b55c8b05e3698307ac070c18a1")]
 public partial class AttackAction : Action
 {
-    [SerializeReference] public BlackboardVariable<UnitGameObj> Unit;
-    [SerializeReference] public BlackboardVariable<UnitGameObj> Target;
+    [SerializeReference] public BlackboardVariable<UnitObj> Unit;
+    [SerializeReference] public BlackboardVariable<UnitObj> Target;
     
      private float atkDelay = 0.0f;
 
@@ -17,7 +17,7 @@ public partial class AttackAction : Action
     {
         if(Target.Value == null) return Status.Failure;
         
-        atkDelay = 1 / Unit.Value.stat.AttackSpeed;
+        atkDelay = 1 * Unit.Value.stat.AttackSpeed;
         if (atkDelay <= 0.0f)
         {
             return Status.Success;
