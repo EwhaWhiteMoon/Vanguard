@@ -82,7 +82,7 @@ public class UnitTester : MonoBehaviour, ICombatManager
 
         if (win)
         {
-            GameManager.Instance.GameState = GameState.AfterCombat;
+            GameManager.Instance.GameState = GameState.StartMenu;
         }
         else
         {

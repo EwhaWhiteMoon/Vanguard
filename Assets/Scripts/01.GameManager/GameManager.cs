@@ -30,6 +30,9 @@ public class GameManager : MonoSingleton<GameManager>
     {
         if (GameState == GameState.Loading)
         {
+            
+            MapManager.Instance.InitMap();
+            FindFirstObjectByType<MiniMap>().DrawMiniMap();
             //여기서, 로딩해야 될 게 남아있는지 확인하고 없으면 return
             Debug.Log("Loading Done...");
             GameState = GameState.StartMenu;
