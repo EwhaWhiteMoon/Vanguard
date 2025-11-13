@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,9 +51,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 0.001
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -105,17 +105,17 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 40
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: -1
+        height: -1
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3c28bcb1299a4dbe0800000000000000
+      spriteID: 59c9c02f766ef44a3a9badabd5ca8c78
       internalID: -1453350334737186109
       vertices: []
       indices: 
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2043ddceca30d47d2bd1d38bf7f4dc9f
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +133,35 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":5.0},"gridSpriteSize":{"x":8.0,"y":8.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       tilemap_packed_0: -1453350334737186109
+      tilemap_packed_1: -1823912675
+      tilemap_packed_10: 171179608
+      tilemap_packed_11: 1343476438
+      tilemap_packed_12: -269424958
+      tilemap_packed_13: -862985633
+      tilemap_packed_14: -1537421016
+      tilemap_packed_15: -909990271
+      tilemap_packed_16: -2034145940
+      tilemap_packed_17: -1590464669
+      tilemap_packed_18: -1414917855
+      tilemap_packed_19: -777195101
+      tilemap_packed_2: 1049617858
+      tilemap_packed_20: -1933922506
+      tilemap_packed_21: -289412642
+      tilemap_packed_22: 118342115
+      tilemap_packed_23: 1568012394
+      tilemap_packed_24: -917688561
+      tilemap_packed_3: 24351971
+      tilemap_packed_4: 695677121
+      tilemap_packed_5: 1197013881
+      tilemap_packed_6: -1691926188
+      tilemap_packed_7: -1539860859
+      tilemap_packed_8: -1830498165
+      tilemap_packed_9: 1000194542
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

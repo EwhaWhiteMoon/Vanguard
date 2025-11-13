@@ -27,7 +27,7 @@ namespace Editor
                 if (assetPath.ToLower().Contains(dir)) size = s;
             }
 
-            if (size != -1) return;
+            if (size == -1) return;
             
             var assetName = Path.GetFileNameWithoutExtension(assetPath);
             
