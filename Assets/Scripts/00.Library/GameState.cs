@@ -12,4 +12,5 @@ public enum GameState
     AfterCombat, // 전투 이후 화면
     Event, // 이벤트 진행 중 화면
     Map, // 맵 이동 중 화면
+    GameOver,
 }

@@ -1,8 +1,7 @@
 public enum RoomType
 {
     Empty,
+    Wall,
     EventRoom,
-    MysteryRoom,
     CombatRoom,
-    BossRoom,
 }
