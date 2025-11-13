@@ -3,7 +3,28 @@ using UnityEngine;
 public class MapManager
 {
     public Room[,] Map { get; private set; }
-    public Vector2Int playerPos { get; private set; } = new Vector2Int(0, 0);
+    public Vector2Int playerPos { get; private set; }
+
+    private int currentRoomCount = 0;
+
+    private Queue<Vector2Int> roomQueue = new Queue<Vector2Int>();
+    private List<Vector2Int> endRooms = new List<Vector2Int>();
+    private HashSet<Vector2Int> assignedRooms = new HashSet<Vector2Int>();
+    private MiniMap miniMap;
+
+    private void Start()
+    {
+        miniMap = FindFirstObjectByType<MiniMap>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            InitMap();
+            miniMap.RefreshMiniMap();
+        }
+    }
 
     public void InitMap(int width, int height)
     {
