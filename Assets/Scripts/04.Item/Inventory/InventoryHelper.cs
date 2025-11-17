@@ -5,15 +5,15 @@ using UnityEngine;
 /// 
 /// 아이템 획득 시:
 /// 1. ItemBonusManager에 스탯 보너스를 누적합니다.
-/// 2. ItemAcquiredListManager에 itemID를 기록합니다.
+/// 2. InventoryManager에 itemID를 기록합니다.
 /// 
 /// 사용 예시:
 /// <code>
 /// // 아이템 획득 (보상 화면에서 호출)
-/// ItemAcquisitionHelper.AcquireItem("1");
+/// InventoryHelper.AcquireItem("1");
 /// </code>
 /// </summary>
-public static class ItemAcquisitionHelper
+public static class InventoryHelper
 {
     /// <summary>
     /// 아이템을 획득합니다.
@@ -23,14 +23,14 @@ public static class ItemAcquisitionHelper
     /// 2. Job 문자열을 Job enum으로 변환
     /// 3. item 데이터를 StatData로 변환
     /// 4. ItemBonusManager에 스탯 보너스 누적
-    /// 5. ItemAcquiredListManager에 획득 기록
+    /// 5. InventoryManager에 획득 기록
     /// </summary>
     /// <param name="itemId">획득할 아이템의 ID (구글 시트의 itemID를 문자열로 변환한 값)</param>
     public static void AcquireItem(string itemId)
     {
         if (string.IsNullOrEmpty(itemId))
         {
-            Debug.LogWarning("[ItemAcquisitionHelper] itemId가 비어 있습니다.");
+            Debug.LogWarning("[InventoryHelper] itemId가 비어 있습니다.");
             return;
         }
 
@@ -38,7 +38,7 @@ public static class ItemAcquisitionHelper
         item sheetItem = ItemDatabase.Instance.GetItemById(itemId);
         if (sheetItem == null)
         {
-            Debug.LogWarning($"[ItemAcquisitionHelper] ItemId '{itemId}'에 해당하는 시트 데이터가 없습니다.");
+            Debug.LogWarning($"[InventoryHelper] ItemId '{itemId}'에 해당하는 시트 데이터가 없습니다.");
             return;
         }
 
@@ -64,10 +64,10 @@ public static class ItemAcquisitionHelper
         ItemBonusManager.Instance.AddItemBonus(job, bonus);
 
         // 5. 획득한 아이템 목록에 기록
-        ItemAcquiredListManager.Instance.AddItem(itemId);
+        InventoryManager.Instance.AddItem(itemId);
 
         string targetInfo = job == Job.All ? "모든 직업" : job.ToString();
-        Debug.Log($"[ItemAcquisitionHelper] 아이템 획득 완료: {sheetItem.Name} (ID: {itemId}) - {targetInfo}에게 보너스 적용");
+        Debug.Log($"[InventoryHelper] 아이템 획득 완료: {sheetItem.Name} (ID: {itemId}) - {targetInfo}에게 보너스 적용");
     }
 }
 

@@ -2,30 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 아이템으로 인한 스탯 보너스를 직업별로 관리하는 싱글톤 매니저입니다.
-/// 
-/// 주요 역할:
-/// 1. 아이템 획득 시 직업별로 스탯 보너스를 누적 저장
-/// 2. 유닛 담당자가 최종 스탯 계산 시 필요한 보너스를 제공
-/// 
-/// 사용 흐름:
-/// 1. 아이템 획득 시: ItemBase.OnGet() -> ItemBonusManager.AddItemBonus() 호출
-/// 2. 유닛 스탯 계산 시: ItemBonusManager.GetItemBonus(job) 호출하여 보너스 획득
-/// 3. 최종 스탯 계산: baseStat + itemBonus = finalStat
-/// 
-/// 유닛 담당자 사용 예시:
-/// <code>
-/// // 유닛의 기본 스탯 (구글 시트나 ScriptableObject에서 로드)
-/// StatData baseStat = unitBaseStat;
-/// 
-/// // 아이템으로 인한 보너스 스탯 획득
-/// StatData itemBonus = ItemBonusManager.Instance.GetItemBonus(job);
-/// 
-/// // 최종 스탯 계산
-/// StatData finalStat = baseStat + itemBonus;
-/// 
-/// // finalStat을 실제 전투에서 사용할 유닛 스탯으로 사용
-/// </code>
+/// 아이템 획득으로 인해 직업별로 누적된 스탯 보너스를 저장/제공하는 싱글톤입니다.
+/// InventoryHelper가 AddItemBonus를 호출해 보너스를 누적하고,
+/// 유닛 담당자는 GetItemBonus 결과를 UnitItemHelper를 통해 최종 스탯에 더합니다.
 /// </summary>
 public class ItemBonusManager : MonoSingleton<ItemBonusManager>
 {

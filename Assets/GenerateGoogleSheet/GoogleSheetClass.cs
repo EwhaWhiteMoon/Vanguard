@@ -66,7 +66,6 @@ public class synergy
 	public float CritD;
 	public float HpRegen;
 	public int MpRegen;
-	public string specialEffect;
 }
 
 [Serializable]

@@ -8,7 +8,7 @@ using UnityEngine;
 /// - 인벤토리 UI, 삭제, 장착 같은 기능은 만들지 않습니다.
 /// - 오직 "어떤 아이템을 몇 개 먹었는지"를 저장하는 용도입니다.
 /// </summary>
-public class ItemAcquiredListManager : MonoSingleton<ItemAcquiredListManager>
+public class InventoryManager : MonoSingleton<InventoryManager>
 {
     /// <summary>
     /// itemID -> 현재까지 먹은 개수
@@ -23,7 +23,7 @@ public class ItemAcquiredListManager : MonoSingleton<ItemAcquiredListManager>
     {
         if (string.IsNullOrEmpty(itemId))
         {
-            Debug.LogWarning("[ItemAcquiredListManager] itemId가 비어 있습니다.");
+            Debug.LogWarning("[InventoryManager] itemId가 비어 있습니다.");
             return;
         }
 
@@ -36,7 +36,7 @@ public class ItemAcquiredListManager : MonoSingleton<ItemAcquiredListManager>
             _itemCounts[itemId] = 1;
         }
 
-        Debug.Log($"[ItemAcquiredList] 아이템 획득: {itemId}, 현재 개수 = {_itemCounts[itemId]}");
+        Debug.Log($"[InventoryManager] 아이템 획득: {itemId}, 현재 개수 = {_itemCounts[itemId]}");
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ public class ItemAcquiredListManager : MonoSingleton<ItemAcquiredListManager>
     public void ResetAll()
     {
         _itemCounts.Clear();
-        Debug.Log("[ItemAcquiredList] 모든 획득 아이템 기록 초기화");
+        Debug.Log("[InventoryManager] 모든 획득 아이템 기록 초기화");
     }
 }
 
