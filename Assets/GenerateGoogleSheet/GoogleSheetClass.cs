@@ -43,8 +43,8 @@ public class item
 	public int Def;
 	public float Speed;
 	public int AtkSpeed;
-	public int Crit;
-	public int CritD;
+	public float Crit;
+	public float CritD;
 	public float HpRegen;
 	public int MpRegen;
 	public string description;
@@ -62,8 +62,8 @@ public class synergy
 	public int Def;
 	public int Speed;
 	public int AtkSpeed;
-	public int Crit;
-	public int CritD;
+	public float Crit;
+	public float CritD;
 	public float HpRegen;
 	public int MpRegen;
 	public string specialEffect;
