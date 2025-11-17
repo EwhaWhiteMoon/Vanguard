@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 401337207756240857}
   - component: {fileID: 1767300132888779049}
   - component: {fileID: 8321633301072272172}
+  - component: {fileID: -5593904489398582053}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -46,8 +47,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c515cb4d2f3414ab29c4bfaae8aa3503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitBehaviour
-  renderers: []
-  animator: {fileID: 0}
+  unitData:
+    Name: 
+    BaseStat:
+      MaxHealth: 100
+      HealthRegenPerSec: 0
+      Attack: 10
+      Defense: 0
+      DamageReducePct: 0
+      MoveSpeed: 1
+      AttackSpeed: 1
+      CritChance: 0
+      CritMultiplier: 1.3
+      ManaMax: 100
+      ManaRegenPerHit: 10
+      Range: 2
+      AggroValue: 0
+    sprite: {fileID: 0}
+    filePath: 
+  stat:
+    MaxHealth: 100
+    HealthRegenPerSec: 0
+    Attack: 10
+    Defense: 0
+    DamageReducePct: 0
+    MoveSpeed: 1
+    AttackSpeed: 1
+    CritChance: 0
+    CritMultiplier: 1.3
+    ManaMax: 100
+    ManaRegenPerHit: 10
+    Range: 2
+    AggroValue: 0
+  Team: 0
+  HPText: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!212 &1767300132888779049
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -133,3 +167,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &-5593904489398582053
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5477720583506139020}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
