@@ -3,24 +3,6 @@ using UnityEngine;
 
 /// <summary>
 /// ItemID로 GoogleSheetSO.asset의 item 데이터를 조회할 수 있는 데이터베이스 클래스입니다.
-/// 
-/// 구글 시트 데이터를 자동으로 로드하여 사용합니다.
-/// GoogleSheetSO.asset의 itemList를 직접 참조하여 사용합니다.
-/// 
-/// 사용 방법:
-/// 1. 씬에 ItemDatabase 오브젝트를 하나 생성합니다.
-/// 2. 런타임에서 ItemDatabase.Instance.GetItemById(itemId)로 아이템을 조회할 수 있습니다.
-/// 
-/// 사용 예시:
-/// <code>
-/// // ItemID로 아이템 조회 (구글 시트의 itemID를 문자열로 변환)
-/// item sheetItem = ItemDatabase.Instance.GetItemById("1");
-/// if (sheetItem != null)
-/// {
-///     Debug.Log($"아이템 이름: {sheetItem.Name}");
-///     Debug.Log($"스탯 보너스: Hp={sheetItem.Hp}, Atk={sheetItem.Atk}");
-/// }
-/// </code>
 /// </summary>
 public class ItemDatabase : MonoSingleton<ItemDatabase>
 {

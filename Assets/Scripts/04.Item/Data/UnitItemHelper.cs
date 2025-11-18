@@ -108,5 +108,49 @@ public static class UnitItemHelper
         Job job = UnitClassToJob(unitClass);
         return ApplyItemBonusToStat(baseStat, job);
     }
+
+    /// <summary>
+    /// 유닛의 기본 Stat에 아이템 보너스와 시너지 보너스를 모두 적용하여 최종 Stat을 계산합니다.
+    /// 
+    /// 계산 공식: BaseStat + ItemBonus + SynergyBonus
+    /// 
+    /// 사용 예시:
+    /// <code>
+    /// Stat baseStat = unitData.BaseStat;
+    /// Job job = UnitItemHelper.UnitClassToJob(unitData.Class);
+    /// Stat finalStat = UnitItemHelper.ApplyAllBonusesToStat(baseStat, job);
+    /// unitObj.stat = finalStat;
+    /// </code>
+    /// </summary>
+    /// <param name="baseStat">유닛의 기본 Stat</param>
+    /// <param name="job">유닛의 직업 (Job enum)</param>
+    /// <returns>아이템 보너스와 시너지 보너스가 모두 적용된 최종 Stat</returns>
+    public static Stat ApplyAllBonusesToStat(Stat baseStat, Job job)
+    {
+        // 1. 아이템 보너스 조회
+        StatData itemBonus = ItemBonusManager.Instance.GetItemBonus(job);
+
+        // 2. 시너지 보너스 조회
+        StatData synergyBonus = SynergyManager.Instance.GetSynergyBonus(job);
+
+        // 3. 아이템 보너스 + 시너지 보너스를 합산
+        StatData totalBonus = itemBonus + synergyBonus;
+
+        // 4. StatData를 Stat으로 변환하여 적용
+        return StatDataToStat(totalBonus, baseStat);
+    }
+
+    /// <summary>
+    /// UnitClass를 사용하여 유닛의 기본 Stat에 아이템 보너스와 시너지 보너스를 모두 적용합니다.
+    /// UnitClass를 Job으로 자동 변환합니다.
+    /// </summary>
+    /// <param name="baseStat">유닛의 기본 Stat</param>
+    /// <param name="unitClass">유닛의 직업 (UnitClass enum)</param>
+    /// <returns>아이템 보너스와 시너지 보너스가 모두 적용된 최종 Stat</returns>
+    public static Stat ApplyAllBonusesToStat(Stat baseStat, UnitClass unitClass)
+    {
+        Job job = UnitClassToJob(unitClass);
+        return ApplyAllBonusesToStat(baseStat, job);
+    }
 }
 

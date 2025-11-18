@@ -9,21 +9,15 @@ public enum Job
     /// </summary>
     All,
 
-
     Warrior,
-
 
     Archer,
 
-
     Mage,
-
 
     Assassin,
 
-
     Tanker,
-
 
     Healer
 }

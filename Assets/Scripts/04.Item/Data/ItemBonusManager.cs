@@ -3,8 +3,8 @@ using UnityEngine;
 
 /// <summary>
 /// 아이템 획득으로 인해 직업별로 누적된 스탯 보너스를 저장/제공하는 싱글톤입니다.
-/// InventoryHelper가 AddItemBonus를 호출해 보너스를 누적하고,
-/// 유닛 담당자는 GetItemBonus 결과를 UnitItemHelper를 통해 최종 스탯에 더합니다.
+/// ItemEffectManager가 AddItemBonus를 호출해 보너스를 누적하고,
+/// UnitItemHelper가 GetItemBonus를 호출해 보너스를 조회합니다.
 /// </summary>
 public class ItemBonusManager : MonoSingleton<ItemBonusManager>
 {
@@ -31,18 +31,6 @@ public class ItemBonusManager : MonoSingleton<ItemBonusManager>
     /// 동작 방식:
     /// - 해당 직업의 기존 보너스가 있으면 새로운 보너스를 더해서 누적합니다.
     /// - 해당 직업의 보너스가 없으면 새로운 보너스를 그대로 저장합니다.
-    /// 
-    /// 사용 예시:
-    /// <code>
-    /// // 전사에게 공격력 +10, 체력 +50 보너스 추가
-    /// StatData bonus = new StatData { Atk = 10, Hp = 50 };
-    /// ItemBonusManager.Instance.AddItemBonus(Job.Warrior, bonus);
-    /// 
-    /// // 나중에 또 다른 아이템으로 전사에게 공격력 +5 추가
-    /// StatData bonus2 = new StatData { Atk = 5 };
-    /// ItemBonusManager.Instance.AddItemBonus(Job.Warrior, bonus2);
-    /// // 결과: 전사는 총 Atk +15, Hp +50 보너스를 받게 됩니다.
-    /// </code>
     /// </summary>
     /// <param name="job">보너스를 적용할 직업 (Job.All도 가능)</param>
     /// <param name="bonus">추가할 스탯 보너스</param>
@@ -74,14 +62,6 @@ public class ItemBonusManager : MonoSingleton<ItemBonusManager>
 
     /// <summary>
     /// 팀 전체(모든 직업)에게 적용되는 보너스를 추가하는 편의 메서드입니다.
-    /// Job.All에 보너스를 추가하는 것과 동일합니다.
-    /// 
-    /// 사용 예시:
-    /// <code>
-    /// // 모든 직업에게 체력 +100 보너스
-    /// StatData globalBonus = new StatData { Hp = 100 };
-    /// ItemBonusManager.Instance.AddGlobalBonus(globalBonus);
-    /// </code>
     /// </summary>
     /// <param name="bonus">전체 직업에게 적용할 스탯 보너스</param>
     public void AddGlobalBonus(StatData bonus)
@@ -89,26 +69,9 @@ public class ItemBonusManager : MonoSingleton<ItemBonusManager>
         AddItemBonus(Job.All, bonus);
     }
 
-
     /// <summary>
-    /// 유닛 담당자가 최종 스탯 계산 시 사용하는 핵심 메서드입니다.
-    /// 
-    /// 동작 방식:
-    /// 1. Job.All에 해당하는 보너스가 있으면 포함해서 더합니다.
-    /// 2. 해당 job(예: Warrior)에 대한 보너스가 있으면 포함해서 더합니다.
-    /// 3. 둘 다 없으면 모든 값이 0인 StatData를 반환합니다.
-    /// 
-    /// 중요: Job.All 보너스와 특정 직업 보너스는 함께 적용됩니다.
-    /// 예를 들어, All 보너스로 Atk +10이 있고, Warrior 보너스로 Atk +5가 있으면,
-    /// 전사는 총 Atk +15 보너스를 받게 됩니다.
-    /// 
-    /// 사용 예시:
-    /// <code>
-    /// // 전사 유닛의 최종 스탯 계산
-    /// StatData baseStat = unitBaseStat; // 기본 스탯
-    /// StatData itemBonus = ItemBonusManager.Instance.GetItemBonus(Job.Warrior);
-    /// StatData finalStat = baseStat + itemBonus;
-    /// </code>
+    /// 지정된 직업에 대한 누적된 아이템 보너스를 조회합니다.
+    /// Job.All 보너스와 특정 직업 보너스를 합산하여 반환합니다.
     /// </summary>
     /// <param name="job">보너스를 조회할 직업</param>
     /// <returns>해당 직업이 아이템을 통해 얻은 전체 보너스 스탯</returns>
