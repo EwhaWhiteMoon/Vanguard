@@ -14,54 +14,24 @@ using UnityEngine;
 [System.Serializable]
 public struct StatData
 {
-    /// <summary>
-    /// 체력 (Health Points)
-    /// </summary>
     public float Hp;
 
-    /// <summary>
-    /// 마나 (Mana Points)
-    /// </summary>
     public float Mp;
 
-    /// <summary>
-    /// 공격력 (Attack)
-    /// </summary>
     public float Atk;
 
-    /// <summary>
-    /// 방어력 (Defense)
-    /// </summary>
     public float Def;
 
-    /// <summary>
-    /// 이동 속도 (Speed)
-    /// </summary>
     public float Speed;
 
-    /// <summary>
-    /// 공격 속도 (Attack Speed)
-    /// </summary>
     public float AtkSpeed;
 
-    /// <summary>
-    /// 치명타 확률 (Critical Rate)
-    /// </summary>
     public float Crit;
 
-    /// <summary>
-    /// 치명타 피해량 (Critical Damage)
-    /// </summary>
     public float CritD;
 
-    /// <summary>
-    /// 체력 재생 (Health Regeneration)
-    /// </summary>
     public float HpRegen;
 
-    /// <summary>
-    /// 마나 재생 (Mana Regeneration)
-    /// </summary>
     public float MpRegen;
 
     /// <summary>

@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
+/// 걍 참고용
 /// 현재 누적된 아이템 보너스를 표시하는 UI입니다.
 /// 
 /// 사용 방법:

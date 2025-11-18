@@ -11,7 +11,7 @@ using UnityEngine;
 /// 
 /// 사용 방법:
 /// 1. 프로젝트에 ItemVisualDatabase.asset을 하나 생성합니다.
-/// 2. entries 리스트에 itemId / icon / description을 24개 채워 넣습니다.
+/// 2. entries 리스트에 itemId / icon / description을 채워 넣습니다.
 /// 3. 나중에 보상/상점 UI에서 itemId로 아이콘/설명을 조회할 수 있습니다.
 /// </summary>
 [CreateAssetMenu(

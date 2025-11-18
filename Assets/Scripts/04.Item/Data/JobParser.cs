@@ -1,17 +1,6 @@
 using UnityEngine;
 
-/// <summary>
-/// 구글 시트의 Job 문자열을 Job enum으로 변환하는 유틸리티 클래스입니다.
-/// 
-/// 지원 형식:
-/// - "All", "전체" → Job.All
-/// - "Warrior", "전사" → Job.Warrior
-/// - "Archer", "궁수" → Job.Archer
-/// - "Mage", "마법사" → Job.Mage
-/// - "Assassin", "암살자" → Job.Assassin
-/// - "Tanker", "탱커" → Job.Tanker
-/// - "Healer", "힐러" → Job.Healer
-/// </summary>
+
 public static class JobParser
 {
     /// <summary>

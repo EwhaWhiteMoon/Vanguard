@@ -4,9 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 플레이어가 지금까지 획득한 아이템 목록을
 /// "itemID별 개수"로만 기록하는 매니저입니다.
-/// 
-/// - 인벤토리 UI, 삭제, 장착 같은 기능은 만들지 않습니다.
-/// - 오직 "어떤 아이템을 몇 개 먹었는지"를 저장하는 용도입니다.
+/// "어떤 아이템을 몇 개 먹었는지"를 저장하는 용도입니다.
 /// </summary>
 public class InventoryManager : MonoSingleton<InventoryManager>
 {
