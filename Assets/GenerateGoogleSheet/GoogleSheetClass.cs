@@ -29,6 +29,7 @@ public class unit
 	public int Aggro;
 	public float Range;
 	public string Skill;
+	public int Price;
 	public string AniController;
 }
 
@@ -48,6 +49,7 @@ public class item
 	public float CritD;
 	public float HpRegen;
 	public int MpRegen;
+	public int Price;
 	public string description;
 }
 
