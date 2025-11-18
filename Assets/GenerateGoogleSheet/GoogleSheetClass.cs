@@ -5,16 +5,16 @@ using UnityEngine;
 /// <summary>You must approach through `GoogleSheetManager.SO<GoogleSheetSO>()`</summary>
 public class GoogleSheetSO : ScriptableObject
 {
-	public List<unit> unitList;
-	public List<item> itemList;
-	public List<synergy> synergyList;
-	public List<unitTable> unitTableList;
+	public Dictionary<string, unit> unitDict;
+	public Dictionary<string, item> itemDict;
+	public Dictionary<string, synergy> synergyDict;
+	public Dictionary<string, unitTable> unitTableDict;
 }
 
 [Serializable]
 public class unit
 {
-	public int unitID;
+	public string unitID;
 	public string Job;
 	public int Hp;
 	public int Mp;
@@ -29,12 +29,13 @@ public class unit
 	public int Aggro;
 	public float Range;
 	public string Skill;
+	public string AniController;
 }
 
 [Serializable]
 public class item
 {
-	public int itemID;
+	public string itemID;
 	public string Name;
 	public string Job;
 	public int Hp;
@@ -43,8 +44,8 @@ public class item
 	public int Def;
 	public float Speed;
 	public int AtkSpeed;
-	public int Crit;
-	public int CritD;
+	public float Crit;
+	public float CritD;
 	public float HpRegen;
 	public int MpRegen;
 	public string description;
@@ -53,7 +54,7 @@ public class item
 [Serializable]
 public class synergy
 {
-	public int synergyID;
+	public string synergyID;
 	public string synergyName;
 	public int requiredCount;
 	public int Hp;
@@ -62,16 +63,16 @@ public class synergy
 	public int Def;
 	public int Speed;
 	public int AtkSpeed;
-	public int Crit;
-	public int CritD;
+	public float Crit;
+	public float CritD;
 	public float HpRegen;
 	public int MpRegen;
-	public string specialEffect;
 }
 
 [Serializable]
 public class unitTable
 {
+	public string unitTableID;
 	public string name;
 	public int stage;
 	public string count;
