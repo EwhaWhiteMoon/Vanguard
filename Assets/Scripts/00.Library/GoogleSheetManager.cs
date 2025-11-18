@@ -146,7 +146,7 @@ public class GoogleSheetManager : MonoBehaviour
             if (!IsExistAvailSheets(className))
                 continue;
 
-            classCode.AppendLine($"\tpublic List<{className}> {className}List;");
+            classCode.AppendLine($"\tpublic Dictionary<string, {className}> {className}Dict;");
         }
         classCode.AppendLine("}\n");
 
@@ -251,8 +251,8 @@ public class GoogleSheetManager : MonoBehaviour
                     continue;
 
                 Type classType = Type.GetType(className);
-                Type listType = typeof(List<>).MakeGenericType(classType);
-                IList listInst = (IList)Activator.CreateInstance(listType);
+                Type dictType = typeof(Dictionary<,>).MakeGenericType(typeof(string), classType);
+                IDictionary dictInst = (IDictionary)Activator.CreateInstance(dictType);
                 var items = (JArray)jObject.Value;
 
                 foreach (var item in items)
@@ -266,14 +266,16 @@ public class GoogleSheetManager : MonoBehaviour
                         fieldInfo.SetValue(classInst, value);
                     }
 
-                    listInst.Add(classInst);
+                    FieldInfo idField = classType.GetField($"{className}ID");
+                    object idValue = Convert.ChangeType(idField.GetValue(classInst), typeof(string));
+                    dictInst.Add(idValue, classInst);
                 }
 
-                googleSheetSO.GetType().GetField($"{className}List").SetValue(googleSheetSO, listInst);
+                googleSheetSO.GetType().GetField($"{className}Dict").SetValue(googleSheetSO, dictInst);
             }
         }
         catch (Exception e)
-        { 
+        {
             Debug.LogError($"CreateGoogleSheetSO error: {e.Message}");
         }
         print("CreateGoogleSheetSO");
@@ -288,14 +290,14 @@ public class GoogleSheetManager : MonoBehaviour
             {
                 UnityEditor.EditorApplication.delayCall += () =>
                 {
-                    if (refeshTrigger) 
+                    if (refeshTrigger)
                     {
                         bool isCompleted = CreateGoogleSheetSO();
                         if (isCompleted)
                         {
                             Debug.Log($"Fetch done.");
                         }
-                        
+
                         refeshTrigger = false;
                     }
                 };

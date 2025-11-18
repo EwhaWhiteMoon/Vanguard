@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.Rendering.Universal.Internal;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 [Serializable] public class SheetMeta { public string title; public int version; }
 
@@ -42,8 +43,7 @@ public class UnitData
 
     private void InitializeBaseStat(UnitClass unitClass = UnitClass.Warrior, Stat stat = null)
     {
-        // 이거 따로 클래스로 빼야하긴 함.
-        _so = GoogleSheetLoader.LoadFromFile(filePath);
+        _so = GoogleSheetManager.SO<GoogleSheetSO>();
 
         if (_so == null)
         {
@@ -52,11 +52,8 @@ public class UnitData
         }
 
         // unitClass에 해당하는 유닛 정보 찾기
-        // TODO : 이게 cell의 번호가 아니라 실제 unitID를 참조하게 하는 방법 없을까요? O(1)시간 안에 접근할 수 있게 미리 Dict를 만들어 둔다던가?
-        if (_so.unitList.Count > 0 && _so.unitList.Count > (int)unitClass)
+        if (_so.unitDict.TryGetValue(GetUnitId(unitClass, Grade), out unit unitInfo))
         {
-            unit unitInfo = _so.unitList[(int)unitClass];
-
             if (stat == null)
             {
                 this.BaseStat = new Stat
@@ -77,5 +74,10 @@ public class UnitData
                 this.BaseStat = new Stat(stat);
             }
         }
+    }
+
+    private string GetUnitId(UnitClass unitClass, UnitGrade unitGrade)
+    {
+        return $"{unitClass.ToString()}{unitGrade.ToString()}";
     }
 }

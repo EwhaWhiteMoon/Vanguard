@@ -5,10 +5,10 @@ using UnityEngine;
 /// <summary>You must approach through `GoogleSheetManager.SO<GoogleSheetSO>()`</summary>
 public class GoogleSheetSO : ScriptableObject
 {
-	public List<unit> unitList;
-	public List<item> itemList;
-	public List<synergy> synergyList;
-	public List<unitTable> unitTableList;
+	public Dictionary<string, unit> unitDict;
+	public Dictionary<string, item> itemDict;
+	public Dictionary<string, synergy> synergyDict;
+	public Dictionary<string, unitTable> unitTableDict;
 }
 
 [Serializable]
