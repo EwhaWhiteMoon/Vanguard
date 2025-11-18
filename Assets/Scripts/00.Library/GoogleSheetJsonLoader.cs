@@ -51,33 +51,6 @@ public static class GoogleSheetLoader
         return ParseToScriptableObject(json);
     }
 
-    // List<TValue>를 {TKey} 키로 매핑해서 Dictionary<TKey, TValue>로 바꿔주는 유틸
-    private static Dictionary<TKey, TValue> ToDict<TValue, TKey>(List<TValue> list, Func<TValue, TKey> keySelector)
-    {
-        var dict = new Dictionary<TKey, TValue>();
-        if (list == null)
-            return dict;
-
-        foreach (var item in list)
-        {
-            if (item == null)
-                continue;
-
-            var key = keySelector(item);
-            if (!dict.ContainsKey(key))
-            {
-                dict.Add(key, item);
-            }
-            else
-            {
-                dict[key] = item;
-                // 필요하면 여기서 중복 키는 무시하도록 바꿔도 됨
-            }
-        }
-
-        return dict;
-    }
-
     /// <summary>
     /// JSON 문자열을 GoogleSheetSO로 변환
     /// </summary>
@@ -93,10 +66,10 @@ public static class GoogleSheetLoader
 
         // 메모리 상의 SO 인스턴스 생성 (프로젝트 에셋 저장 아님)
         var so = ScriptableObject.CreateInstance<GoogleSheetSO>();
-        so.unitDict      = ToDict<unit, string>(root.unit,      u => u.unitID);
-        so.itemDict      = ToDict<item, string>(root.item,      i => i.itemID.ToString());
-        so.synergyDict   = ToDict<synergy, string>(root.synergy, s => s.synergyID.ToString());
-        so.unitTableDict = ToDict<unitTable, string>(root.unitTable, t => t.unitTableID.ToString());
+        so.unitList      = root.unit      ?? new List<unit>();
+        so.itemList      = root.item      ?? new List<item>();
+        so.synergyList   = root.synergy   ?? new List<synergy>();
+        so.unitTableList = root.unitTable ?? new List<unitTable>();
 
         return so;
     }
