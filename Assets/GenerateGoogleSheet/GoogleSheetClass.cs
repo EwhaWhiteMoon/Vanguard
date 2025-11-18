@@ -14,7 +14,7 @@ public class GoogleSheetSO : ScriptableObject
 [Serializable]
 public class unit
 {
-	public int unitID;
+	public string unitID;
 	public string Job;
 	public int Hp;
 	public int Mp;
@@ -29,12 +29,13 @@ public class unit
 	public int Aggro;
 	public float Range;
 	public string Skill;
+	public string AniController;
 }
 
 [Serializable]
 public class item
 {
-	public int itemID;
+	public string itemID;
 	public string Name;
 	public string Job;
 	public int Hp;
@@ -53,7 +54,7 @@ public class item
 [Serializable]
 public class synergy
 {
-	public int synergyID;
+	public string synergyID;
 	public string synergyName;
 	public int requiredCount;
 	public int Hp;
@@ -71,6 +72,7 @@ public class synergy
 [Serializable]
 public class unitTable
 {
+	public string unitTableID;
 	public string name;
 	public int stage;
 	public string count;

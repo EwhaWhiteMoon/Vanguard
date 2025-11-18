@@ -1,7 +1,7 @@
 {
   "unit": [
     {
-      "unitID": 1,
+      "unitID": "00",
       "Job": "전사1",
       "Hp": 100,
       "Mp": 50,
@@ -15,10 +15,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "범위공격"
+      "Skill": "범위공격",
+      "AniController": "Warrior_Controller"
     },
     {
-      "unitID": 2,
+      "unitID": "10",
       "Job": "궁수1",
       "Hp": 75,
       "Mp": 50,
@@ -32,10 +33,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 3,
-      "Skill": "단일"
+      "Skill": "단일",
+      "AniController": "Archer_Controller"
     },
     {
-      "unitID": 3,
+      "unitID": "20",
       "Job": "마법사1",
       "Hp": 65,
       "Mp": 80,
@@ -49,10 +51,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 4,
-      "Skill": "범위공격"
+      "Skill": "범위공격",
+      "AniController": "Mage_Controller"
     },
     {
-      "unitID": 4,
+      "unitID": "01",
       "Job": "전사2",
       "Hp": 180,
       "Mp": 50,
@@ -66,10 +69,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "범위공격"
+      "Skill": "범위공격",
+      "AniController": "Warrior_Controller"
     },
     {
-      "unitID": 5,
+      "unitID": "21",
       "Job": "마법사2",
       "Hp": 117,
       "Mp": 80,
@@ -83,10 +87,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 4,
-      "Skill": "범위공격"
+      "Skill": "범위공격",
+      "AniController": "Mage_Controller"
     },
     {
-      "unitID": 6,
+      "unitID": "02",
       "Job": "전사3",
       "Hp": 320,
       "Mp": 50,
@@ -100,10 +105,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "범위공격"
+      "Skill": "범위공격",
+      "AniController": "Warrior_Controller"
     },
     {
-      "unitID": 7,
+      "unitID": "22",
       "Job": "마법사3",
       "Hp": 208,
       "Mp": 80,
@@ -117,10 +123,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 4,
-      "Skill": "범위공격"
+      "Skill": "범위공격",
+      "AniController": "Mage_Controller"
     },
     {
-      "unitID": 8,
+      "unitID": "30",
       "Job": "암살자1",
       "Hp": 70,
       "Mp": 50,
@@ -134,10 +141,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "단일공격"
+      "Skill": "단일공격",
+      "AniController": "Assassin_Controller"
     },
     {
-      "unitID": 9,
+      "unitID": "31",
       "Job": "암살자2",
       "Hp": 126,
       "Mp": 50,
@@ -151,10 +159,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "단일공격"
+      "Skill": "단일공격",
+      "AniController": "Assassin_Controller"
     },
     {
-      "unitID": 10,
+      "unitID": "32",
       "Job": "암살자3",
       "Hp": 224,
       "Mp": 50,
@@ -168,10 +177,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "단일공격"
+      "Skill": "단일공격",
+      "AniController": "Assassin_Controller"
     },
     {
-      "unitID": 11,
+      "unitID": "11",
       "Job": "궁수2",
       "Hp": 135,
       "Mp": 50,
@@ -185,10 +195,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 3,
-      "Skill": "단일"
+      "Skill": "단일",
+      "AniController": "Archer_Controller"
     },
     {
-      "unitID": 12,
+      "unitID": "40",
       "Job": "탱커1",
       "Hp": 130,
       "Mp": 50,
@@ -202,10 +213,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "어그로? "
+      "Skill": "어그로? ",
+      "AniController": "Tanker_Controller"
     },
     {
-      "unitID": 13,
+      "unitID": "41",
       "Job": "탱커2",
       "Hp": 234,
       "Mp": 50,
@@ -219,10 +231,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "어그로? "
+      "Skill": "어그로? ",
+      "AniController": "Tanker_Controller"
     },
     {
-      "unitID": 14,
+      "unitID": "42",
       "Job": "탱커3",
       "Hp": 416,
       "Mp": 50,
@@ -236,10 +249,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "어그로? "
+      "Skill": "어그로? ",
+      "AniController": "Tanker_Controller"
     },
     {
-      "unitID": 15,
+      "unitID": "12",
       "Job": "궁수3",
       "Hp": 240,
       "Mp": 50,
@@ -253,10 +267,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 3,
-      "Skill": "단일"
+      "Skill": "단일",
+      "AniController": "Archer_Controller"
     },
     {
-      "unitID": 16,
+      "unitID": "50",
       "Job": "힐러1",
       "Hp": 80,
       "Mp": 100,
@@ -270,10 +285,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 1,
-      "Skill": "팀회복"
+      "Skill": "팀회복",
+      "AniController": "Healer_Controller"
     },
     {
-      "unitID": 17,
+      "unitID": "51",
       "Job": "힐러2",
       "Hp": 144,
       "Mp": 100,
@@ -287,10 +303,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 1,
-      "Skill": "팀회복"
+      "Skill": "팀회복",
+      "AniController": "Healer_Controller"
     },
     {
-      "unitID": 18,
+      "unitID": "52",
       "Job": "힐러3",
       "Hp": 256,
       "Mp": 100,
@@ -304,10 +321,11 @@
       "MpRegen": 5,
       "Aggro": 0,
       "Range": 1,
-      "Skill": "팀회복"
+      "Skill": "팀회복",
+      "AniController": "Healer_Controller"
     },
     {
-      "unitID": 19,
+      "unitID": "1000",
       "Job": "슬라임",
       "Hp": 80,
       "Mp": 0,
@@ -321,10 +339,11 @@
       "MpRegen": 0,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "null"
+      "Skill": "null",
+      "AniController": "Slime_Controller"
     },
     {
-      "unitID": 20,
+      "unitID": "1010",
       "Job": "고블린",
       "Hp": 100,
       "Mp": 0,
@@ -338,10 +357,11 @@
       "MpRegen": 0,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "null"
+      "Skill": "null",
+      "AniController": "none"
     },
     {
-      "unitID": 21,
+      "unitID": "1020",
       "Job": "늑대",
       "Hp": 90,
       "Mp": 0,
@@ -355,10 +375,11 @@
       "MpRegen": 0,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "null"
+      "Skill": "null",
+      "AniController": "none"
     },
     {
-      "unitID": 22,
+      "unitID": "1030",
       "Job": "고블린궁수",
       "Hp": 75,
       "Mp": 0,
@@ -372,10 +393,11 @@
       "MpRegen": 0,
       "Aggro": 0,
       "Range": 3,
-      "Skill": "null"
+      "Skill": "null",
+      "AniController": "none"
     },
     {
-      "unitID": 23,
+      "unitID": "1040",
       "Job": "오크전사",
       "Hp": 160,
       "Mp": 0,
@@ -389,10 +411,11 @@
       "MpRegen": 0,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "null"
+      "Skill": "null",
+      "AniController": "none"
     },
     {
-      "unitID": 24,
+      "unitID": "1050",
       "Job": "오크대장",
       "Hp": 230,
       "Mp": 0,
@@ -406,10 +429,11 @@
       "MpRegen": 0,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "null"
+      "Skill": "null",
+      "AniController": "none"
     },
     {
-      "unitID": 25,
+      "unitID": "1060",
       "Job": "해골병사",
       "Hp": 140,
       "Mp": 0,
@@ -423,10 +447,11 @@
       "MpRegen": 0,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "null"
+      "Skill": "null",
+      "AniController": "Skeleton_Controller"
     },
     {
-      "unitID": 26,
+      "unitID": "1070",
       "Job": "해골궁수",
       "Hp": 110,
       "Mp": 0,
@@ -440,10 +465,11 @@
       "MpRegen": 0,
       "Aggro": 0,
       "Range": 3,
-      "Skill": "null"
+      "Skill": "null",
+      "AniController": "Skeleton_Controller"
     },
     {
-      "unitID": 27,
+      "unitID": "1080",
       "Job": "해골대장",
       "Hp": 280,
       "Mp": 0,
@@ -457,10 +483,11 @@
       "MpRegen": 0,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "null"
+      "Skill": "null",
+      "AniController": "Skeleton_Controller"
     },
     {
-      "unitID": 28,
+      "unitID": "1090",
       "Job": "악마병사",
       "Hp": 380,
       "Mp": 0,
@@ -474,12 +501,13 @@
       "MpRegen": 0,
       "Aggro": 0,
       "Range": 0.5,
-      "Skill": "null"
+      "Skill": "null",
+      "AniController": "none"
     }
   ],
   "item": [
     {
-      "itemID": 1,
+      "itemID": "01",
       "Name": "검",
       "Job": "전사",
       "Hp": 0,
@@ -495,7 +523,7 @@
       "description": "공격력 +1, 치명타 피해 +5%"
     },
     {
-      "itemID": 2,
+      "itemID": "02",
       "Name": "도끼",
       "Job": "전사",
       "Hp": 0,
@@ -511,7 +539,7 @@
       "description": "공격력 +2"
     },
     {
-      "itemID": 3,
+      "itemID": "03",
       "Name": "투구",
       "Job": "전사",
       "Hp": 0,
@@ -527,7 +555,7 @@
       "description": "방어력 +1"
     },
     {
-      "itemID": 4,
+      "itemID": "04",
       "Name": "갑옷",
       "Job": "전사",
       "Hp": 10,
@@ -543,7 +571,7 @@
       "description": "체력 +10"
     },
     {
-      "itemID": 5,
+      "itemID": "05",
       "Name": "활",
       "Job": "궁수",
       "Hp": 0,
@@ -559,7 +587,7 @@
       "description": "공격속도 +5%"
     },
     {
-      "itemID": 6,
+      "itemID": "06",
       "Name": "화살",
       "Job": "궁수",
       "Hp": 0,
@@ -575,7 +603,7 @@
       "description": "치명타 확률 +4%"
     },
     {
-      "itemID": 7,
+      "itemID": "07",
       "Name": "손목보호대",
       "Job": "궁수",
       "Hp": 0,
@@ -591,7 +619,7 @@
       "description": "공격속도 +3%, 치명타 피해 +4%"
     },
     {
-      "itemID": 8,
+      "itemID": "08",
       "Name": "가벼운 신발",
       "Job": "궁수",
       "Hp": 0,
@@ -607,7 +635,7 @@
       "description": "이동속도 +0.2"
     },
     {
-      "itemID": 9,
+      "itemID": "09",
       "Name": "지팡이",
       "Job": "마법사",
       "Hp": 0,
@@ -623,7 +651,7 @@
       "description": "MP 회복 +2"
     },
     {
-      "itemID": 10,
+      "itemID": "10",
       "Name": "마법서",
       "Job": "마법사",
       "Hp": 0,
@@ -639,7 +667,7 @@
       "description": "MP +5, MP 회복 +1"
     },
     {
-      "itemID": 11,
+      "itemID": "11",
       "Name": "마력구슬",
       "Job": "마법사",
       "Hp": 0,
@@ -655,7 +683,7 @@
       "description": "공격력 +1, MP +4"
     },
     {
-      "itemID": 12,
+      "itemID": "12",
       "Name": "로브",
       "Job": "마법사",
       "Hp": 6,
@@ -671,7 +699,7 @@
       "description": "체력 +6, 방어력 +1"
     },
     {
-      "itemID": 13,
+      "itemID": "13",
       "Name": "단검",
       "Job": "암살자",
       "Hp": 0,
@@ -687,7 +715,7 @@
       "description": "치명타 확률 +5%"
     },
     {
-      "itemID": 14,
+      "itemID": "14",
       "Name": "맹독병",
       "Job": "암살자",
       "Hp": 0,
@@ -703,7 +731,7 @@
       "description": "공격력 +1, 치명타 피해 +5%"
     },
     {
-      "itemID": 15,
+      "itemID": "15",
       "Name": "후드",
       "Job": "암살자",
       "Hp": 0,
@@ -719,7 +747,7 @@
       "description": "공격속도 +5%"
     },
     {
-      "itemID": 16,
+      "itemID": "16",
       "Name": "가벼운 상의",
       "Job": "암살자",
       "Hp": 0,
@@ -735,7 +763,7 @@
       "description": "이동속도 +0.2"
     },
     {
-      "itemID": 17,
+      "itemID": "17",
       "Name": "방패",
       "Job": "탱커",
       "Hp": 0,
@@ -751,7 +779,7 @@
       "description": "방어력 +2"
     },
     {
-      "itemID": 18,
+      "itemID": "18",
       "Name": "철갑",
       "Job": "탱커",
       "Hp": 10,
@@ -767,7 +795,7 @@
       "description": "체력 +10"
     },
     {
-      "itemID": 19,
+      "itemID": "19",
       "Name": "전투장갑",
       "Job": "탱커",
       "Hp": 0,
@@ -783,7 +811,7 @@
       "description": "방어력 +1, 체력회복 +0.5"
     },
     {
-      "itemID": 20,
+      "itemID": "20",
       "Name": "건틀릿",
       "Job": "탱커",
       "Hp": 10,
@@ -799,7 +827,7 @@
       "description": "체력 +10"
     },
     {
-      "itemID": 21,
+      "itemID": "21",
       "Name": "성수",
       "Job": "힐러",
       "Hp": 5,
@@ -815,7 +843,7 @@
       "description": "체력 +5, MP +5"
     },
     {
-      "itemID": 22,
+      "itemID": "22",
       "Name": "기도구슬",
       "Job": "힐러",
       "Hp": 0,
@@ -831,7 +859,7 @@
       "description": "MP +5, 공격속도 +3%"
     },
     {
-      "itemID": 23,
+      "itemID": "23",
       "Name": "성서",
       "Job": "힐러",
       "Hp": 0,
@@ -847,7 +875,7 @@
       "description": "공격력 +1, 체력회복 +0.5"
     },
     {
-      "itemID": 24,
+      "itemID": "24",
       "Name": "치유 로브",
       "Job": "힐러",
       "Hp": 5,
@@ -865,7 +893,7 @@
   ],
   "synergy": [
     {
-      "synergyID": 0,
+      "synergyID": "00",
       "synergyName": "전사",
       "requiredCount": 2,
       "Hp": 0,
@@ -880,7 +908,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 1,
+      "synergyID": "01",
       "synergyName": "전사",
       "requiredCount": 3,
       "Hp": 15,
@@ -895,7 +923,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 2,
+      "synergyID": "02",
       "synergyName": "전사",
       "requiredCount": 4,
       "Hp": 0,
@@ -910,7 +938,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 3,
+      "synergyID": "03",
       "synergyName": "궁수",
       "requiredCount": 2,
       "Hp": 0,
@@ -925,7 +953,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 4,
+      "synergyID": "04",
       "synergyName": "궁수",
       "requiredCount": 3,
       "Hp": 0,
@@ -940,7 +968,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 5,
+      "synergyID": "05",
       "synergyName": "궁수",
       "requiredCount": 4,
       "Hp": 0,
@@ -955,7 +983,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 6,
+      "synergyID": "06",
       "synergyName": "마법사",
       "requiredCount": 2,
       "Hp": 0,
@@ -970,7 +998,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 7,
+      "synergyID": "07",
       "synergyName": "마법사",
       "requiredCount": 3,
       "Hp": 0,
@@ -985,7 +1013,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 8,
+      "synergyID": "08",
       "synergyName": "마법사",
       "requiredCount": 4,
       "Hp": 0,
@@ -1000,7 +1028,7 @@
       "MpRegen": 2
     },
     {
-      "synergyID": 9,
+      "synergyID": "09",
       "synergyName": "암살자",
       "requiredCount": 2,
       "Hp": 0,
@@ -1015,7 +1043,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 10,
+      "synergyID": "10",
       "synergyName": "암살자",
       "requiredCount": 3,
       "Hp": 0,
@@ -1030,7 +1058,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 11,
+      "synergyID": "11",
       "synergyName": "암살자",
       "requiredCount": 4,
       "Hp": 0,
@@ -1045,7 +1073,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 12,
+      "synergyID": "12",
       "synergyName": "탱커",
       "requiredCount": 2,
       "Hp": 15,
@@ -1060,7 +1088,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 13,
+      "synergyID": "13",
       "synergyName": "탱커",
       "requiredCount": 3,
       "Hp": 0,
@@ -1075,7 +1103,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 14,
+      "synergyID": "14",
       "synergyName": "탱커",
       "requiredCount": 4,
       "Hp": 15,
@@ -1090,7 +1118,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 15,
+      "synergyID": "15",
       "synergyName": "힐러",
       "requiredCount": 2,
       "Hp": 0,
@@ -1105,7 +1133,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 16,
+      "synergyID": "16",
       "synergyName": "힐러",
       "requiredCount": 3,
       "Hp": 0,
@@ -1120,7 +1148,7 @@
       "MpRegen": 0
     },
     {
-      "synergyID": 17,
+      "synergyID": "17",
       "synergyName": "힐러",
       "requiredCount": 4,
       "Hp": 5,
@@ -1137,16 +1165,19 @@
   ],
   "unitTable": [
     {
+      "unitTableID": "1",
       "name": "[\"전사\",\"궁수\"]",
       "stage": 1,
       "count": "[1,3]"
     },
     {
+      "unitTableID": "2",
       "name": "[\"암살자\",\"탱커\"]",
       "stage": 2,
       "count": "[5,7]"
     },
     {
+      "unitTableID": "3",
       "name": "[\"마법사\",\"전사\",\"탱커\"]",
       "stage": 3,
       "count": "[4,1,4]"

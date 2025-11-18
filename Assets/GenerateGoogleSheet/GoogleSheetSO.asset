@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoogleSheetSO
   m_EditorClassIdentifier: Assembly-CSharp::GoogleSheetSO
   unitList:
-  - unitID: 1
+  - unitID: 00
     Job: "\uC804\uC0AC1"
     Hp: 100
     Mp: 50
@@ -28,7 +28,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: "\uBC94\uC704\uACF5\uACA9"
-  - unitID: 2
+    AniController: Warrior_Controller
+  - unitID: 10
     Job: "\uAD81\uC2181"
     Hp: 75
     Mp: 50
@@ -43,7 +44,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 3
     Skill: "\uB2E8\uC77C"
-  - unitID: 3
+    AniController: Archer_Controller
+  - unitID: 20
     Job: "\uB9C8\uBC95\uC0AC1"
     Hp: 65
     Mp: 80
@@ -58,7 +60,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 4
     Skill: "\uBC94\uC704\uACF5\uACA9"
-  - unitID: 4
+    AniController: Mage_Controller
+  - unitID: 01
     Job: "\uC804\uC0AC2"
     Hp: 180
     Mp: 50
@@ -73,7 +76,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: "\uBC94\uC704\uACF5\uACA9"
-  - unitID: 5
+    AniController: Warrior_Controller
+  - unitID: 21
     Job: "\uB9C8\uBC95\uC0AC2"
     Hp: 117
     Mp: 80
@@ -88,7 +92,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 4
     Skill: "\uBC94\uC704\uACF5\uACA9"
-  - unitID: 6
+    AniController: Mage_Controller
+  - unitID: 02
     Job: "\uC804\uC0AC3"
     Hp: 320
     Mp: 50
@@ -103,7 +108,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: "\uBC94\uC704\uACF5\uACA9"
-  - unitID: 7
+    AniController: Warrior_Controller
+  - unitID: 22
     Job: "\uB9C8\uBC95\uC0AC3"
     Hp: 208
     Mp: 80
@@ -118,7 +124,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 4
     Skill: "\uBC94\uC704\uACF5\uACA9"
-  - unitID: 8
+    AniController: Mage_Controller
+  - unitID: 30
     Job: "\uC554\uC0B4\uC7901"
     Hp: 70
     Mp: 50
@@ -133,7 +140,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: "\uB2E8\uC77C\uACF5\uACA9"
-  - unitID: 9
+    AniController: Assassin_Controller
+  - unitID: 31
     Job: "\uC554\uC0B4\uC7902"
     Hp: 126
     Mp: 50
@@ -148,7 +156,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: "\uB2E8\uC77C\uACF5\uACA9"
-  - unitID: 10
+    AniController: Assassin_Controller
+  - unitID: 32
     Job: "\uC554\uC0B4\uC7903"
     Hp: 224
     Mp: 50
@@ -163,6 +172,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: "\uB2E8\uC77C\uACF5\uACA9"
+    AniController: Assassin_Controller
   - unitID: 11
     Job: "\uAD81\uC2182"
     Hp: 135
@@ -178,7 +188,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 3
     Skill: "\uB2E8\uC77C"
-  - unitID: 12
+    AniController: Archer_Controller
+  - unitID: 40
     Job: "\uD0F1\uCEE41"
     Hp: 130
     Mp: 50
@@ -193,7 +204,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: "\uC5B4\uADF8\uB85C? "
-  - unitID: 13
+    AniController: Tanker_Controller
+  - unitID: 41
     Job: "\uD0F1\uCEE42"
     Hp: 234
     Mp: 50
@@ -208,7 +220,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: "\uC5B4\uADF8\uB85C? "
-  - unitID: 14
+    AniController: Tanker_Controller
+  - unitID: 42
     Job: "\uD0F1\uCEE43"
     Hp: 416
     Mp: 50
@@ -223,7 +236,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: "\uC5B4\uADF8\uB85C? "
-  - unitID: 15
+    AniController: Tanker_Controller
+  - unitID: 12
     Job: "\uAD81\uC2183"
     Hp: 240
     Mp: 50
@@ -238,7 +252,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 3
     Skill: "\uB2E8\uC77C"
-  - unitID: 16
+    AniController: Archer_Controller
+  - unitID: 50
     Job: "\uD790\uB7EC1"
     Hp: 80
     Mp: 100
@@ -253,7 +268,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 1
     Skill: "\uD300\uD68C\uBCF5"
-  - unitID: 17
+    AniController: Healer_Controller
+  - unitID: 51
     Job: "\uD790\uB7EC2"
     Hp: 144
     Mp: 100
@@ -268,7 +284,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 1
     Skill: "\uD300\uD68C\uBCF5"
-  - unitID: 18
+    AniController: Healer_Controller
+  - unitID: 52
     Job: "\uD790\uB7EC3"
     Hp: 256
     Mp: 100
@@ -283,7 +300,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 1
     Skill: "\uD300\uD68C\uBCF5"
-  - unitID: 19
+    AniController: Healer_Controller
+  - unitID: 1000
     Job: "\uC2AC\uB77C\uC784"
     Hp: 80
     Mp: 0
@@ -298,7 +316,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
-  - unitID: 20
+    AniController: Slime_Controller
+  - unitID: 1010
     Job: "\uACE0\uBE14\uB9B0"
     Hp: 100
     Mp: 0
@@ -313,7 +332,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
-  - unitID: 21
+    AniController: none
+  - unitID: 1020
     Job: "\uB291\uB300"
     Hp: 90
     Mp: 0
@@ -328,7 +348,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
-  - unitID: 22
+    AniController: none
+  - unitID: 1030
     Job: "\uACE0\uBE14\uB9B0\uAD81\uC218"
     Hp: 75
     Mp: 0
@@ -343,7 +364,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 3
     Skill: null
-  - unitID: 23
+    AniController: none
+  - unitID: 1040
     Job: "\uC624\uD06C\uC804\uC0AC"
     Hp: 160
     Mp: 0
@@ -358,7 +380,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
-  - unitID: 24
+    AniController: none
+  - unitID: 1050
     Job: "\uC624\uD06C\uB300\uC7A5"
     Hp: 230
     Mp: 0
@@ -373,7 +396,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
-  - unitID: 25
+    AniController: none
+  - unitID: 1060
     Job: "\uD574\uACE8\uBCD1\uC0AC"
     Hp: 140
     Mp: 0
@@ -388,7 +412,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
-  - unitID: 26
+    AniController: Skeleton_Controller
+  - unitID: 1070
     Job: "\uD574\uACE8\uAD81\uC218"
     Hp: 110
     Mp: 0
@@ -403,7 +428,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 3
     Skill: null
-  - unitID: 27
+    AniController: Skeleton_Controller
+  - unitID: 1080
     Job: "\uD574\uACE8\uB300\uC7A5"
     Hp: 280
     Mp: 0
@@ -418,7 +444,8 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
-  - unitID: 28
+    AniController: Skeleton_Controller
+  - unitID: 1090
     Job: "\uC545\uB9C8\uBCD1\uC0AC"
     Hp: 380
     Mp: 0
@@ -433,8 +460,9 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
+    AniController: none
   itemList:
-  - itemID: 1
+  - itemID: 01
     Name: "\uAC80"
     Job: "\uC804\uC0AC"
     Hp: 0
@@ -448,7 +476,7 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uACF5\uACA9\uB825 +1, \uCE58\uBA85\uD0C0 \uD53C\uD574 +5%"
-  - itemID: 2
+  - itemID: 02
     Name: "\uB3C4\uB07C"
     Job: "\uC804\uC0AC"
     Hp: 0
@@ -462,7 +490,7 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uACF5\uACA9\uB825 +2"
-  - itemID: 3
+  - itemID: 03
     Name: "\uD22C\uAD6C"
     Job: "\uC804\uC0AC"
     Hp: 0
@@ -476,7 +504,7 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uBC29\uC5B4\uB825 +1"
-  - itemID: 4
+  - itemID: 04
     Name: "\uAC11\uC637"
     Job: "\uC804\uC0AC"
     Hp: 10
@@ -490,7 +518,7 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uCCB4\uB825 +10"
-  - itemID: 5
+  - itemID: 05
     Name: "\uD65C"
     Job: "\uAD81\uC218"
     Hp: 0
@@ -504,7 +532,7 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uACF5\uACA9\uC18D\uB3C4 +5%"
-  - itemID: 6
+  - itemID: 06
     Name: "\uD654\uC0B4"
     Job: "\uAD81\uC218"
     Hp: 0
@@ -518,7 +546,7 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uCE58\uBA85\uD0C0 \uD655\uB960 +4%"
-  - itemID: 7
+  - itemID: 07
     Name: "\uC190\uBAA9\uBCF4\uD638\uB300"
     Job: "\uAD81\uC218"
     Hp: 0
@@ -532,7 +560,7 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uACF5\uACA9\uC18D\uB3C4 +3%, \uCE58\uBA85\uD0C0 \uD53C\uD574 +4%"
-  - itemID: 8
+  - itemID: 08
     Name: "\uAC00\uBCBC\uC6B4 \uC2E0\uBC1C"
     Job: "\uAD81\uC218"
     Hp: 0
@@ -546,7 +574,7 @@ MonoBehaviour:
     HpRegen: 0
     MpRegen: 0
     description: "\uC774\uB3D9\uC18D\uB3C4 +0.2"
-  - itemID: 9
+  - itemID: 09
     Name: "\uC9C0\uD321\uC774"
     Job: "\uB9C8\uBC95\uC0AC"
     Hp: 0
@@ -771,7 +799,7 @@ MonoBehaviour:
     MpRegen: 1
     description: "MP \uD68C\uBCF5 +1, \uCCB4\uB825 +5"
   synergyList:
-  - synergyID: 0
+  - synergyID: 00
     synergyName: "\uC804\uC0AC"
     requiredCount: 2
     Hp: 0
@@ -784,7 +812,7 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
-  - synergyID: 1
+  - synergyID: 01
     synergyName: "\uC804\uC0AC"
     requiredCount: 3
     Hp: 15
@@ -797,7 +825,7 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
-  - synergyID: 2
+  - synergyID: 02
     synergyName: "\uC804\uC0AC"
     requiredCount: 4
     Hp: 0
@@ -810,7 +838,7 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
-  - synergyID: 3
+  - synergyID: 03
     synergyName: "\uAD81\uC218"
     requiredCount: 2
     Hp: 0
@@ -823,7 +851,7 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
-  - synergyID: 4
+  - synergyID: 04
     synergyName: "\uAD81\uC218"
     requiredCount: 3
     Hp: 0
@@ -836,7 +864,7 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
-  - synergyID: 5
+  - synergyID: 05
     synergyName: "\uAD81\uC218"
     requiredCount: 4
     Hp: 0
@@ -849,7 +877,7 @@ MonoBehaviour:
     CritD: 0.1
     HpRegen: 0
     MpRegen: 0
-  - synergyID: 6
+  - synergyID: 06
     synergyName: "\uB9C8\uBC95\uC0AC"
     requiredCount: 2
     Hp: 0
@@ -862,7 +890,7 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
-  - synergyID: 7
+  - synergyID: 07
     synergyName: "\uB9C8\uBC95\uC0AC"
     requiredCount: 3
     Hp: 0
@@ -875,7 +903,7 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
-  - synergyID: 8
+  - synergyID: 08
     synergyName: "\uB9C8\uBC95\uC0AC"
     requiredCount: 4
     Hp: 0
@@ -888,7 +916,7 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 2
-  - synergyID: 9
+  - synergyID: 09
     synergyName: "\uC554\uC0B4\uC790"
     requiredCount: 2
     Hp: 0
@@ -1006,12 +1034,15 @@ MonoBehaviour:
     HpRegen: 1
     MpRegen: 0
   unitTableList:
-  - name: "[\"\uC804\uC0AC\",\"\uAD81\uC218\"]"
+  - unitTableID: 1
+    name: "[\"\uC804\uC0AC\",\"\uAD81\uC218\"]"
     stage: 1
     count: '[1,3]'
-  - name: "[\"\uC554\uC0B4\uC790\",\"\uD0F1\uCEE4\"]"
+  - unitTableID: 2
+    name: "[\"\uC554\uC0B4\uC790\",\"\uD0F1\uCEE4\"]"
     stage: 2
     count: '[5,7]'
-  - name: "[\"\uB9C8\uBC95\uC0AC\",\"\uC804\uC0AC\",\"\uD0F1\uCEE4\"]"
+  - unitTableID: 3
+    name: "[\"\uB9C8\uBC95\uC0AC\",\"\uC804\uC0AC\",\"\uD0F1\uCEE4\"]"
     stage: 3
     count: '[4,1,4]'
