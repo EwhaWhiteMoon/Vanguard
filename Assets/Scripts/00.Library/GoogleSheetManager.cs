@@ -148,6 +148,42 @@ public class GoogleSheetManager : MonoBehaviour
 
             classCode.AppendLine($"\tpublic List<{className}> {className}List;");
         }
+        classCode.AppendLine("");
+
+        foreach (var sheet in jsonObject)
+        {
+            string className = sheet.Key;
+            if (!IsExistAvailSheets(className))
+                continue;
+
+            classCode.AppendLine($"\t[NonSerialized] public Dictionary<string, {className}> {className}Dict;");
+        }
+
+        classCode.AppendLine("\tpublic void BuildDictionaries()");
+        classCode.AppendLine("\t{");
+        foreach (var sheet in jsonObject)
+        {
+            string className = sheet.Key;
+            if (!IsExistAvailSheets(className))
+                continue;
+
+            classCode.AppendLine($"\t\t{className}Dict = new Dictionary<string, {className}>();");
+            classCode.AppendLine($"\t\tif ({className}List != null)");
+            classCode.AppendLine("\t\t{");
+            classCode.AppendLine($"\t\t\tforeach (var temp in {className}List)");
+            classCode.AppendLine("\t\t\t{");
+            classCode.AppendLine($"\t\t\t\tif (!string.IsNullOrEmpty(temp.{className}ID))");
+            classCode.AppendLine($"\t\t\t\t\t{className}Dict[temp.{className}ID] = temp;");
+            classCode.AppendLine("\t\t\t}");
+            classCode.AppendLine("\t\t}\n");
+        }
+
+        classCode.AppendLine("\t}\n");
+        classCode.AppendLine("\tprivate void OnEnable()");
+        classCode.AppendLine("\t{");
+        classCode.AppendLine("\t\tBuildDictionaries();");
+        classCode.AppendLine("\t}");
+
         classCode.AppendLine("}\n");
 
         // Class
@@ -273,7 +309,7 @@ public class GoogleSheetManager : MonoBehaviour
             }
         }
         catch (Exception e)
-        { 
+        {
             Debug.LogError($"CreateGoogleSheetSO error: {e.Message}");
         }
         print("CreateGoogleSheetSO");
@@ -288,14 +324,14 @@ public class GoogleSheetManager : MonoBehaviour
             {
                 UnityEditor.EditorApplication.delayCall += () =>
                 {
-                    if (refeshTrigger) 
+                    if (refeshTrigger)
                     {
                         bool isCompleted = CreateGoogleSheetSO();
                         if (isCompleted)
                         {
                             Debug.Log($"Fetch done.");
                         }
-                        
+
                         refeshTrigger = false;
                     }
                 };

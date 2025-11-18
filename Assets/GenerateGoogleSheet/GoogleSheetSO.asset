@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96765d3ecb997e64fb595dff0856626b, type: 3}
   m_Name: GoogleSheetSO
   m_EditorClassIdentifier: Assembly-CSharp::GoogleSheetSO
-<<<<<<< HEAD
-<<<<<<< HEAD
   unitList:
   - unitID: 00
     Job: "\uC804\uC0AC1"
@@ -29,7 +27,42 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 0.5
-    Skill: "\uBC94\uC704\uACF5\uACA9"
+    Skill: WarriorAreaAtk
+    Price: 100
+    AniController: Warrior_Controller
+  - unitID: 01
+    Job: "\uC804\uC0AC2"
+    Hp: 180
+    Mp: 50
+    Atk: 18
+    Def: 1
+    Speed: 1
+    AtkSpeed: 1
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 0.5
+    Skill: WarriorAreaAtk
+    Price: 250
+    AniController: Warrior_Controller
+  - unitID: 02
+    Job: "\uC804\uC0AC3"
+    Hp: 320
+    Mp: 50
+    Atk: 32
+    Def: 1
+    Speed: 1
+    AtkSpeed: 1
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 0.5
+    Skill: WarriorAreaAtk
+    Price: 500
     AniController: Warrior_Controller
   - unitID: 10
     Job: "\uAD81\uC2181"
@@ -45,7 +78,42 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 3
-    Skill: "\uB2E8\uC77C"
+    Skill: ArcherSingle
+    Price: 100
+    AniController: Archer_Controller
+  - unitID: 11
+    Job: "\uAD81\uC2182"
+    Hp: 135
+    Mp: 50
+    Atk: 25
+    Def: 0
+    Speed: 1
+    AtkSpeed: 1.3
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 3
+    Skill: ArcherSingle
+    Price: 250
+    AniController: Archer_Controller
+  - unitID: 12
+    Job: "\uAD81\uC2183"
+    Hp: 240
+    Mp: 50
+    Atk: 45
+    Def: 0
+    Speed: 1
+    AtkSpeed: 1.3
+    Crit: 0.1
+    CritD: 1.3
+    HpRegen: 1
+    MpRegen: 5
+    Aggro: 0
+    Range: 3
+    Skill: ArcherSingle
+    Price: 500
     AniController: Archer_Controller
   - unitID: 20
     Job: "\uB9C8\uBC95\uC0AC1"
@@ -61,24 +129,9 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 4
-    Skill: "\uBC94\uC704\uACF5\uACA9"
+    Skill: MageAreaAtk
+    Price: 100
     AniController: Mage_Controller
-  - unitID: 01
-    Job: "\uC804\uC0AC2"
-    Hp: 180
-    Mp: 50
-    Atk: 18
-    Def: 1
-    Speed: 1
-    AtkSpeed: 1
-    Crit: 0.1
-    CritD: 1.3
-    HpRegen: 1
-    MpRegen: 5
-    Aggro: 0
-    Range: 0.5
-    Skill: "\uBC94\uC704\uACF5\uACA9"
-    AniController: Warrior_Controller
   - unitID: 21
     Job: "\uB9C8\uBC95\uC0AC2"
     Hp: 117
@@ -93,24 +146,9 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 4
-    Skill: "\uBC94\uC704\uACF5\uACA9"
+    Skill: MageAreaAtk
+    Price: 250
     AniController: Mage_Controller
-  - unitID: 02
-    Job: "\uC804\uC0AC3"
-    Hp: 320
-    Mp: 50
-    Atk: 32
-    Def: 1
-    Speed: 1
-    AtkSpeed: 1
-    Crit: 0.1
-    CritD: 1.3
-    HpRegen: 1
-    MpRegen: 5
-    Aggro: 0
-    Range: 0.5
-    Skill: "\uBC94\uC704\uACF5\uACA9"
-    AniController: Warrior_Controller
   - unitID: 22
     Job: "\uB9C8\uBC95\uC0AC3"
     Hp: 208
@@ -125,7 +163,8 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 4
-    Skill: "\uBC94\uC704\uACF5\uACA9"
+    Skill: MageAreaAtk
+    Price: 500
     AniController: Mage_Controller
   - unitID: 30
     Job: "\uC554\uC0B4\uC7901"
@@ -141,7 +180,8 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 0.5
-    Skill: "\uB2E8\uC77C\uACF5\uACA9"
+    Skill: AssassinSingle
+    Price: 100
     AniController: Assassin_Controller
   - unitID: 31
     Job: "\uC554\uC0B4\uC7902"
@@ -157,7 +197,8 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 0.5
-    Skill: "\uB2E8\uC77C\uACF5\uACA9"
+    Skill: AssassinSingle
+    Price: 250
     AniController: Assassin_Controller
   - unitID: 32
     Job: "\uC554\uC0B4\uC7903"
@@ -173,24 +214,9 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 0.5
-    Skill: "\uB2E8\uC77C\uACF5\uACA9"
+    Skill: AssassinSingle
+    Price: 500
     AniController: Assassin_Controller
-  - unitID: 11
-    Job: "\uAD81\uC2182"
-    Hp: 135
-    Mp: 50
-    Atk: 25
-    Def: 0
-    Speed: 1
-    AtkSpeed: 1.3
-    Crit: 0.1
-    CritD: 1.3
-    HpRegen: 1
-    MpRegen: 5
-    Aggro: 0
-    Range: 3
-    Skill: "\uB2E8\uC77C"
-    AniController: Archer_Controller
   - unitID: 40
     Job: "\uD0F1\uCEE41"
     Hp: 130
@@ -205,7 +231,8 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 0.5
-    Skill: "\uC5B4\uADF8\uB85C? "
+    Skill: Aggro
+    Price: 100
     AniController: Tanker_Controller
   - unitID: 41
     Job: "\uD0F1\uCEE42"
@@ -221,7 +248,8 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 0.5
-    Skill: "\uC5B4\uADF8\uB85C? "
+    Skill: Aggro
+    Price: 250
     AniController: Tanker_Controller
   - unitID: 42
     Job: "\uD0F1\uCEE43"
@@ -237,24 +265,9 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 0.5
-    Skill: "\uC5B4\uADF8\uB85C? "
+    Skill: Aggro
+    Price: 500
     AniController: Tanker_Controller
-  - unitID: 12
-    Job: "\uAD81\uC2183"
-    Hp: 240
-    Mp: 50
-    Atk: 45
-    Def: 0
-    Speed: 1
-    AtkSpeed: 1.3
-    Crit: 0.1
-    CritD: 1.3
-    HpRegen: 1
-    MpRegen: 5
-    Aggro: 0
-    Range: 3
-    Skill: "\uB2E8\uC77C"
-    AniController: Archer_Controller
   - unitID: 50
     Job: "\uD790\uB7EC1"
     Hp: 80
@@ -269,7 +282,8 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 1
-    Skill: "\uD300\uD68C\uBCF5"
+    Skill: Heal
+    Price: 100
     AniController: Healer_Controller
   - unitID: 51
     Job: "\uD790\uB7EC2"
@@ -285,7 +299,8 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 1
-    Skill: "\uD300\uD68C\uBCF5"
+    Skill: Heal
+    Price: 250
     AniController: Healer_Controller
   - unitID: 52
     Job: "\uD790\uB7EC3"
@@ -301,7 +316,8 @@ MonoBehaviour:
     MpRegen: 5
     Aggro: 0
     Range: 1
-    Skill: "\uD300\uD68C\uBCF5"
+    Skill: Heal
+    Price: 500
     AniController: Healer_Controller
   - unitID: 1000
     Job: "\uC2AC\uB77C\uC784"
@@ -318,6 +334,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
+    Price: 0
     AniController: Slime_Controller
   - unitID: 1010
     Job: "\uACE0\uBE14\uB9B0"
@@ -334,6 +351,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
+    Price: 0
     AniController: none
   - unitID: 1020
     Job: "\uB291\uB300"
@@ -350,6 +368,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
+    Price: 0
     AniController: none
   - unitID: 1030
     Job: "\uACE0\uBE14\uB9B0\uAD81\uC218"
@@ -366,6 +385,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 3
     Skill: null
+    Price: 0
     AniController: none
   - unitID: 1040
     Job: "\uC624\uD06C\uC804\uC0AC"
@@ -382,6 +402,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
+    Price: 0
     AniController: none
   - unitID: 1050
     Job: "\uC624\uD06C\uB300\uC7A5"
@@ -398,6 +419,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
+    Price: 0
     AniController: none
   - unitID: 1060
     Job: "\uD574\uACE8\uBCD1\uC0AC"
@@ -414,6 +436,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
+    Price: 0
     AniController: Skeleton_Controller
   - unitID: 1070
     Job: "\uD574\uACE8\uAD81\uC218"
@@ -430,6 +453,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 3
     Skill: null
+    Price: 0
     AniController: Skeleton_Controller
   - unitID: 1080
     Job: "\uD574\uACE8\uB300\uC7A5"
@@ -446,6 +470,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
+    Price: 0
     AniController: Skeleton_Controller
   - unitID: 1090
     Job: "\uC545\uB9C8\uBCD1\uC0AC"
@@ -462,9 +487,10 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: null
+    Price: 0
     AniController: none
   itemList:
-  - itemID: 01
+  - itemID: 00
     Name: "\uAC80"
     Job: "\uC804\uC0AC"
     Hp: 0
@@ -477,8 +503,9 @@ MonoBehaviour:
     CritD: 5
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uACF5\uACA9\uB825 +1, \uCE58\uBA85\uD0C0 \uD53C\uD574 +5%"
-  - itemID: 02
+  - itemID: 01
     Name: "\uB3C4\uB07C"
     Job: "\uC804\uC0AC"
     Hp: 0
@@ -491,8 +518,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uACF5\uACA9\uB825 +2"
-  - itemID: 03
+  - itemID: 02
     Name: "\uD22C\uAD6C"
     Job: "\uC804\uC0AC"
     Hp: 0
@@ -505,8 +533,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uBC29\uC5B4\uB825 +1"
-  - itemID: 04
+  - itemID: 03
     Name: "\uAC11\uC637"
     Job: "\uC804\uC0AC"
     Hp: 10
@@ -519,8 +548,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uCCB4\uB825 +10"
-  - itemID: 05
+  - itemID: 04
     Name: "\uD65C"
     Job: "\uAD81\uC218"
     Hp: 0
@@ -533,8 +563,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uACF5\uACA9\uC18D\uB3C4 +5%"
-  - itemID: 06
+  - itemID: 05
     Name: "\uD654\uC0B4"
     Job: "\uAD81\uC218"
     Hp: 0
@@ -547,8 +578,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uCE58\uBA85\uD0C0 \uD655\uB960 +4%"
-  - itemID: 07
+  - itemID: 06
     Name: "\uC190\uBAA9\uBCF4\uD638\uB300"
     Job: "\uAD81\uC218"
     Hp: 0
@@ -561,8 +593,9 @@ MonoBehaviour:
     CritD: 0.04
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uACF5\uACA9\uC18D\uB3C4 +3%, \uCE58\uBA85\uD0C0 \uD53C\uD574 +4%"
-  - itemID: 08
+  - itemID: 07
     Name: "\uAC00\uBCBC\uC6B4 \uC2E0\uBC1C"
     Job: "\uAD81\uC218"
     Hp: 0
@@ -575,8 +608,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uC774\uB3D9\uC18D\uB3C4 +0.2"
-  - itemID: 09
+  - itemID: 08
     Name: "\uC9C0\uD321\uC774"
     Job: "\uB9C8\uBC95\uC0AC"
     Hp: 0
@@ -589,8 +623,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 2
+    Price: 200
     description: "MP \uD68C\uBCF5 +2"
-  - itemID: 10
+  - itemID: 09
     Name: "\uB9C8\uBC95\uC11C"
     Job: "\uB9C8\uBC95\uC0AC"
     Hp: 0
@@ -603,8 +638,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 1
+    Price: 200
     description: "MP +5, MP \uD68C\uBCF5 +1"
-  - itemID: 11
+  - itemID: 10
     Name: "\uB9C8\uB825\uAD6C\uC2AC"
     Job: "\uB9C8\uBC95\uC0AC"
     Hp: 0
@@ -617,8 +653,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uACF5\uACA9\uB825 +1, MP +4"
-  - itemID: 12
+  - itemID: 11
     Name: "\uB85C\uBE0C"
     Job: "\uB9C8\uBC95\uC0AC"
     Hp: 6
@@ -631,8 +668,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uCCB4\uB825 +6, \uBC29\uC5B4\uB825 +1"
-  - itemID: 13
+  - itemID: 12
     Name: "\uB2E8\uAC80"
     Job: "\uC554\uC0B4\uC790"
     Hp: 0
@@ -645,8 +683,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uCE58\uBA85\uD0C0 \uD655\uB960 +5%"
-  - itemID: 14
+  - itemID: 13
     Name: "\uB9F9\uB3C5\uBCD1"
     Job: "\uC554\uC0B4\uC790"
     Hp: 0
@@ -659,8 +698,9 @@ MonoBehaviour:
     CritD: 0.05
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uACF5\uACA9\uB825 +1, \uCE58\uBA85\uD0C0 \uD53C\uD574 +5%"
-  - itemID: 15
+  - itemID: 14
     Name: "\uD6C4\uB4DC"
     Job: "\uC554\uC0B4\uC790"
     Hp: 0
@@ -673,8 +713,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uACF5\uACA9\uC18D\uB3C4 +5%"
-  - itemID: 16
+  - itemID: 15
     Name: "\uAC00\uBCBC\uC6B4 \uC0C1\uC758"
     Job: "\uC554\uC0B4\uC790"
     Hp: 0
@@ -687,8 +728,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uC774\uB3D9\uC18D\uB3C4 +0.2"
-  - itemID: 17
+  - itemID: 16
     Name: "\uBC29\uD328"
     Job: "\uD0F1\uCEE4"
     Hp: 0
@@ -701,8 +743,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uBC29\uC5B4\uB825 +2"
-  - itemID: 18
+  - itemID: 17
     Name: "\uCCA0\uAC11"
     Job: "\uD0F1\uCEE4"
     Hp: 10
@@ -715,8 +758,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uCCB4\uB825 +10"
-  - itemID: 19
+  - itemID: 18
     Name: "\uC804\uD22C\uC7A5\uAC11"
     Job: "\uD0F1\uCEE4"
     Hp: 0
@@ -729,8 +773,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0.5
     MpRegen: 0
+    Price: 200
     description: "\uBC29\uC5B4\uB825 +1, \uCCB4\uB825\uD68C\uBCF5 +0.5"
-  - itemID: 20
+  - itemID: 19
     Name: "\uAC74\uD2C0\uB9BF"
     Job: "\uD0F1\uCEE4"
     Hp: 10
@@ -743,8 +788,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uCCB4\uB825 +10"
-  - itemID: 21
+  - itemID: 20
     Name: "\uC131\uC218"
     Job: "\uD790\uB7EC"
     Hp: 5
@@ -757,8 +803,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "\uCCB4\uB825 +5, MP +5"
-  - itemID: 22
+  - itemID: 21
     Name: "\uAE30\uB3C4\uAD6C\uC2AC"
     Job: "\uD790\uB7EC"
     Hp: 0
@@ -771,8 +818,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 0
+    Price: 200
     description: "MP +5, \uACF5\uACA9\uC18D\uB3C4 +3%"
-  - itemID: 23
+  - itemID: 22
     Name: "\uC131\uC11C"
     Job: "\uD790\uB7EC"
     Hp: 0
@@ -785,8 +833,9 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0.5
     MpRegen: 0
+    Price: 200
     description: "\uACF5\uACA9\uB825 +1, \uCCB4\uB825\uD68C\uBCF5 +0.5"
-  - itemID: 24
+  - itemID: 23
     Name: "\uCE58\uC720 \uB85C\uBE0C"
     Job: "\uD790\uB7EC"
     Hp: 5
@@ -799,6 +848,7 @@ MonoBehaviour:
     CritD: 0
     HpRegen: 0
     MpRegen: 1
+    Price: 200
     description: "MP \uD68C\uBCF5 +1, \uCCB4\uB825 +5"
   synergyList:
   - synergyID: 00
@@ -1048,11 +1098,3 @@ MonoBehaviour:
     name: "[\"\uB9C8\uBC95\uC0AC\",\"\uC804\uC0AC\",\"\uD0F1\uCEE4\"]"
     stage: 3
     count: '[4,1,4]'
-=======
->>>>>>> cc9c88bbc103d37a4ab8cbcf29822e5f8acf3f2f
-=======
-  unitList: []
-  itemList: []
-  synergyList: []
-  unitTableList: []
->>>>>>> f537079860ab02498bcfc649c9dccaf2b8c01a80
