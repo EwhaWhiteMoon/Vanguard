@@ -1,13 +1,18 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using RangeAttribute = UnityEngine.RangeAttribute;
 
 public class MapManager : MonoSingleton<MapManager>
 {
-    [Header("Map Size")]
-    public int width = 10;
-    public int height = 10;
+    [Header("Map Stats")]
+    public MapStats[] mapStatsPool;
+    private MapStats currentStats;
+
+    private int width = 7;
+    private int height = 7;
+    public int WIDTH => width;
+    public int HEIGHT => height;
     [Range(7, 30)] public int minRooms = 7;
     [Range(10, 30)] public int maxRooms = 10;
 
@@ -42,6 +47,10 @@ public class MapManager : MonoSingleton<MapManager>
             Map = null;
         }
 
+        ChooseRandomMapStats();
+        width = currentStats.Width;
+        height = currentStats.Height;
+
         playerPos = new Vector2Int(width / 2, height / 2);
 
         Map = new Room[width, height];
@@ -53,19 +62,11 @@ public class MapManager : MonoSingleton<MapManager>
             }
         }
 
-        const int maxAttempts = 20;
-        int attemp = 0;
         bool success = false;
 
-        while (!success && attemp < maxAttempts)
+        while (!success)
         {
-            attemp++;
             success = GenerateMap();
-        }
-
-        if (!success)
-        {
-            Debug.Log("Failed to generate a valid map after " + maxAttempts + " attemps.");
         }
 
         AssignRoomTypes();
@@ -110,33 +111,48 @@ public class MapManager : MonoSingleton<MapManager>
         return true;
     }
 
+    private void ChooseRandomMapStats()
+    {
+        currentStats = mapStatsPool[Random.Range(0, mapStatsPool.Length)];
+    }
+
     private void AssignRoomTypes()
     {
         if (assignedRooms.Count == 0) return;
 
         Vector2Int start = playerPos;
-        Map[start.x, start.y].Type = RoomType.EventRoom;
+        Map[start.x, start.y].Type = RoomType.Empty;
 
         Vector2Int boss = FindFarthestRoomFrom(start, endRooms);
         Map[boss.x, boss.y].Type = RoomType.BossRoom;
 
-        foreach (var room in assignedRooms)
-        {
-            if (room == start || room == boss) continue;
+        List<Vector2Int> pool = assignedRooms.Where(r => r != start && r != boss).ToList();
 
-            float r = Random.value;
-            if (r < 0.6f)
-            {
-                Map[room.x, room.y].Type = RoomType.CombatRoom;
-            }
-            else if (r >= 0.6f && r < 0.8f)
-            {
-                Map[room.x, room.y].Type = RoomType.EventRoom;
-            }
-            else
-            {
-                Map[room.x, room.y].Type = RoomType.MysteryRoom;
-            }
+        Shuffle(pool);
+
+        int index = 0;
+
+        // Assign empty rooms
+        for (int i = 0; i < currentStats.EmptyNum && index < pool.Count; i++)
+            Map[pool[index++].x, pool[index - 1].y].Type = RoomType.Empty;
+
+        // Assign event rooms
+        for (int i = 0; i < currentStats.EventNum && index < pool.Count; i++)
+            Map[pool[index++].x, pool[index - 1].y].Type = RoomType.EventRoom;
+
+        // Assign combat rooms
+        for (int i = 0; i < currentStats.CombatNum && index < pool.Count; i++)
+            Map[pool[index++].x, pool[index - 1].y].Type = RoomType.CombatRoom;
+
+        // Assign mystery rooms
+        for (int i = 0; i < currentStats.MysteryNum && index < pool.Count; i++)
+            Map[pool[index++].x, pool[index - 1].y].Type = RoomType.MysteryRoom;
+
+        // Remaining rooms → default room type 
+        while (index < pool.Count)
+        {
+            var pos = pool[index++];
+            Map[pos.x, pos.y].Type = RoomType.CombatRoom; 
         }
     }
 
@@ -147,7 +163,7 @@ public class MapManager : MonoSingleton<MapManager>
 
     private bool VisitCell(Vector2Int pos)
     {
-        if (!InBounds(pos) || Map[pos.x, pos.y].Type != RoomType.Empty || GetNeighborCount(pos) > 1 || currentRoomCount >= maxRooms || Random.value < 0.5f)
+        if (!InBounds(pos) || Map[pos.x, pos.y].Type != RoomType.Void || GetNeighborCount(pos) > 1 || currentRoomCount >= maxRooms || Random.value < 0.5f)
         {
             return false;
         }
@@ -166,7 +182,7 @@ public class MapManager : MonoSingleton<MapManager>
         foreach (var dir in GetDirections())
         {
             Vector2Int check = pos + dir;
-            if (InBounds(check) && Map[check.x, check.y].Type != RoomType.Empty)
+            if (InBounds(check) && Map[check.x, check.y].Type != RoomType.Void)
             {
                 count++;
             }
@@ -192,7 +208,7 @@ public class MapManager : MonoSingleton<MapManager>
             foreach (var dir in new[] { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right })
             {
                 Vector2Int next = current + dir;
-                if (InBounds(next) && Map[next.x, next.y].Type != RoomType.Empty && !visited.Contains(next))
+                if (InBounds(next) && Map[next.x, next.y].Type != RoomType.Void && !visited.Contains(next))
                 {
                     visited.Add(next);
                     queue.Enqueue(next);
@@ -234,6 +250,15 @@ public class MapManager : MonoSingleton<MapManager>
         return dirs;
     }
 
+    private void Shuffle<T>(List<T> list)
+    {
+        for (int i = 0; i <list.Count; i++)
+        {
+            int rand = Random.Range(0, list.Count);
+            (list[i], list[rand]) = (list[rand], list[i]);
+        }
+    }
+
     private void PrintMapToConsole()
     {
         string mapString = "";
@@ -247,7 +272,7 @@ public class MapManager : MonoSingleton<MapManager>
 
                 switch (room.Type)
                 {
-                    case RoomType.Empty:
+                    case RoomType.Void:
                         c = '.';
                         break;
                     case RoomType.EventRoom:

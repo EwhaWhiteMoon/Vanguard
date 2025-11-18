@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class MiniMap : MonoBehaviour
 {
     [Header("Sprites")]
+    public Sprite emptySprite;
     public Sprite combatSprite;
     public Sprite eventSprite;
     public Sprite mysterySprite;
@@ -33,8 +34,8 @@ public class MiniMap : MonoBehaviour
             return;
         }
 
-        int width = map.width;
-        int height = map.height;
+        int width = map.WIDTH;
+        int height = map.HEIGHT;
 
         tiles = new Image[width, height];
 
@@ -50,7 +51,7 @@ public class MiniMap : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 Room room = map.Map[x, y];
-                if (room.Type == RoomType.Empty)
+                if (room.Type == RoomType.Void)
                     continue;
 
                 // Create UI Image
@@ -77,6 +78,7 @@ public class MiniMap : MonoBehaviour
     {
         switch (room.Type)
         {
+            case RoomType.Empty: return emptySprite;
             case RoomType.CombatRoom: return combatSprite;
             case RoomType.EventRoom: return eventSprite;
             case RoomType.MysteryRoom: return mysterySprite;
@@ -97,7 +99,7 @@ public class MiniMap : MonoBehaviour
             if (t != null) t.color = Color.white;
         }
 
-        if (playerPos.x >= 0 && playerPos.x < map.width && playerPos.y >= 0 && playerPos.y < map.height)
+        if (playerPos.x >= 0 && playerPos.x < map.WIDTH && playerPos.y >= 0 && playerPos.y < map.HEIGHT)
         {
             var playerTile = tiles[playerPos.x, playerPos.y];
             if (playerTile != null)

@@ -8,7 +8,7 @@ public class Room
     public bool isVisited;
     public Room()
     {
-        Type = RoomType.Empty;
+        Type = RoomType.Void;
         PrizeTable = 0;
         EnemyTable = 0;
         isVisited = false;
