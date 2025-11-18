@@ -65,7 +65,7 @@ public class MiniMap : MonoBehaviour
                 // Position in top-left anchored container
                 img.rectTransform.anchorMin = img.rectTransform.anchorMax = new Vector2(0, 1);
                 img.rectTransform.pivot = new Vector2(0, 1);
-                img.rectTransform.anchoredPosition = new Vector2(x * tileSize * tileSpacing, -y * tileSize * tileSpacing);
+                img.rectTransform.anchoredPosition = new Vector2(x * tileSize * tileSpacing, -(height - 1 - y) * tileSize * tileSpacing);
 
                 tiles[x, y] = img;
             }

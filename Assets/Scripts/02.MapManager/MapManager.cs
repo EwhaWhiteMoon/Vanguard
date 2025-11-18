@@ -275,8 +275,11 @@ public class MapManager : MonoSingleton<MapManager>
                     case RoomType.Void:
                         c = '.';
                         break;
-                    case RoomType.EventRoom:
+                    case RoomType.Empty:
                         c = 'E';
+                        break;
+                    case RoomType.EventRoom:
+                        c = 'S';
                         break;
                     case RoomType.MysteryRoom:
                         c = 'M';
@@ -295,6 +298,16 @@ public class MapManager : MonoSingleton<MapManager>
         Debug.Log(mapString);
     }
 
+    public bool CanMove(Vector2Int dir)
+    {
+        Vector2Int next = playerPos + dir;
+
+        if (!InBounds(next)) return false;
+        if (Map[next.x, next.y].Type == RoomType.Void) return false;
+
+        return true;
+    }
+
     public Room GetCurrentRoom()
     {
         return Map[playerPos.x, playerPos.y];
@@ -304,5 +317,7 @@ public class MapManager : MonoSingleton<MapManager>
     {
         playerPos = new Vector2Int(x, y);
         Map[x, y].isVisited = true;
+
+        Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y})");
     }
 }
