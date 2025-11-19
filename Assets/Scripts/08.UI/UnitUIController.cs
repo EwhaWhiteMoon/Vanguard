@@ -13,7 +13,7 @@ public class UnitUIController : MonoBehaviour
     private UnitObj unit;
     private Camera cam;
 
-    // [추가] 안전장치: 초기화가 되었는지 확인하는 깃발
+    // 안전장치: 초기화가 되었는지 확인하는 깃발
     private bool isInitialized = false;
 
     public void Init(UnitObj owner)
@@ -26,16 +26,14 @@ public class UnitUIController : MonoBehaviour
 
         UpdateUI();
 
-        // [추가] 초기화 완료 도장을 찍음
+        // 초기화 완료 도장을 찍음
         isInitialized = true;
     }
 
     private void LateUpdate()
     {
-        // [수정] 초기화도 안 됐는데 검사하지 마라 (안전장치)
         if (isInitialized == false) return;
 
-        // 초기화는 됐었는데 유닛이 없다? -> 진짜로 죽어서 사라진 것임
         if (unit == null)
         {
             Destroy(this.gameObject);

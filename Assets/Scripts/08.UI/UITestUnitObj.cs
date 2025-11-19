@@ -1,0 +1,80 @@
+﻿//기존 UnitObj에서 UI테스트를 위해 수정한 코드입니다. UnitAlly 프리팹과 UnitEnemy 프리팹에 UnitHPMPBar 프리팹을 붙이고 실행하면 됨.
+
+/*
+using TMPro;
+using UnityEngine;
+
+[DisallowMultipleComponent]
+public class UnitObj : MonoBehaviour
+{
+    public UnitData unitData;
+    public Stat stat;
+    public int Team;
+    // 한윤구 추가
+    public UnitUIController uiPrefab; // 인스펙터에서 'UnitHPMPBar' 프리팹을 여기에 넣기
+    private UnitUIController uiInstance; // 생성된 UI를 관리할 변수
+
+    private float _hp;
+
+    public float HP
+    {
+        get => _hp;
+        set
+        {
+            _hp = value;
+            if (HPText)
+                HPText.text = _hp.ToString("N0");
+        }
+    }
+    public TextMeshPro HPText;
+    public ICombatManager combatManager;
+    public SpriteRenderer spriteRenderer;
+
+
+    public void Init(UnitData data, int team, ICombatManager combatManager, float HP = -1)
+    {
+        unitData = data;
+        spriteRenderer.sprite = unitData.sprite;
+        Team = team;
+        this.combatManager = combatManager;
+
+        // 스탯 설정해야함.
+        this.stat = new Stat(unitData.BaseStat);
+        this.HP = HP == -1 ? unitData.BaseStat.MaxHealth : HP;
+        // 한윤구 추가
+        if (uiPrefab != null)
+        {
+            // UI 프리팹 생성 (유닛 위치에)
+            uiInstance = Instantiate(uiPrefab, transform.position, Quaternion.identity);
+
+            // UI 초기화 (나 자신 'this'를 넘겨줌)
+            uiInstance.Init(this);
+        }
+    }
+
+    public void Attack(UnitObj target)
+    {
+        target.TakeDamage(stat.Attack * (Random.Range(0f, 1f) < stat.CritChance ? stat.CritMultiplier : 1f));
+    }
+
+    public void TakeDamage(float damage)
+    {
+        HP -= (damage - stat.Defense) * (1 - stat.DamageReducePct);
+        if (HP <= 0)
+        {
+            EffectManager.Instance.PlayEffect("Death", transform.position);
+            Destroy(this.gameObject);
+        }
+        EffectManager.Instance.PlayEffect("Hit", transform.position); // 이게 여기 들어가는 게 맞을까 생각 중. "피격"애니메이션이니까 괜찮지 않을까요?
+    }
+
+
+    //한윤구 추가 Unit 파괴시 bar 같이 파괴
+    private void OnDestroy()
+    {
+        if (uiInstance != null)
+        {
+            Destroy(uiInstance.gameObject);
+        }
+    }
+}*/
