@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -7,6 +7,11 @@ public class UnitObj : MonoBehaviour
     public UnitData unitData;
     public Stat stat;
     public int Team;
+
+    // 한윤구 추가
+    public UnitUIController uiPrefab; // 인스펙터에서 'UnitHPMPBar' 프리팹을 여기에 넣기
+    private UnitUIController uiInstance; // 생성된 UI를 관리할 변수
+    //---------------------------------------
 
     private float _hp;
 
@@ -34,6 +39,17 @@ public class UnitObj : MonoBehaviour
         // 스탯 설정해야함.
         this.stat = new Stat(unitData.BaseStat);
         this.HP = HP == -1 ? unitData.BaseStat.MaxHealth : HP;
+
+        // 한윤구 추가
+        if (uiPrefab != null)
+        {
+            // UI 프리팹 생성
+            uiInstance = Instantiate(uiPrefab, transform.position, Quaternion.identity);
+
+            // UI 초기화
+            uiInstance.Init(this);
+        }
+        //---------------------------------------
     }
 
     public void Attack(UnitObj target)
