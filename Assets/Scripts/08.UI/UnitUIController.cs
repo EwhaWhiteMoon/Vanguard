@@ -8,7 +8,7 @@ public class UnitUIController : MonoBehaviour
     public Slider MPBar;
 
     [Header("Settings")]
-    public float heightOffset = 1.5f;
+    public float heightOffset = 0.002f;
 
     private UnitObj unit;
     private Camera cam;
