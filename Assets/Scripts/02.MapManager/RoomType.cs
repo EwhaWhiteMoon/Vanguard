@@ -1,5 +1,6 @@
 public enum RoomType
 {
+    Void,
     Empty,
     EventRoom,
     MysteryRoom,
