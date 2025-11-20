@@ -4,7 +4,8 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class UnitObj : MonoBehaviour
 {
-    public UnitData unitData;
+    public UnitData unitData { get; private set; }
+    private SafeAnimatorLoader animatorLoader;
     public Stat stat;
     public int Team;
 
@@ -24,25 +25,35 @@ public class UnitObj : MonoBehaviour
                 uiInstance.UpdateUI();
             //if(HPText)
             //    HPText.text = _hp.ToString("N0");
-            
+
         }
     }
     public TextMeshPro HPText;
     public ICombatManager combatManager;
-    public SpriteRenderer spriteRenderer;
-    
+
     public SimpleProjectile projectilePrefab;
+
+    void Awake()
+    {
+        animatorLoader = GetComponent<SafeAnimatorLoader>();
+        if (animatorLoader == null)
+        {
+            Debug.LogError("애니 로더가 없음");
+        }
+    }
 
     public void Init(UnitData data, int team, ICombatManager combatManager, float HP = -1)
     {
-        unitData = data;
-        spriteRenderer.sprite = unitData.sprite;
+        this.unitData = data;
         Team = team;
         this.combatManager = combatManager;
 
         // 스탯 설정해야함.
-        this.stat = new Stat(unitData.BaseStat);
-        this.HP = HP == -1 ? unitData.BaseStat.MaxHealth : HP;
+        this.stat = new Stat(this.unitData.BaseStat);
+        this.HP = HP == -1 ? this.unitData.BaseStat.MaxHealth : HP;
+
+        // 애니메이터 적용
+        animatorLoader.InitAnimator(data);
     }
 
     public void Attack(UnitObj target)
@@ -61,7 +72,7 @@ public class UnitObj : MonoBehaviour
             };
         }
     }
-    
+
     public void TakeDamage(float damage)
     {
         HP -= (damage - stat.Defense) * (1 - stat.DamageReducePct);

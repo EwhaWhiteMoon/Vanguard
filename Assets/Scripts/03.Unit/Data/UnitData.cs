@@ -14,7 +14,7 @@ public class UnitData
 {
     public string Name;
     public Stat BaseStat;
-    public Sprite sprite;
+    public string AnimatorControllerName;
     private UnitGrade Grade;
     private UnitClass Class;
 
@@ -35,13 +35,12 @@ public class UnitData
         this.Name = name;
         this.Class = unitClass;
         this.Grade = unitGrade;
-        this.sprite = Resources.Load<Sprite>($"Sprites/Units/{name}");
         InitializeBaseStat(unitClass, unitGrade, stat);
+        this.AnimatorControllerName = GetAnimatorControllerName(unitClass, unitGrade);
     }
 
     private void InitializeBaseStat(UnitClass unitClass = UnitClass.Warrior, UnitGrade unitGrade = UnitGrade.Common, Stat stat = null)
     {
-        // 이거 따로 클래스로 빼야하긴 함.
         GoogleSheetSO _so = GoogleSheetManager.SO<GoogleSheetSO>();
 
         if (_so == null)
@@ -75,6 +74,25 @@ public class UnitData
                 this.BaseStat = new Stat(stat);
             }
         }
+    }
+
+    private string GetAnimatorControllerName(UnitClass unitClass = UnitClass.Warrior, UnitGrade unitGrade = UnitGrade.Common)
+    {
+        GoogleSheetSO _so = GoogleSheetManager.SO<GoogleSheetSO>();
+
+        if (_so == null)
+        {
+            Debug.LogError("GoogleSheetSO 로드 실패");
+            return "";
+        }
+
+        string aniCtrName = "";
+        if (_so.unitDict.TryGetValue(GetUnitId(unitClass, unitGrade), out unit unitInfo))
+        {
+            aniCtrName = unitInfo.AniController;
+        }
+
+        return aniCtrName;
     }
     private string GetUnitId(UnitClass unitClass, UnitGrade unitGrade)
     {
