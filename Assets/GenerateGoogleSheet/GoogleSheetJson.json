@@ -16,7 +16,7 @@
       "Aggro": 0,
       "Range": 0.5,
       "Skill": "WarriorAreaAtk",
-      "Price": 100,
+      "Price": 200,
       "AniController": "Warrior_Controller"
     },
     {
@@ -35,7 +35,7 @@
       "Aggro": 0,
       "Range": 0.5,
       "Skill": "WarriorAreaAtk",
-      "Price": 250,
+      "Price": 300,
       "AniController": "Warrior_Controller"
     },
     {
@@ -54,7 +54,7 @@
       "Aggro": 0,
       "Range": 0.5,
       "Skill": "WarriorAreaAtk",
-      "Price": 500,
+      "Price": 700,
       "AniController": "Warrior_Controller"
     },
     {
@@ -73,7 +73,7 @@
       "Aggro": 0,
       "Range": 3,
       "Skill": "ArcherSingle",
-      "Price": 100,
+      "Price": 200,
       "AniController": "Archer_Controller"
     },
     {
@@ -92,7 +92,7 @@
       "Aggro": 0,
       "Range": 3,
       "Skill": "ArcherSingle",
-      "Price": 250,
+      "Price": 300,
       "AniController": "Archer_Controller"
     },
     {
@@ -111,7 +111,7 @@
       "Aggro": 0,
       "Range": 3,
       "Skill": "ArcherSingle",
-      "Price": 500,
+      "Price": 700,
       "AniController": "Archer_Controller"
     },
     {
@@ -130,7 +130,7 @@
       "Aggro": 0,
       "Range": 4,
       "Skill": "MageAreaAtk",
-      "Price": 100,
+      "Price": 200,
       "AniController": "Mage_Controller"
     },
     {
@@ -149,7 +149,7 @@
       "Aggro": 0,
       "Range": 4,
       "Skill": "MageAreaAtk",
-      "Price": 250,
+      "Price": 300,
       "AniController": "Mage_Controller"
     },
     {
@@ -168,7 +168,7 @@
       "Aggro": 0,
       "Range": 4,
       "Skill": "MageAreaAtk",
-      "Price": 500,
+      "Price": 700,
       "AniController": "Mage_Controller"
     },
     {
@@ -187,7 +187,7 @@
       "Aggro": 0,
       "Range": 0.5,
       "Skill": "AssassinSingle",
-      "Price": 100,
+      "Price": 200,
       "AniController": "Assassin_Controller"
     },
     {
@@ -206,7 +206,7 @@
       "Aggro": 0,
       "Range": 0.5,
       "Skill": "AssassinSingle",
-      "Price": 250,
+      "Price": 300,
       "AniController": "Assassin_Controller"
     },
     {
@@ -225,7 +225,7 @@
       "Aggro": 0,
       "Range": 0.5,
       "Skill": "AssassinSingle",
-      "Price": 500,
+      "Price": 700,
       "AniController": "Assassin_Controller"
     },
     {
@@ -244,7 +244,7 @@
       "Aggro": 0,
       "Range": 0.5,
       "Skill": "Aggro",
-      "Price": 100,
+      "Price": 200,
       "AniController": "Tanker_Controller"
     },
     {
@@ -263,7 +263,7 @@
       "Aggro": 0,
       "Range": 0.5,
       "Skill": "Aggro",
-      "Price": 250,
+      "Price": 300,
       "AniController": "Tanker_Controller"
     },
     {
@@ -282,7 +282,7 @@
       "Aggro": 0,
       "Range": 0.5,
       "Skill": "Aggro",
-      "Price": 500,
+      "Price": 700,
       "AniController": "Tanker_Controller"
     },
     {
@@ -301,7 +301,7 @@
       "Aggro": 0,
       "Range": 1,
       "Skill": "Heal",
-      "Price": 100,
+      "Price": 200,
       "AniController": "Healer_Controller"
     },
     {
@@ -320,7 +320,7 @@
       "Aggro": 0,
       "Range": 1,
       "Skill": "Heal",
-      "Price": 250,
+      "Price": 300,
       "AniController": "Healer_Controller"
     },
     {
@@ -339,13 +339,13 @@
       "Aggro": 0,
       "Range": 1,
       "Skill": "Heal",
-      "Price": 500,
+      "Price": 700,
       "AniController": "Healer_Controller"
     },
     {
       "unitID": "1000",
       "Job": "슬라임",
-      "Hp": 80,
+      "Hp": 40,
       "Mp": 0,
       "Atk": 8,
       "Def": 0,
@@ -364,7 +364,7 @@
     {
       "unitID": "1010",
       "Job": "고블린",
-      "Hp": 100,
+      "Hp": 80,
       "Mp": 0,
       "Atk": 10,
       "Def": 0,
@@ -378,12 +378,12 @@
       "Range": 0.5,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Goblin_Controller"
     },
     {
       "unitID": "1020",
       "Job": "늑대",
-      "Hp": 90,
+      "Hp": 60,
       "Mp": 0,
       "Atk": 9,
       "Def": 0,
@@ -397,12 +397,12 @@
       "Range": 0.5,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Wolf_Controller"
     },
     {
       "unitID": "1030",
       "Job": "고블린궁수",
-      "Hp": 75,
+      "Hp": 65,
       "Mp": 0,
       "Atk": 14,
       "Def": 0,
@@ -416,12 +416,12 @@
       "Range": 3,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Goblin_Controller"
     },
     {
       "unitID": "1040",
-      "Job": "오크전사",
-      "Hp": 160,
+      "Job": "트롤전사",
+      "Hp": 100,
       "Mp": 0,
       "Atk": 18,
       "Def": 1,
@@ -435,12 +435,12 @@
       "Range": 0.5,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Troll_Controller"
     },
     {
       "unitID": "1050",
-      "Job": "오크대장",
-      "Hp": 230,
+      "Job": "트롤대장",
+      "Hp": 120,
       "Mp": 0,
       "Atk": 26,
       "Def": 1,
@@ -454,12 +454,12 @@
       "Range": 0.5,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Troll_Controller"
     },
     {
       "unitID": "1060",
       "Job": "해골병사",
-      "Hp": 140,
+      "Hp": 90,
       "Mp": 0,
       "Atk": 22,
       "Def": 0,
@@ -478,7 +478,7 @@
     {
       "unitID": "1070",
       "Job": "해골궁수",
-      "Hp": 110,
+      "Hp": 85,
       "Mp": 0,
       "Atk": 26,
       "Def": 0,
@@ -497,7 +497,7 @@
     {
       "unitID": "1080",
       "Job": "해골대장",
-      "Hp": 280,
+      "Hp": 110,
       "Mp": 0,
       "Atk": 32,
       "Def": 1,
@@ -515,8 +515,8 @@
     },
     {
       "unitID": "1090",
-      "Job": "악마병사",
-      "Hp": 380,
+      "Job": "트래스고",
+      "Hp": 90,
       "Mp": 0,
       "Atk": 44,
       "Def": 1,
@@ -530,7 +530,7 @@
       "Range": 0.5,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Trasgo_Controller"
     }
   ],
   "item": [
