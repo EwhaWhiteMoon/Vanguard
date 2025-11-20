@@ -340,7 +340,6 @@ GameObject:
   - component: {fileID: 9210210800042349413}
   - component: {fileID: 4245070162130761488}
   - component: {fileID: 4765250600229750710}
-  - component: {fileID: 9160971936790988140}
   - component: {fileID: 8053371168198987804}
   m_Layer: 5
   m_Name: UnitHPMPBar
@@ -433,18 +432,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &9160971936790988140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3194864863341394131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dc9025d0b093ba43a25d02b1c6d18f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIBillboard
 --- !u!114 &8053371168198987804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,6 +447,7 @@ MonoBehaviour:
   HPBar: {fileID: 1673082013778379048}
   MPBar: {fileID: 8979868010862168909}
   heightOffset: 0.2
+  unit: {fileID: 0}
 --- !u!1 &4052426475411995891
 GameObject:
   m_ObjectHideFlags: 0

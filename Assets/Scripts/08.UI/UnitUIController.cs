@@ -10,47 +10,14 @@ public class UnitUIController : MonoBehaviour
     [Header("Settings")]
     public float heightOffset = 0.002f;
 
-    private UnitObj unit;
-    private Camera cam;
+    public UnitObj unit;
 
-    // 안전장치: 초기화가 되었는지 확인하는 깃발
-    private bool isInitialized = false;
-
-    public void Init(UnitObj owner)
+    public void Start()
     {
-        unit = owner;
-        cam = Camera.main;
-
-        if (HPBar != null) { HPBar.minValue = 0f; HPBar.maxValue = 1f; }
-        if (MPBar != null) { MPBar.minValue = 0f; MPBar.maxValue = 1f; }
-
-        UpdateUI();
-
-        // 초기화 완료 도장을 찍음
-        isInitialized = true;
-    }
-
-    private void LateUpdate()
-    {
-        if (isInitialized == false) return;
-
-        if (unit == null)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        // 1) 위치 업데이트
-        transform.position = unit.transform.position + Vector3.up * heightOffset;
-
-        // 2) 빌보드
-        transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
-
-        // 3) UI 갱신
         UpdateUI();
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         // 1. 유닛이나 스탯이 없으면 중단
         if (unit == null || unit.stat == null) return;
