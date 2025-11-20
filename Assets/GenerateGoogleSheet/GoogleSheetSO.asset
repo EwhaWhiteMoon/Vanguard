@@ -28,7 +28,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: WarriorAreaAtk
-    Price: 100
+    Price: 200
     AniController: Warrior_Controller
   - unitID: 01
     Job: "\uC804\uC0AC2"
@@ -45,7 +45,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: WarriorAreaAtk
-    Price: 250
+    Price: 300
     AniController: Warrior_Controller
   - unitID: 02
     Job: "\uC804\uC0AC3"
@@ -62,7 +62,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: WarriorAreaAtk
-    Price: 500
+    Price: 700
     AniController: Warrior_Controller
   - unitID: 10
     Job: "\uAD81\uC2181"
@@ -79,7 +79,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 3
     Skill: ArcherSingle
-    Price: 100
+    Price: 200
     AniController: Archer_Controller
   - unitID: 11
     Job: "\uAD81\uC2182"
@@ -96,7 +96,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 3
     Skill: ArcherSingle
-    Price: 250
+    Price: 300
     AniController: Archer_Controller
   - unitID: 12
     Job: "\uAD81\uC2183"
@@ -113,7 +113,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 3
     Skill: ArcherSingle
-    Price: 500
+    Price: 700
     AniController: Archer_Controller
   - unitID: 20
     Job: "\uB9C8\uBC95\uC0AC1"
@@ -130,7 +130,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 4
     Skill: MageAreaAtk
-    Price: 100
+    Price: 200
     AniController: Mage_Controller
   - unitID: 21
     Job: "\uB9C8\uBC95\uC0AC2"
@@ -147,7 +147,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 4
     Skill: MageAreaAtk
-    Price: 250
+    Price: 300
     AniController: Mage_Controller
   - unitID: 22
     Job: "\uB9C8\uBC95\uC0AC3"
@@ -164,7 +164,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 4
     Skill: MageAreaAtk
-    Price: 500
+    Price: 700
     AniController: Mage_Controller
   - unitID: 30
     Job: "\uC554\uC0B4\uC7901"
@@ -181,7 +181,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: AssassinSingle
-    Price: 100
+    Price: 200
     AniController: Assassin_Controller
   - unitID: 31
     Job: "\uC554\uC0B4\uC7902"
@@ -198,7 +198,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: AssassinSingle
-    Price: 250
+    Price: 300
     AniController: Assassin_Controller
   - unitID: 32
     Job: "\uC554\uC0B4\uC7903"
@@ -215,7 +215,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: AssassinSingle
-    Price: 500
+    Price: 700
     AniController: Assassin_Controller
   - unitID: 40
     Job: "\uD0F1\uCEE41"
@@ -232,7 +232,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: Aggro
-    Price: 100
+    Price: 200
     AniController: Tanker_Controller
   - unitID: 41
     Job: "\uD0F1\uCEE42"
@@ -249,7 +249,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: Aggro
-    Price: 250
+    Price: 300
     AniController: Tanker_Controller
   - unitID: 42
     Job: "\uD0F1\uCEE43"
@@ -266,7 +266,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 0.5
     Skill: Aggro
-    Price: 500
+    Price: 700
     AniController: Tanker_Controller
   - unitID: 50
     Job: "\uD790\uB7EC1"
@@ -283,7 +283,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 1
     Skill: Heal
-    Price: 100
+    Price: 200
     AniController: Healer_Controller
   - unitID: 51
     Job: "\uD790\uB7EC2"
@@ -300,7 +300,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 1
     Skill: Heal
-    Price: 250
+    Price: 300
     AniController: Healer_Controller
   - unitID: 52
     Job: "\uD790\uB7EC3"
@@ -317,7 +317,7 @@ MonoBehaviour:
     Aggro: 0
     Range: 1
     Skill: Heal
-    Price: 500
+    Price: 700
     AniController: Healer_Controller
   - unitID: 1000
     Job: "\uC2AC\uB77C\uC784"
@@ -388,7 +388,7 @@ MonoBehaviour:
     Price: 0
     AniController: none
   - unitID: 1040
-    Job: "\uC624\uD06C\uC804\uC0AC"
+    Job: "\uD2B8\uB864\uC804\uC0AC"
     Hp: 160
     Mp: 0
     Atk: 18
@@ -405,7 +405,7 @@ MonoBehaviour:
     Price: 0
     AniController: none
   - unitID: 1050
-    Job: "\uC624\uD06C\uB300\uC7A5"
+    Job: "\uD2B8\uB864\uB300\uC7A5"
     Hp: 230
     Mp: 0
     Atk: 26
@@ -473,7 +473,7 @@ MonoBehaviour:
     Price: 0
     AniController: Skeleton_Controller
   - unitID: 1090
-    Job: "\uC545\uB9C8\uBCD1\uC0AC"
+    Job: "\uD2B8\uB798\uC2A4\uACE0"
     Hp: 380
     Mp: 0
     Atk: 44

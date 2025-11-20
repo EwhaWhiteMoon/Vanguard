@@ -38,6 +38,7 @@ public class SynergyManager : MonoSingleton<SynergyManager>
 
     /// <summary>
     /// 구글 시트에서 시너지 데이터를 로드합니다.
+    /// GoogleSheetSO.synergyDict는 synergyID로 조회할 때 사용 가능합니다.
     /// </summary>
     private void LoadSynergyData()
     {
@@ -46,6 +47,12 @@ public class SynergyManager : MonoSingleton<SynergyManager>
         {
             Debug.LogWarning("[SynergyManager] GoogleSheetSO를 찾을 수 없거나 synergyList가 비어있습니다.");
             return;
+        }
+
+        // 딕셔너리가 초기화되지 않았다면 빌드
+        if (_sheetData.synergyDict == null)
+        {
+            _sheetData.BuildDictionaries();
         }
 
         Debug.Log($"[SynergyManager] GoogleSheetSO.asset에서 {_sheetData.synergyList.Count}개의 시너지를 로드했습니다.");
@@ -115,7 +122,7 @@ public class SynergyManager : MonoSingleton<SynergyManager>
             Job job = JobParser.Parse(item.Job);
             if (job == Job.All) continue; // All 직업은 시너지 계산에서 제외
 
-            string itemId = item.itemID.ToString();
+            string itemId = item.itemID;
 
             if (!uniqueItemIdsByJob.ContainsKey(job))
             {
