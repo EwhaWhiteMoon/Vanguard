@@ -10,22 +10,32 @@ public partial class UnitNavigateAction : Action
 {
     [SerializeReference] public BlackboardVariable<UnitObj> Unit;
     [SerializeReference] public BlackboardVariable<GameObject> Target;
+    
+    private Animator animator;
 
     protected override Status OnStart()
     {
         if(Target.Value == null) return Status.Failure;
+        animator = Unit.Value.GetComponent<Animator>();
+        animator.SetBool("isWalk", true);
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if(Target.Value == null) return Status.Failure;
+        if (Target.Value == null)
+        {
+            animator.SetBool("isWalk", false);
+            return Status.Failure;
+        }
 
 
         float dist = Vector3.Distance(Unit.Value.gameObject.transform.position, Target.Value.transform.position);
         if (dist <= Unit.Value.stat.Range)
         {
             Unit.Value.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
+            
+            animator.SetBool("isWalk", false);
             return Status.Success;
         }
         

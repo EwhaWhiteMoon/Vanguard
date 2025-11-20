@@ -320,4 +320,9 @@ public class MapManager : MonoSingleton<MapManager>
 
         Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y})");
     }
+
+    public void movePlayer(Vector2Int dir)
+    {
+        movePlayer(playerPos.x + dir.x, playerPos.y + dir.y);
+    }
 }

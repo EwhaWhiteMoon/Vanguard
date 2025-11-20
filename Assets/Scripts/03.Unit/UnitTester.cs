@@ -10,6 +10,7 @@ public class UnitTester : MonoBehaviour, ICombatManager
     private List<UnitData> allyList = new List<UnitData>();
     private List<UnitData> enemyList = new List<UnitData>();
     public List<GameObject> units { get; private set; } = new List<GameObject>();
+    public List<RuntimeAnimatorController> animators = new List<RuntimeAnimatorController>();
     public bool OnCombat = false;
     
     public void OnGameStateChange(GameState state)
@@ -45,6 +46,7 @@ public class UnitTester : MonoBehaviour, ICombatManager
         {
             GameObject u = Instantiate(unit, new Vector3(-2, i - 2, 0), Quaternion.identity);
             u.GetComponent<UnitObj>().Init(allyList[i], 0, this);
+            u.GetComponent<Animator>().runtimeAnimatorController = animators[i];
             units.Add(u);
         }
         

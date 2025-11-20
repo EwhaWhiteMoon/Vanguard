@@ -2,7 +2,7 @@
 // 마지막 수정 : 2025.10.10. - Done
 // 스프라이트의 전처리를 간단히 하기 위한 코드.
 
-
+/*
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -87,3 +87,4 @@ namespace Editor
         }
     }
 }
+*/

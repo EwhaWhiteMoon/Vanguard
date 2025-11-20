@@ -11,11 +11,15 @@ public partial class AttackAction : Action
     [SerializeReference] public BlackboardVariable<UnitObj> Unit;
     [SerializeReference] public BlackboardVariable<UnitObj> Target;
     
+    private Animator animator;
+    
      private float atkDelay = 0.0f;
 
     protected override Status OnStart()
     {
         if(Target.Value == null) return Status.Failure;
+        
+        animator = Unit.Value.GetComponent<Animator>();
         
         atkDelay = 1 * Unit.Value.stat.AttackSpeed;
         if (atkDelay <= 0.0f)
@@ -31,9 +35,14 @@ public partial class AttackAction : Action
         if(Target.Value == null) return Status.Failure;
         
         atkDelay -= Time.deltaTime;
-        if (atkDelay <= 0)
+        if (atkDelay <= 1.0f)
+        {
+            animator.SetBool("isAttack", true);
+        }
+        if (atkDelay <= 0.0f)
         {
             Unit.Value.Attack(Target.Value);
+            animator.SetBool("isAttack", false);
             return Status.Success;
         }
 

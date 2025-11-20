@@ -28,6 +28,8 @@ public class UnitObj : MonoBehaviour
     public TextMeshPro HPText;
     public ICombatManager combatManager;
     public SpriteRenderer spriteRenderer;
+    
+    public SimpleProjectile projectilePrefab;
 
     public void Init(UnitData data, int team, ICombatManager combatManager, float HP = -1)
     {
@@ -54,7 +56,19 @@ public class UnitObj : MonoBehaviour
 
     public void Attack(UnitObj target)
     {
-        target.TakeDamage(stat.Attack * (Random.Range(0f, 1f) < stat.CritChance ? stat.CritMultiplier : 1f));
+        if (stat.Range <= 1.0f)
+        {
+            target.TakeDamage(stat.Attack * (Random.Range(0f, 1f) < stat.CritChance ? stat.CritMultiplier : 1f));
+        }
+        else
+        {
+            var Bullet = Instantiate(projectilePrefab, transform.position, transform.rotation);
+            Bullet.init(target.gameObject);
+            Bullet.onHit += () =>
+            {
+                target.TakeDamage(stat.Attack * (Random.Range(0f, 1f) < stat.CritChance ? stat.CritMultiplier : 1f));
+            };
+        }
     }
     
     public void TakeDamage(float damage)
