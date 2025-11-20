@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58fe3ca36de72c44a2a1966f1386447, type: 3}
+  m_Name: EmptyData
+  m_EditorClassIdentifier: Assembly-CSharp::RoomData
+  Type: 1
+  PrizeTable: 0
+  EnemyTable: 0
+  minimapSprite: {fileID: -1348242962, guid: ba9de2fa260e14a4aa5377b485dbc9c5, type: 3}
+  canContainEnemies: 0
+  canContainLoot: 0

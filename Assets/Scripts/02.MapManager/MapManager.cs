@@ -3,11 +3,18 @@ using System.Linq;
 using UnityEngine;
 using RangeAttribute = UnityEngine.RangeAttribute;
 
-public class MapManager : MonoSingleton<MapManager>
+public class MapManager : MonoBehaviour
 {
     [Header("Map Stats")]
     public MapStats[] mapStatsPool;
     private MapStats currentStats;
+
+    [Header("Room Data by Type")]
+    public RoomData emptyData;
+    public RoomData eventData;
+    public RoomData combatData;
+    public RoomData mysteryData;
+    public RoomData bossData;
 
     private int width = 7;
     private int height = 7;
@@ -26,7 +33,7 @@ public class MapManager : MonoSingleton<MapManager>
     private HashSet<Vector2Int> assignedRooms = new HashSet<Vector2Int>();
     private MiniMap miniMap;
 
-    private void Start()
+    private void Awake()
     {
         miniMap = FindFirstObjectByType<MiniMap>();
     }
@@ -70,6 +77,7 @@ public class MapManager : MonoSingleton<MapManager>
         }
 
         AssignRoomTypes();
+        AssignRoomData();
         PrintMapToConsole();
     }
 
@@ -153,6 +161,38 @@ public class MapManager : MonoSingleton<MapManager>
         {
             var pos = pool[index++];
             Map[pos.x, pos.y].Type = RoomType.CombatRoom; 
+        }
+    }
+
+    private void AssignRoomData()
+    {
+        for (int x = 0; x < width;  x++)
+        {
+            for(int y = 0; y < height; y++)
+            {
+                Room room = Map[x, y];
+                switch(room.Type)
+                {
+                    case RoomType.Empty:
+                        room.Data = emptyData;
+                        break;
+                    case RoomType.EventRoom:
+                        room.Data = eventData;
+                        break;
+                    case RoomType.MysteryRoom:
+                        room.Data = mysteryData;
+                        break;
+                    case RoomType.CombatRoom:
+                        room.Data = combatData;
+                        break;
+                    case RoomType.BossRoom:
+                        room.Data = bossData;
+                        break;
+                    default:
+                        room.Data = null;
+                        break;
+                }
+            }
         }
     }
 
@@ -317,6 +357,8 @@ public class MapManager : MonoSingleton<MapManager>
     {
         playerPos = new Vector2Int(x, y);
         Map[x, y].isVisited = true;
+
+        miniMap.HighlightPlayerRoom();
 
         Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y})");
     }
