@@ -9,7 +9,14 @@ public class MoveButton : MonoBehaviour
     public Button btnLeft;
     public Button btnRight;
 
-    private MapManager map => MapManager.Instance;
+    public MapManager map;
+    private void Awake()
+    {
+        if(map == null)
+        {
+            map = FindFirstObjectByType<MapManager>();
+        }
+    }
 
     void UpdateButtons()
     {
