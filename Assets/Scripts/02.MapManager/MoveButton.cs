@@ -11,7 +11,7 @@ public class MoveButton : MonoBehaviour
 
     private MapManager map => MapManager.Instance;
 
-    void UpdateButtons()
+    public void UpdateButtons()
     {
         btnUp.gameObject.SetActive(map.CanMove(Vector2Int.up));
         btnDown.gameObject.SetActive(map.CanMove(Vector2Int.down));
@@ -31,12 +31,17 @@ public class MoveButton : MonoBehaviour
         Vector2Int next = map.playerPos + dir;
         map.movePlayer(next.x, next.y);
 
+        if (map.GetCurrentRoom().Type == RoomType.CombatRoom)
+        {
+            GameManager.Instance.GameState = GameState.Combat;
+        }
+        
         UpdateButtons();
     }
 
     private void Start()
     {
-        StartCoroutine(LateInit());
+        //StartCoroutine(LateInit());
     }
 
     IEnumerator LateInit()
