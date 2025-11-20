@@ -321,7 +321,7 @@ MonoBehaviour:
     AniController: Healer_Controller
   - unitID: 1000
     Job: "\uC2AC\uB77C\uC784"
-    Hp: 80
+    Hp: 40
     Mp: 0
     Atk: 8
     Def: 0
@@ -338,7 +338,7 @@ MonoBehaviour:
     AniController: Slime_Controller
   - unitID: 1010
     Job: "\uACE0\uBE14\uB9B0"
-    Hp: 100
+    Hp: 80
     Mp: 0
     Atk: 10
     Def: 0
@@ -352,10 +352,10 @@ MonoBehaviour:
     Range: 0.5
     Skill: null
     Price: 0
-    AniController: none
+    AniController: Goblin_Controller
   - unitID: 1020
     Job: "\uB291\uB300"
-    Hp: 90
+    Hp: 60
     Mp: 0
     Atk: 9
     Def: 0
@@ -369,10 +369,10 @@ MonoBehaviour:
     Range: 0.5
     Skill: null
     Price: 0
-    AniController: none
+    AniController: Wolf_Controller
   - unitID: 1030
     Job: "\uACE0\uBE14\uB9B0\uAD81\uC218"
-    Hp: 75
+    Hp: 65
     Mp: 0
     Atk: 14
     Def: 0
@@ -386,10 +386,14 @@ MonoBehaviour:
     Range: 3
     Skill: null
     Price: 0
-    AniController: none
+    AniController: Goblin_Controller
   - unitID: 1040
     Job: "\uD2B8\uB864\uC804\uC0AC"
+<<<<<<< HEAD
     Hp: 160
+=======
+    Hp: 100
+>>>>>>> dbfee84db4a10ebfe10945481f23218d95df2fda
     Mp: 0
     Atk: 18
     Def: 1
@@ -403,10 +407,14 @@ MonoBehaviour:
     Range: 0.5
     Skill: null
     Price: 0
-    AniController: none
+    AniController: Troll_Controller
   - unitID: 1050
     Job: "\uD2B8\uB864\uB300\uC7A5"
+<<<<<<< HEAD
     Hp: 230
+=======
+    Hp: 120
+>>>>>>> dbfee84db4a10ebfe10945481f23218d95df2fda
     Mp: 0
     Atk: 26
     Def: 1
@@ -420,10 +428,10 @@ MonoBehaviour:
     Range: 0.5
     Skill: null
     Price: 0
-    AniController: none
+    AniController: Troll_Controller
   - unitID: 1060
     Job: "\uD574\uACE8\uBCD1\uC0AC"
-    Hp: 140
+    Hp: 90
     Mp: 0
     Atk: 22
     Def: 0
@@ -440,7 +448,7 @@ MonoBehaviour:
     AniController: Skeleton_Controller
   - unitID: 1070
     Job: "\uD574\uACE8\uAD81\uC218"
-    Hp: 110
+    Hp: 85
     Mp: 0
     Atk: 26
     Def: 0
@@ -457,7 +465,7 @@ MonoBehaviour:
     AniController: Skeleton_Controller
   - unitID: 1080
     Job: "\uD574\uACE8\uB300\uC7A5"
-    Hp: 280
+    Hp: 110
     Mp: 0
     Atk: 32
     Def: 1
@@ -474,7 +482,11 @@ MonoBehaviour:
     AniController: Skeleton_Controller
   - unitID: 1090
     Job: "\uD2B8\uB798\uC2A4\uACE0"
+<<<<<<< HEAD
     Hp: 380
+=======
+    Hp: 90
+>>>>>>> dbfee84db4a10ebfe10945481f23218d95df2fda
     Mp: 0
     Atk: 44
     Def: 1
@@ -488,7 +500,7 @@ MonoBehaviour:
     Range: 0.5
     Skill: null
     Price: 0
-    AniController: none
+    AniController: Trasgo_Controller
   itemList:
   - itemID: 00
     Name: "\uAC80"

@@ -11,8 +11,14 @@ public class UnitTester : MonoBehaviour, ICombatManager
     private List<UnitData> enemyList = new List<UnitData>();
     public List<GameObject> units { get; private set; } = new List<GameObject>();
     public List<RuntimeAnimatorController> animators = new List<RuntimeAnimatorController>();
+
+    private List<UnitClass>enemykinds = new List<UnitClass>
+    {
+        UnitClass.Slime, UnitClass.Goblin, UnitClass.Wolf, UnitClass.GoblinArcher,
+        UnitClass.OrcWarrior, UnitClass.OrcLeader, UnitClass.SkeletonSoldier, UnitClass.SkeletonArcher, UnitClass.SkeletonLeader
+    };
     public bool OnCombat = false;
-    
+
     public void OnGameStateChange(GameState state)
     {
         if (state == GameState.Combat)
@@ -22,8 +28,10 @@ public class UnitTester : MonoBehaviour, ICombatManager
     }
     private void Awake()
     {
+        Debug.Log("매번 불림?");
         GameManager.Instance.OnGameStateChange += OnGameStateChange;
         OnGameStateChange(GameManager.Instance.GameState); //지금 State에 맞게 한번 호출해줘야함.
+
     }
 
     public void CombatStart()
@@ -35,21 +43,15 @@ public class UnitTester : MonoBehaviour, ICombatManager
             new UnitData("Archer", UnitClass.Archer, UnitGrade.Common),
             new UnitData("Mage", UnitClass.Mage, UnitGrade.Common)
         };
-        enemyList = new List<UnitData>
-        {
-            new UnitData("Troll", UnitClass.Warrior, UnitGrade.Common),
-            new UnitData("Wolf", UnitClass.Archer, UnitGrade.Common),
-            new UnitData("Zombie", UnitClass.Mage, UnitGrade.Common)
-        };
-        
+        enemyList = MakeRandomEnemy();
+
         for(int i = 0; i < allyList.Count; i++)
         {
             GameObject u = Instantiate(unit, new Vector3(-2, i - 2, 0), Quaternion.identity);
             u.GetComponent<UnitObj>().Init(allyList[i], 0, this);
-            u.GetComponent<Animator>().runtimeAnimatorController = animators[i];
             units.Add(u);
         }
-        
+
         for(int i = 0; i < enemyList.Count; i++)
         {
             GameObject u = Instantiate(enemyUnit, new Vector3(2, i - 2, 0), Quaternion.identity);
@@ -61,7 +63,7 @@ public class UnitTester : MonoBehaviour, ICombatManager
     private void Update()
     {
         if (!OnCombat) return;
-        
+
         if(units.All(u => !u || u.GetComponent<UnitObj>().Team == 0 )) // 당연히!! 최적화해야 하지만 일단 작동함
         {
             Debug.Log("Combat End (Team 1 Eliminated : WIN)");
@@ -90,5 +92,22 @@ public class UnitTester : MonoBehaviour, ICombatManager
         {
             GameManager.Instance.GameState = GameState.GameOver;
         }
+    }
+
+    private List<UnitData> MakeRandomEnemy()
+    {
+        List<UnitData> enemyDataList = new List<UnitData>();
+
+        System.Random rand = new System.Random();
+        int enemyCount = rand.Next(1,5);
+
+        for (int i = 0; i < enemyCount; i++)
+        {
+            int enemyKindIdx = rand.Next(0, enemykinds.Count);
+            enemyDataList.Add(new UnitData(
+                enemykinds[enemyKindIdx].ToString(), enemykinds[enemyKindIdx], UnitGrade.Common));
+        }
+
+        return enemyDataList;
     }
 }

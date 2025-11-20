@@ -1,22 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class MiniMap : MonoBehaviour
 {
-    [Header("Sprites")]
-    public Sprite emptySprite;
-    public Sprite combatSprite;
-    public Sprite eventSprite;
-    public Sprite mysterySprite;
-    public Sprite bossSprite;
-    public Sprite playerMarkerSprite;
 
     [Header("Visual Settings")]
+    public Sprite playerMarkerSprite;
+
     public RectTransform container;  // Assign a UI Panel under Canvas for minimap
     public float tileSpacing = 1.0f;
 
     private Image[,] tiles;
-    private MapManager map => MapManager.Instance;
+    private Vector2Int? previousPlayerPos = null;
+    public MapManager map;
+
+    private void Awake()
+    {
+        if(map == null)
+        {
+            map = FindFirstObjectByType<MapManager>();
+        }
+    }
 
     void Update()
     {
@@ -74,41 +79,37 @@ public class MiniMap : MonoBehaviour
         HighlightPlayerRoom();
     }
 
-    private Sprite GetSpriteForRoom(Room room)
-    {
-        switch (room.Type)
-        {
-            case RoomType.Empty: return emptySprite;
-            case RoomType.CombatRoom: return combatSprite;
-            case RoomType.EventRoom: return eventSprite;
-            case RoomType.MysteryRoom: return mysterySprite;
-            case RoomType.BossRoom: return bossSprite;
-            default: return null;
-        }
-    }
-
     public void HighlightPlayerRoom()
     {
         if (map.Map == null || tiles == null) return;
 
         Vector2Int playerPos = map.playerPos;
 
-        // Reset all tile colors
-        foreach (var t in tiles)
+        if (previousPlayerPos.HasValue)
         {
-            if (t != null) t.color = Color.white;
+            var prev = tiles[previousPlayerPos.Value.x, previousPlayerPos.Value.y];
+            if (prev != null)
+                prev.sprite = GetSpriteForRoom(map.Map[previousPlayerPos.Value.x, previousPlayerPos.Value.y]);
         }
 
         if (playerPos.x >= 0 && playerPos.x < map.WIDTH && playerPos.y >= 0 && playerPos.y < map.HEIGHT)
         {
             var playerTile = tiles[playerPos.x, playerPos.y];
             if (playerTile != null)
-            {
-                playerTile.sprite = playerMarkerSprite; // swap sprite for player marker
-            }
+                playerTile.sprite = playerMarkerSprite;
+
+            previousPlayerPos = playerPos;
         }
     }
 
+    private Sprite GetSpriteForRoom(Room room)
+    {
+        if (room.Data == null)
+        {
+            return null;
+        }
+        return room.Data.minimapSprite;
+    }
     public void RefreshMiniMap()
     {
         if (tiles != null)

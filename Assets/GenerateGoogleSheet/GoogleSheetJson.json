@@ -345,7 +345,7 @@
     {
       "unitID": "1000",
       "Job": "슬라임",
-      "Hp": 80,
+      "Hp": 40,
       "Mp": 0,
       "Atk": 8,
       "Def": 0,
@@ -364,7 +364,7 @@
     {
       "unitID": "1010",
       "Job": "고블린",
-      "Hp": 100,
+      "Hp": 80,
       "Mp": 0,
       "Atk": 10,
       "Def": 0,
@@ -378,12 +378,12 @@
       "Range": 0.5,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Goblin_Controller"
     },
     {
       "unitID": "1020",
       "Job": "늑대",
-      "Hp": 90,
+      "Hp": 60,
       "Mp": 0,
       "Atk": 9,
       "Def": 0,
@@ -397,12 +397,12 @@
       "Range": 0.5,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Wolf_Controller"
     },
     {
       "unitID": "1030",
       "Job": "고블린궁수",
-      "Hp": 75,
+      "Hp": 65,
       "Mp": 0,
       "Atk": 14,
       "Def": 0,
@@ -416,12 +416,16 @@
       "Range": 3,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Goblin_Controller"
     },
     {
       "unitID": "1040",
       "Job": "트롤전사",
+<<<<<<< HEAD
       "Hp": 160,
+=======
+      "Hp": 100,
+>>>>>>> dbfee84db4a10ebfe10945481f23218d95df2fda
       "Mp": 0,
       "Atk": 18,
       "Def": 1,
@@ -435,12 +439,16 @@
       "Range": 0.5,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Troll_Controller"
     },
     {
       "unitID": "1050",
       "Job": "트롤대장",
+<<<<<<< HEAD
       "Hp": 230,
+=======
+      "Hp": 120,
+>>>>>>> dbfee84db4a10ebfe10945481f23218d95df2fda
       "Mp": 0,
       "Atk": 26,
       "Def": 1,
@@ -454,12 +462,12 @@
       "Range": 0.5,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Troll_Controller"
     },
     {
       "unitID": "1060",
       "Job": "해골병사",
-      "Hp": 140,
+      "Hp": 90,
       "Mp": 0,
       "Atk": 22,
       "Def": 0,
@@ -478,7 +486,7 @@
     {
       "unitID": "1070",
       "Job": "해골궁수",
-      "Hp": 110,
+      "Hp": 85,
       "Mp": 0,
       "Atk": 26,
       "Def": 0,
@@ -497,7 +505,7 @@
     {
       "unitID": "1080",
       "Job": "해골대장",
-      "Hp": 280,
+      "Hp": 110,
       "Mp": 0,
       "Atk": 32,
       "Def": 1,
@@ -516,7 +524,11 @@
     {
       "unitID": "1090",
       "Job": "트래스고",
+<<<<<<< HEAD
       "Hp": 380,
+=======
+      "Hp": 90,
+>>>>>>> dbfee84db4a10ebfe10945481f23218d95df2fda
       "Mp": 0,
       "Atk": 44,
       "Def": 1,
@@ -530,7 +542,7 @@
       "Range": 0.5,
       "Skill": "null",
       "Price": 0,
-      "AniController": "none"
+      "AniController": "Trasgo_Controller"
     }
   ],
   "item": [
