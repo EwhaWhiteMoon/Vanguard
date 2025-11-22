@@ -128,7 +128,7 @@ public class UnitTester : MonoBehaviour, ICombatManager
 
         foreach (GameObject u in units)
         {
-            if (u.GetComponent<UnitObj>().Team == 0) // ally 인경우
+            if (u != null && u.GetComponent<UnitObj>().Team == 0) // ally 인경우
             {
                 UnitObj allyObj = u.GetComponent<UnitObj>();
                 UnitData allyData = allyObj.unitData;
@@ -138,6 +138,10 @@ public class UnitTester : MonoBehaviour, ICombatManager
                     allyHPList.Add(allyObj.HP);
                 }
             }
+        }
+
+        foreach (GameObject u in units)
+        {
             Destroy(u);
         }
 
