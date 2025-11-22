@@ -160,8 +160,17 @@ public class ShopManager : MonoSingleton<ShopManager>
             }
             else if (option.Type == ShopOptionType.Unit)
             {
-                PlayerUnitRoster.Instance?.AddUnit(option.UnitData);
-                Debug.Log($"[ShopManager] 유닛 구매 성공: {option.Name}");
+                // 유닛 로스터가 없는 경우를 대비해 안전하게 접근 (MonoSingleton 에러 방지)
+                var roster = FindFirstObjectByType<PlayerUnitRoster>();
+                if (roster != null)
+                {
+                    roster.AddUnit(option.UnitData);
+                    Debug.Log($"[ShopManager] 유닛 구매 성공: {option.Name}");
+                }
+                else
+                {
+                    Debug.LogWarning($"[ShopManager] PlayerUnitRoster를 찾을 수 없습니다. 유닛({option.Name}) 구매는 되었으나 명단에 추가되지 않았습니다.");
+                }
             }
             
             // 3. UI 갱신 (품절 처리)

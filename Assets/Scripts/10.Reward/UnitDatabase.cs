@@ -44,11 +44,11 @@ public class UnitDatabase : MonoSingleton<UnitDatabase>
         {
             Debug.LogWarning("[UnitDatabase] GoogleSheetSO 또는 unitDict가 초기화되지 않았습니다. 다시 로드 시도...");
             LoadUnitsFromGoogleSheet();
-            
-            if (_sheetData == null || _sheetData.unitDict == null)
-            {
+
+        if (_sheetData == null || _sheetData.unitDict == null)
+        {
                 Debug.LogError("[UnitDatabase] 데이터 로드 실패. GoogleSheetManager와 GoogleSheetSO가 제대로 설정되어 있는지 확인하세요.");
-                return null;
+            return null;
             }
         }
 
