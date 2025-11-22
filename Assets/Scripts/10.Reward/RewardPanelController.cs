@@ -4,26 +4,26 @@ using UnityEngine;
 
 /// <summary>
 /// 전투 승리 이후 자동으로 골드/아이템/유닛 보상 슬롯을 생성하고 선택 결과를 적용하는 컨트롤러입니다.
-/// GameManager의 상태를 구독해 패널 표시를 제어합니다.
 /// </summary>
 public class RewardPanelController : MonoBehaviour
 {
     [SerializeField] private RewardSlotUI[] slots;
     [SerializeField] private Sprite goldIcon;
     [SerializeField] private Sprite defaultUnitIcon;
-    [SerializeField] private UnitIconEntry[] unitIcons;
+    
+    // 더 이상 필요 없음 (UnitVisualHelper 사용)
+    // [SerializeField] private UnitIconEntry[] unitIcons; 
+    
     [SerializeField] private string[] unitRewardIds = { "00", "10", "20", "30", "40", "50" };
     [SerializeField] private string goldDescription = "골드를 획득합니다.";
 
     private readonly List<RewardOption> _currentOptions = new List<RewardOption>();
-    private readonly Dictionary<string, Sprite> _unitIconLookup = new Dictionary<string, Sprite>();
     private bool _rewardChosen;
 
     public event Action OnRewardFinished;
 
     private void Awake()
     {
-        BuildUnitIconLookup();
         gameObject.SetActive(false);
         if (GameManager.Instance != null)
         {
@@ -33,26 +33,10 @@ public class RewardPanelController : MonoBehaviour
 
     private void OnDestroy()
     {
-        // OnDestroy 시점에는 싱글톤이 이미 파괴되었을 수 있으므로 FindFirstObjectByType으로 직접 확인
         var gameManager = FindFirstObjectByType<GameManager>();
         if (gameManager != null)
         {
             gameManager.OnGameStateChange -= HandleGameStateChanged;
-        }
-    }
-
-    private void BuildUnitIconLookup()
-    {
-        _unitIconLookup.Clear();
-        if (unitIcons == null)
-            return;
-
-        foreach (var entry in unitIcons)
-        {
-            if (entry == null || string.IsNullOrEmpty(entry.unitId) || entry.icon == null)
-                continue;
-
-            _unitIconLookup[entry.unitId] = entry.icon;
         }
     }
 
@@ -164,7 +148,10 @@ public class RewardPanelController : MonoBehaviour
             return null;
 
         unit selected = candidates[UnityEngine.Random.Range(0, candidates.Count)];
-        Sprite icon = GetUnitIcon(selected.unitID);
+        
+        // UnitVisualHelper를 통해 아이콘 및 설명 가져오기
+        Sprite icon = UnitVisualHelper.Instance != null ? UnitVisualHelper.Instance.GetIcon(selected.unitID) : null;
+        string description = UnitVisualHelper.Instance != null ? UnitVisualHelper.Instance.GetDescription(selected.unitID) : $"{selected.Job} 유닛을 영입합니다.";
 
         return new RewardOption
         {
@@ -172,7 +159,7 @@ public class RewardPanelController : MonoBehaviour
             UnitData = selected,
             Icon = icon ?? defaultUnitIcon,
             Title = selected.unitID,
-            Description = $"{selected.Job} 유닛을 영입합니다."
+            Description = string.IsNullOrEmpty(description) ? $"{selected.Job} 유닛을 영입합니다." : description
         };
     }
 
@@ -218,19 +205,6 @@ public class RewardPanelController : MonoBehaviour
         return result;
     }
 
-    private Sprite GetUnitIcon(string unitId)
-    {
-        if (string.IsNullOrEmpty(unitId))
-            return null;
-
-        if (_unitIconLookup.TryGetValue(unitId, out var sprite))
-        {
-            return sprite;
-        }
-
-        return defaultUnitIcon;
-    }
-
     private void HandleRewardSelected(RewardOption option)
     {
         if (_rewardChosen || option == null)
@@ -274,13 +248,4 @@ public class RewardPanelController : MonoBehaviour
                 break;
         }
     }
-
-    [Serializable]
-    public class UnitIconEntry
-    {
-        public string unitId;
-        public Sprite icon;
-    }
 }
-
-

@@ -1,13 +1,13 @@
 using UnityEngine;
 
 /// <summary>
-/// 아이템 아이콘 및 설명을 제공하는 헬퍼입니다.
+/// 유닛 아이콘 및 설명을 제공하는 헬퍼입니다.
 /// </summary>
-public class ItemVisualHelper : MonoBehaviour
+public class UnitVisualHelper : MonoBehaviour
 {
-    public static ItemVisualHelper Instance { get; private set; }
+    public static UnitVisualHelper Instance { get; private set; }
 
-    [SerializeField] private ItemVisualDatabase visualDatabase;
+    [SerializeField] private UnitVisualDatabase visualDatabase;
 
     private void Awake()
     {
@@ -20,17 +20,18 @@ public class ItemVisualHelper : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public Sprite GetIcon(string itemId)
+    public Sprite GetIcon(string unitId)
     {
         if (visualDatabase == null) return null;
-        var entry = visualDatabase.GetEntry(itemId);
+        var entry = visualDatabase.GetEntry(unitId);
         return entry?.icon;
     }
 
-    public string GetDescription(string itemId)
+    public string GetDescription(string unitId)
     {
         if (visualDatabase == null) return string.Empty;
-        var entry = visualDatabase.GetEntry(itemId);
+        var entry = visualDatabase.GetEntry(unitId);
         return entry?.description ?? string.Empty;
     }
 }
+
