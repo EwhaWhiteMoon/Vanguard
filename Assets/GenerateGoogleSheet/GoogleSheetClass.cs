@@ -70,7 +70,6 @@ public class unit
 	public string unitID;
 	public string Job;
 	public int Hp;
-	public int Mp;
 	public int Atk;
 	public int Def;
 	public float Speed;
@@ -79,6 +78,7 @@ public class unit
 	public float CritD;
 	public int HpRegen;
 	public int MpRegen;
+	public int Mp;
 	public int Aggro;
 	public float Range;
 	public string Skill;

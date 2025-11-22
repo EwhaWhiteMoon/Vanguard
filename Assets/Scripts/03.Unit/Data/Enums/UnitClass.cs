@@ -15,10 +15,10 @@ using UnityEngine;
     Goblin = 101,
     Wolf = 102,
     GoblinArcher = 103,
-    OrcWarrior = 104,
-    OrcLeader = 105,
+    TrollWarrior = 104,
+    TrollLeader = 105,
     SkeletonSoldier = 106,
     SkeletonArcher = 107,
     SkeletonLeader = 108,
-    DarkKnight = 109,
+    Trassgo = 109,
  }
