@@ -54,5 +54,48 @@ public static class StatDataHelper
             MpRegen = synergy.MpRegen
         };
     }
+
+    /// <summary>
+    /// StatData를 읽기 쉬운 문자열로 포맷팅합니다.
+    /// 모든 스탯을 표시하며, 0인 값은 생략합니다.
+    /// </summary>
+    /// <param name="data">포맷팅할 StatData</param>
+    /// <returns>포맷팅된 문자열 (예: "Hp:10, Atk:5, Crit:0.1(10%)")</returns>
+    public static string FormatStatData(StatData data)
+    {
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+        void Append(string label, float value, bool percent = false)
+        {
+            if (value == 0) return;
+            if (sb.Length > 0) sb.Append(", ");
+            sb.Append(label);
+            sb.Append(':');
+            if (percent)
+            {
+                sb.Append($"{value * 100:F1}%");
+            }
+            else
+            {
+                sb.Append(value);
+            }
+        }
+
+        Append("Hp", data.Hp);
+        Append("Mp", data.Mp);
+        Append("Atk", data.Atk);
+        Append("Def", data.Def);
+        Append("Speed", data.Speed);
+        Append("AtkSpd", data.AtkSpeed);
+        Append("Crit", data.Crit, true);
+        Append("CritD", data.CritD, true);
+        Append("HpRegen", data.HpRegen);
+        Append("MpRegen", data.MpRegen);
+
+        if (sb.Length == 0)
+            sb.Append("보너스 없음");
+
+        return sb.ToString();
+    }
 }
 

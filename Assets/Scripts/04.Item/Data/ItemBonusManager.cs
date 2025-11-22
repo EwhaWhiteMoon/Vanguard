@@ -40,7 +40,7 @@ public class ItemBonusManager : MonoSingleton<ItemBonusManager>
         if (job == Job.All)
         {
             _globalBonus = _globalBonus + bonus;
-            Debug.Log($"[ItemBonusManager] 전체 직업(All)에게 보너스 추가: Hp={bonus.Hp}, Atk={bonus.Atk}, Def={bonus.Def} 등");
+            Debug.Log($"[ItemBonusManager] 전체 직업(All)에게 보너스 추가: {StatDataHelper.FormatStatData(bonus)}");
         }
         else
         {
@@ -56,7 +56,7 @@ public class ItemBonusManager : MonoSingleton<ItemBonusManager>
                 _bonusByJob[job] = bonus;
             }
 
-            Debug.Log($"[ItemBonusManager] {job}에게 보너스 추가: Hp={bonus.Hp}, Atk={bonus.Atk}, Def={bonus.Def} 등");
+            Debug.Log($"[ItemBonusManager] {job}에게 보너스 추가: {StatDataHelper.FormatStatData(bonus)}");
         }
     }
 
@@ -116,12 +116,15 @@ public class ItemBonusManager : MonoSingleton<ItemBonusManager>
     public void DebugPrintAllBonuses()
     {
         Debug.Log("=== [ItemBonusManager] 현재 저장된 모든 보너스 ===");
+        if (_globalBonus.Hp != 0 || _globalBonus.Mp != 0 || _globalBonus.Atk != 0 || 
+            _globalBonus.Def != 0 || _globalBonus.Speed != 0 || _globalBonus.AtkSpeed != 0 ||
+            _globalBonus.Crit != 0 || _globalBonus.CritD != 0 || _globalBonus.HpRegen != 0 || _globalBonus.MpRegen != 0)
+        {
+            Debug.Log($"전체 직업(All): {StatDataHelper.FormatStatData(_globalBonus)}");
+        }
         foreach (var kvp in _bonusByJob)
         {
-            StatData stat = kvp.Value;
-            Debug.Log($"{kvp.Key}: Hp={stat.Hp}, Mp={stat.Mp}, Atk={stat.Atk}, Def={stat.Def}, " +
-                      $"Speed={stat.Speed}, AtkSpeed={stat.AtkSpeed}, Crit={stat.Crit}, " +
-                      $"CritD={stat.CritD}, HpRegen={stat.HpRegen}, MpRegen={stat.MpRegen}");
+            Debug.Log($"{kvp.Key}: {StatDataHelper.FormatStatData(kvp.Value)}");
         }
     }
 }

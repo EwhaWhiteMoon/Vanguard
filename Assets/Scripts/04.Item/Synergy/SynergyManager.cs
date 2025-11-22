@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,8 @@ using UnityEngine;
 /// 1. 구글 시트의 synergyList를 로드합니다.
 /// 2. RecalculateSynergy()를 호출하면, InventoryManager에 기록된 보유 아이템을 기반으로 시너지를 계산합니다.
 /// 3. 직업별로 유니크 아이템 개수를 세고, requiredCount <= 유니크 개수인 시너지의 보너스를 합산합니다.
-/// 4. GetSynergyBonus()로 직업별 시너지 보너스를 조회할 수 있습니다.
+/// 4. OnSynergyUpdated 이벤트를 통해 HUD 등에서 최신 진행도를 표시할 수 있습니다.
+/// 5. GetSynergyBonus()로 직업별 시너지 보너스를 조회할 수 있습니다.
 /// 
 /// 사용 예시:
 /// <code>
@@ -25,6 +27,22 @@ public class SynergyManager : MonoSingleton<SynergyManager>
     /// 직업별 시너지 보너스를 저장하는 딕셔너리입니다.
     /// </summary>
     private Dictionary<Job, StatData> _synergyBonusByJob = new Dictionary<Job, StatData>();
+
+    /// <summary>
+    /// 직업별로 현재 보유 중인 "서로 다른 itemID" 개수를 저장합니다.
+    /// 예) 전사 아이템 00, 01, 01을 보유하면 유니크 개수는 2
+    /// </summary>
+    private Dictionary<Job, int> _uniqueItemCountsByJob = new Dictionary<Job, int>();
+
+    /// <summary>
+    /// 직업별 시너지 최대 요구 개수를 저장합니다.
+    /// </summary>
+    private Dictionary<Job, int> _synergyMaxRequiredByJob = new Dictionary<Job, int>();
+
+    /// <summary>
+    /// 시너지 수치가 갱신될 때 호출되는 이벤트입니다.
+    /// </summary>
+    public event Action OnSynergyUpdated;
 
     /// <summary>
     /// GoogleSheetSO 인스턴스 참조입니다.
@@ -55,7 +73,34 @@ public class SynergyManager : MonoSingleton<SynergyManager>
             _sheetData.BuildDictionaries();
         }
 
+        BuildSynergyMaxRequirements();
+
         Debug.Log($"[SynergyManager] GoogleSheetSO.asset에서 {_sheetData.synergyList.Count}개의 시너지를 로드했습니다.");
+        NotifySynergyChanged();
+    }
+
+    private void BuildSynergyMaxRequirements()
+    {
+        _synergyMaxRequiredByJob.Clear();
+
+        foreach (var synergy in _sheetData.synergyList)
+        {
+            if (synergy == null)
+                continue;
+
+            Job job = JobParser.Parse(synergy.synergyName);
+            if (job == Job.All)
+                continue;
+
+            if (_synergyMaxRequiredByJob.TryGetValue(job, out int currentMax))
+            {
+                _synergyMaxRequiredByJob[job] = Mathf.Max(currentMax, synergy.requiredCount);
+            }
+            else
+            {
+                _synergyMaxRequiredByJob[job] = synergy.requiredCount;
+            }
+        }
     }
 
     /// <summary>
@@ -93,51 +138,27 @@ public class SynergyManager : MonoSingleton<SynergyManager>
             return;
         }
 
-        // InventoryManager에서 보유한 모든 아이템 ID 가져오기
-        List<item> ownedItems = new List<item>();
-        foreach (var kvp in InventoryManager.Instance.GetAllItemCounts())
-        {
-            item itemData = ItemDatabase.Instance.GetItemById(kvp.Key);
-            if (itemData != null)
-            {
-                ownedItems.Add(itemData);
-            }
-        }
+        Dictionary<Job, int> uniqueCountsByJob = InventoryManager.Instance.GetUniqueCountsByJob();
 
-        if (ownedItems.Count == 0)
+        if (uniqueCountsByJob.Count == 0)
         {
             // 보유한 아이템이 없으면 모든 시너지 보너스를 초기화
             _synergyBonusByJob.Clear();
+            _uniqueItemCountsByJob.Clear();
             Debug.Log("[SynergyManager] 보유한 아이템이 없어 시너지 보너스를 초기화했습니다.");
+            NotifySynergyChanged();
             return;
-        }
-
-        // 1. 직업별로 "서로 다른 itemID의 개수"를 계산
-        Dictionary<Job, HashSet<string>> uniqueItemIdsByJob = new Dictionary<Job, HashSet<string>>();
-
-        foreach (var item in ownedItems)
-        {
-            if (item == null) continue;
-
-            Job job = JobParser.Parse(item.Job);
-            if (job == Job.All) continue; // All 직업은 시너지 계산에서 제외
-
-            string itemId = item.itemID;
-
-            if (!uniqueItemIdsByJob.ContainsKey(job))
-            {
-                uniqueItemIdsByJob[job] = new HashSet<string>();
-            }
-
-            uniqueItemIdsByJob[job].Add(itemId);
         }
 
         // 2. 각 직업에 대해 시너지 보너스 계산
         _synergyBonusByJob.Clear();
+        _uniqueItemCountsByJob.Clear();
 
-        foreach (var job in uniqueItemIdsByJob.Keys)
+        foreach (var kvp in uniqueCountsByJob)
         {
-            int uniqueCount = uniqueItemIdsByJob[job].Count;
+            Job job = kvp.Key;
+            int uniqueCount = kvp.Value;
+            _uniqueItemCountsByJob[job] = uniqueCount;
             StatData totalBonus = new StatData();
 
             // 해당 직업의 모든 시너지를 확인
@@ -161,9 +182,11 @@ public class SynergyManager : MonoSingleton<SynergyManager>
                 totalBonus.Crit != 0 || totalBonus.CritD != 0 || totalBonus.HpRegen != 0 || totalBonus.MpRegen != 0)
             {
                 _synergyBonusByJob[job] = totalBonus;
-                Debug.Log($"[SynergyManager] {job} 시너지 계산 완료: 유니크 아이템 {uniqueCount}개, 보너스 합계 = Hp:{totalBonus.Hp}, Atk:{totalBonus.Atk}, Def:{totalBonus.Def}");
+                Debug.Log($"[SynergyManager] {job} 시너지 계산 완료: 유니크 아이템 {uniqueCount}개, 보너스 합계 = {StatDataHelper.FormatStatData(totalBonus)}");
             }
         }
+
+        NotifySynergyChanged();
     }
 
     /// <summary>
@@ -187,7 +210,48 @@ public class SynergyManager : MonoSingleton<SynergyManager>
     public void ResetSynergy()
     {
         _synergyBonusByJob.Clear();
+        _uniqueItemCountsByJob.Clear();
         Debug.Log("[SynergyManager] 모든 시너지 보너스가 초기화되었습니다.");
+        NotifySynergyChanged();
     }
+
+    /// <summary>
+    /// 특정 직업의 현재 유니크 아이템 개수를 반환합니다.
+    /// </summary>
+    public int GetCurrentUniqueCount(Job job)
+    {
+        if (_uniqueItemCountsByJob.TryGetValue(job, out int count))
+        {
+            return count;
+        }
+
+        return 0;
+    }
+
+    /// <summary>
+    /// 특정 직업의 시너지 최종 요구 개수를 반환합니다.
+    /// </summary>
+    public int GetMaxRequiredCount(Job job)
+    {
+        if (_synergyMaxRequiredByJob.TryGetValue(job, out int max))
+        {
+            return max;
+        }
+
+        return 0;
+    }
+
+    /// <summary>
+    /// HUD 등에서 한 번에 표시할 수 있도록 현재 정보를 튜플로 반환합니다.
+    /// </summary>
+    public IReadOnlyDictionary<Job, int> GetAllCurrentCounts() => _uniqueItemCountsByJob;
+
+    public IReadOnlyDictionary<Job, int> GetAllMaxCounts() => _synergyMaxRequiredByJob;
+
+    private void NotifySynergyChanged()
+    {
+        OnSynergyUpdated?.Invoke();
+    }
+
 }
 
