@@ -31,6 +31,11 @@ public class UnitDatabase : MonoSingleton<UnitDatabase>
         Debug.Log($"[UnitDatabase] GoogleSheetSO.asset에서 {_sheetData.unitList.Count}개의 유닛을 로드했습니다.");
     }
 
+    public unit GetUnitByInfo(UnitClass unitClass, UnitGrade unitGrade)
+    {
+        return GetUnitById($"{(int)unitClass}{(int)unitGrade}");
+    }
+
     public unit GetUnitById(string unitId)
     {
         if (string.IsNullOrEmpty(unitId))

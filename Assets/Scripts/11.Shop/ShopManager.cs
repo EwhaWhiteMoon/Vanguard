@@ -14,8 +14,8 @@ public class ShopOption
     public item ItemData;
     public unit UnitData;
     public Sprite Icon; // 아이콘 추가
-    
-    public string Name => Type == ShopOptionType.Item ? ItemData.Name : UnitData.unitID; 
+
+    public string Name => Type == ShopOptionType.Item ? ItemData.Name : UnitData.unitID;
     public int Price => Type == ShopOptionType.Item ? ItemData.Price : UnitData.Price;
     public string ID => Type == ShopOptionType.Item ? ItemData.itemID : UnitData.unitID;
     public string Description => Type == ShopOptionType.Item ? ItemData.description : $"{UnitData.Job} 유닛입니다.";
@@ -124,8 +124,8 @@ public class ShopManager : MonoSingleton<ShopManager>
             {
                 if (unitData != null && unitData.Price > 0)
                 {
-                    Sprite icon = UnitVisualHelper.Instance != null 
-                        ? UnitVisualHelper.Instance.GetIcon(unitData.unitID) 
+                    Sprite icon = UnitVisualHelper.Instance != null
+                        ? UnitVisualHelper.Instance.GetIcon(unitData.unitID)
                         : defaultUnitIcon;
 
                     _allShopOptions.Add(new ShopOption
@@ -164,7 +164,7 @@ public class ShopManager : MonoSingleton<ShopManager>
                 var roster = FindFirstObjectByType<PlayerUnitRoster>();
                 if (roster != null)
                 {
-                    roster.AddUnit(option.UnitData);
+                    roster.AddUnit(new UnitData(option.UnitData.ToString(), UnitClass.Warrior, UnitGrade.Common));
                     Debug.Log($"[ShopManager] 유닛 구매 성공: {option.Name}");
                 }
                 else
@@ -172,7 +172,7 @@ public class ShopManager : MonoSingleton<ShopManager>
                     Debug.LogWarning($"[ShopManager] PlayerUnitRoster를 찾을 수 없습니다. 유닛({option.Name}) 구매는 되었으나 명단에 추가되지 않았습니다.");
                 }
             }
-            
+
             // 3. UI 갱신 (품절 처리)
             slot.SetSoldOut(true);
         }

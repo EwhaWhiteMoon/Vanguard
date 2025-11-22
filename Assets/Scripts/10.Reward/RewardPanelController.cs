@@ -10,11 +10,20 @@ public class RewardPanelController : MonoBehaviour
     [SerializeField] private RewardSlotUI[] slots;
     [SerializeField] private Sprite goldIcon;
     [SerializeField] private Sprite defaultUnitIcon;
-    
+
     // 더 이상 필요 없음 (UnitVisualHelper 사용)
-    // [SerializeField] private UnitIconEntry[] unitIcons; 
-    
-    [SerializeField] private string[] unitRewardIds = { "00", "10", "20", "30", "40", "50" };
+    // [SerializeField] private UnitIconEntry[] unitIcons;
+
+    [SerializeField] private UnitRewardInfo[] unitRewardInfos =
+    {
+        new UnitRewardInfo{unitClass = UnitClass.Warrior, unitGrade = UnitGrade.Common},
+        new UnitRewardInfo{unitClass = UnitClass.Archer, unitGrade = UnitGrade.Common},
+        new UnitRewardInfo{unitClass = UnitClass.Mage, unitGrade = UnitGrade.Common},
+        new UnitRewardInfo{unitClass = UnitClass.Assassin, unitGrade = UnitGrade.Common},
+        new UnitRewardInfo{unitClass = UnitClass.Tanker, unitGrade = UnitGrade.Common},
+        new UnitRewardInfo{unitClass = UnitClass.Healer, unitGrade = UnitGrade.Common},
+    };
+
     [SerializeField] private string goldDescription = "골드를 획득합니다.";
 
     private readonly List<RewardOption> _currentOptions = new List<RewardOption>();
@@ -147,19 +156,19 @@ public class RewardPanelController : MonoBehaviour
         if (candidates.Count == 0)
             return null;
 
-        unit selected = candidates[UnityEngine.Random.Range(0, candidates.Count)];
-        
+        UnitRewardInfo selected = candidates[UnityEngine.Random.Range(0, candidates.Count)];
+
         // UnitVisualHelper를 통해 아이콘 및 설명 가져오기
-        Sprite icon = UnitVisualHelper.Instance != null ? UnitVisualHelper.Instance.GetIcon(selected.unitID) : null;
-        string description = UnitVisualHelper.Instance != null ? UnitVisualHelper.Instance.GetDescription(selected.unitID) : $"{selected.Job} 유닛을 영입합니다.";
+        Sprite icon = UnitVisualHelper.Instance != null ? UnitVisualHelper.Instance.GetIcon(selected.GetUnitId()) : null;
+        string description = UnitVisualHelper.Instance != null ? UnitVisualHelper.Instance.GetDescription(selected.GetUnitId()) : $"{selected.unitClass} 유닛을 영입합니다.";
 
         return new RewardOption
         {
             Type = RewardType.Unit,
             UnitData = selected,
             Icon = icon ?? defaultUnitIcon,
-            Title = selected.unitID,
-            Description = string.IsNullOrEmpty(description) ? $"{selected.Job} 유닛을 영입합니다." : description
+            Title = $"{selected.unitClass}{selected.unitGrade}",
+            Description = string.IsNullOrEmpty(description) ? $"{selected.unitGrade}등급의 {selected.unitClass} 유닛을 영입합니다." : description
         };
     }
 
@@ -180,25 +189,26 @@ public class RewardPanelController : MonoBehaviour
         return result;
     }
 
-    private List<unit> CollectUnits()
+    private List<UnitRewardInfo> CollectUnits()
     {
-        List<unit> result = new List<unit>();
-        if (UnitDatabase.Instance == null || unitRewardIds == null || unitRewardIds.Length == 0)
+        List<UnitRewardInfo> result = new List<UnitRewardInfo>();
+        if (UnitDatabase.Instance == null || unitRewardInfos == null || unitRewardInfos.Length == 0)
         {
-            Debug.LogWarning("[RewardPanelController] UnitDatabase가 없거나 unitRewardIds가 비어있습니다.");
+            Debug.LogWarning("[RewardPanelController] UnitDatabase가 없거나 unitRewardInfos가 비어있습니다.");
             return result;
         }
 
-        foreach (string id in unitRewardIds)
+        foreach (UnitRewardInfo info in unitRewardInfos)
         {
-            var unitData = UnitDatabase.Instance.GetUnitById(id);
+            // 유닛의 데이터가 있는지 확인
+            var unitData = UnitDatabase.Instance.GetUnitByInfo(info.unitClass, info.unitGrade);
             if (unitData != null)
             {
-                result.Add(unitData);
+                result.Add(info);
             }
             else
             {
-                Debug.LogWarning($"[RewardPanelController] unitId '{id}' 유닛 데이터를 찾을 수 없습니다.");
+                Debug.LogWarning($"[RewardPanelController] unitId '{(int)info.unitClass}{(int)info.unitGrade}' 유닛 데이터를 찾을 수 없습니다.");
             }
         }
 
@@ -237,8 +247,8 @@ public class RewardPanelController : MonoBehaviour
                     var roster = FindFirstObjectByType<PlayerUnitRoster>();
                     if (roster != null)
                     {
-                        roster.AddUnit(option.UnitData);
-                        Debug.Log($"[RewardPanel] 유닛 획득: {option.UnitData.unitID}");
+                        roster.AddUnit(new UnitData(option.UnitData.unitClass.ToString(), option.UnitData.unitClass, option.UnitData.unitGrade));
+                        Debug.Log($"[RewardPanel] 유닛 획득: {option.UnitData.GetUnitId()}");
                     }
                     else
                     {

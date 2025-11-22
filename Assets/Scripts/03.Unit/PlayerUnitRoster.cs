@@ -7,11 +7,12 @@ using UnityEngine;
 /// </summary>
 public class PlayerUnitRoster : MonoSingleton<PlayerUnitRoster>
 {
-    private readonly List<unit> _ownedUnits = new List<unit>();
+    private readonly List<AllyUnitInfo> _ownedUnits = new List<AllyUnitInfo>();
 
-    public IReadOnlyList<unit> OwnedUnits => _ownedUnits;
+    public IReadOnlyList<AllyUnitInfo> OwnedUnits => _ownedUnits;
 
-    public void AddUnit(unit unitData)
+    // HP가 -1인 경우 새로 추가된 유닛임. => 풀피로 설정됨.
+    public void AddUnit(UnitData unitData, float HP = -1)
     {
         if (unitData == null)
         {
@@ -19,8 +20,13 @@ public class PlayerUnitRoster : MonoSingleton<PlayerUnitRoster>
             return;
         }
 
-        _ownedUnits.Add(unitData);
-        Debug.Log($"[PlayerUnitRoster] 유닛 획득: {unitData.unitID} ({unitData.Job})");
+        _ownedUnits.Add(new AllyUnitInfo(unitData, HP));
+        Debug.Log($"[PlayerUnitRoster] 유닛 획득: {unitData.Class} ({unitData.Grade})");
+    }
+
+    public void ClearUnits()
+    {
+        _ownedUnits.Clear();
     }
 }
 

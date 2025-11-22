@@ -9,8 +9,6 @@ public class UnitTester : MonoBehaviour, ICombatManager
 {
     public GameObject unit;
     public GameObject enemyUnit;
-    private List<UnitData> allyList = null;
-    private List<float> allyHPList = new List<float>();
     private List<UnitData> enemyList = new List<UnitData>();
     public List<GameObject> units { get; private set; } = new List<GameObject>();
     public List<RuntimeAnimatorController> animators = new List<RuntimeAnimatorController>();
@@ -33,16 +31,9 @@ public class UnitTester : MonoBehaviour, ICombatManager
         InitStageMap();
 
         // 유닛 초기화
-        allyList = new List<UnitData>
-        {
-            new UnitData(UnitClass.Warrior.ToString(), UnitClass.Warrior, UnitGrade.Common),
-            new UnitData(UnitClass.Archer.ToString(), UnitClass.Archer, UnitGrade.Common),
-            new UnitData(UnitClass.Mage.ToString(), UnitClass.Mage, UnitGrade.Common)
-        };
-        for (int i = 0; i < allyList.Count; i++)
-        {
-            allyHPList.Add(-1);
-        }
+        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Warrior.ToString(), UnitClass.Warrior, UnitGrade.Common));
+        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Archer.ToString(), UnitClass.Archer, UnitGrade.Common));
+        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Mage.ToString(), UnitClass.Mage, UnitGrade.Common));
 
         GameManager.Instance.OnGameStateChange += OnGameStateChange;
         OnGameStateChange(GameManager.Instance.GameState); //지금 State에 맞게 한번 호출해줘야함.
@@ -87,11 +78,30 @@ public class UnitTester : MonoBehaviour, ICombatManager
 
         // stage 정보 기입 필요.
         enemyList = MakeRandomEnemy(1, false);
+        // 직업별로 몇 번째 줄(Y)을 사용했는지 저장
+        Dictionary<UnitClass, int> classRowIndex = new Dictionary<UnitClass, int>();
 
-        for(int i = 0; i < allyList.Count && i < allyHPList.Count; i++)
+        var myUnits = PlayerUnitRoster.Instance.OwnedUnits;
+        for (int i = 0; i < myUnits.Count; i++)
         {
-            GameObject u = Instantiate(unit, new Vector3(-2, i - 2, 0), Quaternion.identity);
-            u.GetComponent<UnitObj>().Init(allyList[i], 0, this, allyHPList[i]);
+            var data = myUnits[i].unitData;
+            var hp   = myUnits[i].unitHP;
+
+            UnitClass cls = data.Class;
+
+            // 클래스별 행(index) 초기화
+            if (!classRowIndex.ContainsKey(cls))
+                classRowIndex[cls] = 0;
+
+            // X, Y 계산
+            float x = GetClassXPos(cls);
+            float y = GetClassYPos(cls, classRowIndex[cls]);
+
+            classRowIndex[cls]++;
+
+            // 유닛 생성
+            GameObject u = Instantiate(unit, new Vector3(x, y, 0), Quaternion.identity);
+            u.GetComponent<UnitObj>().Init(data, 0, this, hp);
             units.Add(u);
         }
 
@@ -122,9 +132,7 @@ public class UnitTester : MonoBehaviour, ICombatManager
     private void OnCombatDone(bool win)
     {
         OnCombat = false;
-
-        allyList.Clear();
-        allyHPList.Clear();
+        PlayerUnitRoster.Instance.ClearUnits();
 
         foreach (GameObject u in units)
         {
@@ -134,8 +142,8 @@ public class UnitTester : MonoBehaviour, ICombatManager
                 UnitData allyData = allyObj.unitData;
 
                 if (allyObj.HP > 0) {
-                    allyList.Add(new UnitData(allyData.Class.ToString(), allyData.Class, allyData.Grade));
-                    allyHPList.Add(allyObj.HP);
+                    PlayerUnitRoster.Instance.AddUnit(new UnitData(
+                        allyData.Class.ToString(), allyData.Class, allyData.Grade), allyObj.HP);
                 }
             }
         }
@@ -180,5 +188,24 @@ public class UnitTester : MonoBehaviour, ICombatManager
             return new List<UnitClass>{stageBossKindsMap[gameStage]};
         else
             return stageEnemyKindsMap[gameStage];
+    }
+
+    private float GetClassXPos(UnitClass cls)
+    {
+        switch (cls)
+        {
+            case UnitClass.Warrior:  return -2f;
+            case UnitClass.Archer:   return -2.5f;
+            case UnitClass.Mage:     return  -3f;
+            case UnitClass.Assassin: return  -1.5f;
+            case UnitClass.Tanker:   return  -1f;
+            case UnitClass.Healer:   return  -3.5f;
+            default: return 0f;
+        }
+    }
+
+    private float GetClassYPos(UnitClass cls, int index)
+    {
+        return -1.5f * index; // (세로 간격 * 위치(순번))
     }
 }
