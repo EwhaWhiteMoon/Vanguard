@@ -15,8 +15,8 @@ public class UnitData
     public string Name;
     public Stat BaseStat;
     public string AnimatorControllerName;
-    private UnitGrade Grade;
-    private UnitClass Class;
+    public UnitGrade Grade;
+    public UnitClass Class;
 
     [Header("방법: 파일 경로 사용 시")]
     public string filePath = "Assets/GenerateGoogleSheet/GoogleSheetJson.json";

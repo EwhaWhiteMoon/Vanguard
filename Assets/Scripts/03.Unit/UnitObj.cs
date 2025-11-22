@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Drawing;
+using TMPro;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -33,8 +34,13 @@ public class UnitObj : MonoBehaviour
 
     public SimpleProjectile projectilePrefab;
 
+    public Size objSize;
+
     void Awake()
     {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+
         animatorLoader = GetComponent<SafeAnimatorLoader>();
         if (animatorLoader == null)
         {
