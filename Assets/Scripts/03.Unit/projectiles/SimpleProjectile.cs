@@ -22,8 +22,12 @@ public class SimpleProjectile : MonoBehaviour
 
     private void Update()
     {
-        if(!Target) Destroy(gameObject);
-        
+        if(!Target)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         var dist = Target.transform.position - transform.position;
         if (dist.magnitude < 0.1f)
         {

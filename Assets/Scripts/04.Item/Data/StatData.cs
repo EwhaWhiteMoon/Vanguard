@@ -64,5 +64,15 @@ public struct StatData
             MpRegen = a.MpRegen + b.MpRegen
         };
     }
+
+    /// <summary>
+    /// 하나라도 0이 아닌 스탯이 있는지 확인합니다.
+    /// </summary>
+    public bool IsAnyStatNonZero()
+    {
+        return Hp != 0 || Mp != 0 || Atk != 0 || Def != 0 ||
+               Speed != 0 || AtkSpeed != 0 || Crit != 0 || CritD != 0 ||
+               HpRegen != 0 || MpRegen != 0;
+    }
 }
 

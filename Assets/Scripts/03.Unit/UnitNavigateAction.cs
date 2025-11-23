@@ -10,7 +10,7 @@ public partial class UnitNavigateAction : Action
 {
     [SerializeReference] public BlackboardVariable<UnitObj> Unit;
     [SerializeReference] public BlackboardVariable<GameObject> Target;
-    
+
     private Animator animator;
 
     protected override Status OnStart()
@@ -29,19 +29,19 @@ public partial class UnitNavigateAction : Action
             return Status.Failure;
         }
 
-
         float dist = Vector3.Distance(Unit.Value.gameObject.transform.position, Target.Value.transform.position);
+
         if (dist <= Unit.Value.stat.Range)
         {
             Unit.Value.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
-            
+
             animator.SetBool("isWalk", false);
             return Status.Success;
         }
-        
-        Unit.Value.gameObject.GetComponent<Rigidbody2D>().linearVelocity =  
+
+        Unit.Value.gameObject.GetComponent<Rigidbody2D>().linearVelocity =
             ((Target.Value.transform.position - Unit.Value.gameObject.transform.position).normalized * Unit.Value.stat.MoveSpeed);
-        
+
         return Status.Running;
     }
 }

@@ -1,64 +1,33 @@
 using UnityEngine;
 
 /// <summary>
-/// 유닛 시스템(03.Unit)과 아이템 시스템(04.Item)을 연결하는 헬퍼 클래스입니다.
-/// 
-/// 주요 기능:
-/// 1. UnitClass를 Job으로 변환
-/// 2. StatData를 Stat으로 변환
-/// 3. 유닛의 최종 스탯 계산 (기본 스탯 + 아이템 보너스)
-/// 
-/// 사용 예시:
-/// <code>
-/// // 유닛 스폰 시 아이템 보너스 적용
-/// Stat baseStat = unitData.BaseStat;
-/// Job job = UnitItemHelper.UnitClassToJob(unitClass);
-/// Stat finalStat = UnitItemHelper.ApplyItemBonusToStat(baseStat, job);
-/// unitObj.stat = finalStat;
-/// </code>
+/// 유닛 시스템과 아이템/시너지 시스템을 연결하는 헬퍼 클래스입니다.
+/// 유닛의 직업을 기반으로 아이템 및 시너지 보너스를 적용합니다.
 /// </summary>
 public static class UnitItemHelper
 {
-    /// <summary>
-    /// UnitClass를 Job enum으로 변환합니다.
-    /// UnitClass와 Job은 같은 값들을 가지고 있습니다.
-    /// </summary>
-    /// <param name="unitClass">변환할 UnitClass</param>
-    /// <returns>변환된 Job enum</returns>
+    // UnitClass -> Job 변환
     public static Job UnitClassToJob(UnitClass unitClass)
     {
         switch (unitClass)
         {
-            case UnitClass.Warrior:
-                return Job.Warrior;
-            case UnitClass.Archer:
-                return Job.Archer;
-            case UnitClass.Mage:
-                return Job.Mage;
-            case UnitClass.Assassin:
-                return Job.Assassin;
-            case UnitClass.Tanker:
-                return Job.Tanker;
-            case UnitClass.Healer:
-                return Job.Healer;
+            case UnitClass.Warrior: return Job.Warrior;
+            case UnitClass.Archer: return Job.Archer;
+            case UnitClass.Mage: return Job.Mage;
+            case UnitClass.Assassin: return Job.Assassin;
+            case UnitClass.Tanker: return Job.Tanker;
+            case UnitClass.Healer: return Job.Healer;
             default:
-                Debug.LogWarning($"[UnitItemHelper] 알 수 없는 UnitClass: {unitClass}. Warrior로 설정합니다.");
+                Debug.LogWarning($"[UnitItemHelper] 알 수 없는 UnitClass: {unitClass}");
                 return Job.Warrior;
         }
     }
 
-    /// <summary>
-    /// StatData를 Stat 클래스로 변환합니다.
-    /// 구글 시트의 StatData 형식을 유닛의 Stat 형식으로 매핑합니다.
-    /// </summary>
-    /// <param name="statData">변환할 StatData</param>
-    /// <param name="baseStat">기본 Stat (기존 값 유지용, null이면 새로 생성)</param>
-    /// <returns>변환된 Stat 객체</returns>
+    // StatData(시트 데이터) -> Stat(인게임 데이터) 변환
     public static Stat StatDataToStat(StatData statData, Stat baseStat = null)
     {
         Stat result = baseStat != null ? new Stat(baseStat) : new Stat();
 
-        // StatData의 필드를 Stat의 필드로 매핑
         result.MaxHealth += statData.Hp;
         result.ManaMax += statData.Mp;
         result.Attack += statData.Atk;
@@ -73,84 +42,56 @@ public static class UnitItemHelper
         return result;
     }
 
-    /// <summary>
-    /// 유닛의 기본 Stat에 아이템 보너스를 적용하여 최종 Stat을 계산합니다.
-    /// 
-    /// 사용 예시:
-    /// <code>
-    /// Stat baseStat = unitData.BaseStat;
-    /// Job job = UnitItemHelper.UnitClassToJob(unitData.Class);
-    /// Stat finalStat = UnitItemHelper.ApplyItemBonusToStat(baseStat, job);
-    /// unitObj.stat = finalStat;
-    /// </code>
-    /// </summary>
-    /// <param name="baseStat">유닛의 기본 Stat</param>
-    /// <param name="job">유닛의 직업 (Job enum)</param>
-    /// <returns>아이템 보너스가 적용된 최종 Stat</returns>
+    // 아이템 보너스만 적용
     public static Stat ApplyItemBonusToStat(Stat baseStat, Job job)
     {
-        // ItemBonusManager에서 아이템 보너스 조회
-        StatData itemBonus = ItemBonusManager.Instance.GetItemBonus(job);
+        StatData itemBonus = ItemBonusManager.Instance != null 
+            ? ItemBonusManager.Instance.GetItemBonus(job) 
+            : new StatData();
 
-        // StatData를 Stat으로 변환하여 적용
         return StatDataToStat(itemBonus, baseStat);
     }
 
-    /// <summary>
-    /// UnitClass를 사용하여 유닛의 기본 Stat에 아이템 보너스를 적용합니다.
-    /// UnitClass를 Job으로 자동 변환합니다.
-    /// </summary>
-    /// <param name="baseStat">유닛의 기본 Stat</param>
-    /// <param name="unitClass">유닛의 직업 (UnitClass enum)</param>
-    /// <returns>아이템 보너스가 적용된 최종 Stat</returns>
     public static Stat ApplyItemBonusToStat(Stat baseStat, UnitClass unitClass)
     {
         Job job = UnitClassToJob(unitClass);
         return ApplyItemBonusToStat(baseStat, job);
     }
 
-    /// <summary>
-    /// 유닛의 기본 Stat에 아이템 보너스와 시너지 보너스를 모두 적용하여 최종 Stat을 계산합니다.
-    /// 
-    /// 계산 공식: BaseStat + ItemBonus + SynergyBonus
-    /// 
-    /// 사용 예시:
-    /// <code>
-    /// Stat baseStat = unitData.BaseStat;
-    /// Job job = UnitItemHelper.UnitClassToJob(unitData.Class);
-    /// Stat finalStat = UnitItemHelper.ApplyAllBonusesToStat(baseStat, job);
-    /// unitObj.stat = finalStat;
-    /// </code>
-    /// </summary>
-    /// <param name="baseStat">유닛의 기본 Stat</param>
-    /// <param name="job">유닛의 직업 (Job enum)</param>
-    /// <returns>아이템 보너스와 시너지 보너스가 모두 적용된 최종 Stat</returns>
+    // 아이템 + 시너지 보너스 모두 적용 (권장)
     public static Stat ApplyAllBonusesToStat(Stat baseStat, Job job)
     {
-        // 1. 아이템 보너스 조회
-        StatData itemBonus = ItemBonusManager.Instance.GetItemBonus(job);
+        StatData itemBonus = ItemBonusManager.Instance != null 
+            ? ItemBonusManager.Instance.GetItemBonus(job) 
+            : new StatData();
 
-        // 2. 시너지 보너스 조회
-        StatData synergyBonus = SynergyManager.Instance.GetSynergyBonus(job);
+        StatData synergyBonus = SynergyManager.Instance != null 
+            ? SynergyManager.Instance.GetSynergyBonus(job) 
+            : new StatData();
 
-        // 3. 아이템 보너스 + 시너지 보너스를 합산
         StatData totalBonus = itemBonus + synergyBonus;
+        Stat finalStat = StatDataToStat(totalBonus, baseStat);
 
-        // 4. StatData를 Stat으로 변환하여 적용
-        return StatDataToStat(totalBonus, baseStat);
+        // 디버깅 로그
+        Debug.Log($"[UnitItemHelper] {job} 스탯 계산:\n" +
+                  $"기본: {FormatStat(baseStat)}\n" +
+                  $"아이템: {StatDataHelper.FormatStatData(itemBonus)}\n" +
+                  $"시너지: {StatDataHelper.FormatStatData(synergyBonus)}\n" +
+                  $"최종: {FormatStat(finalStat)}");
+
+        return finalStat;
     }
 
-    /// <summary>
-    /// UnitClass를 사용하여 유닛의 기본 Stat에 아이템 보너스와 시너지 보너스를 모두 적용합니다.
-    /// UnitClass를 Job으로 자동 변환합니다.
-    /// </summary>
-    /// <param name="baseStat">유닛의 기본 Stat</param>
-    /// <param name="unitClass">유닛의 직업 (UnitClass enum)</param>
-    /// <returns>아이템 보너스와 시너지 보너스가 모두 적용된 최종 Stat</returns>
     public static Stat ApplyAllBonusesToStat(Stat baseStat, UnitClass unitClass)
     {
         Job job = UnitClassToJob(unitClass);
         return ApplyAllBonusesToStat(baseStat, job);
     }
-}
 
+    private static string FormatStat(Stat stat)
+    {
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+        sb.Append($"Hp:{stat.MaxHealth}, Atk:{stat.Attack}, Def:{stat.Defense}");
+        return sb.ToString();
+    }
+}

@@ -1,75 +1,86 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 플레이어가 지금까지 획득한 아이템 목록을
-/// "itemID별 개수"로만 기록하는 매니저입니다.
-/// "어떤 아이템을 몇 개 먹었는지"를 저장하는 용도입니다.
+/// 획득한 아이템 목록을 관리합니다.
+/// 아이템 개수와 직업별 유니크 아이템 개수를 추적합니다.
 /// </summary>
 public class InventoryManager : MonoSingleton<InventoryManager>
 {
-    /// <summary>
-    /// itemID -> 현재까지 먹은 개수
-    /// </summary>
-    private Dictionary<string, int> _itemCounts = new Dictionary<string, int>();
+    public event Action<item> OnItemAdded;
+    public event Action OnInventoryReset;
 
-    /// <summary>
-    /// 아이템을 하나 획득했다고 기록합니다.
-    /// </summary>
-    /// <param name="itemId">획득한 아이템의 ID</param>
+    // itemID -> 보유 개수
+    private Dictionary<string, int> _itemCounts = new Dictionary<string, int>();
+    
+    // 직업 -> 보유 중인 유니크 아이템 ID 목록 (중복 제거용)
+    private Dictionary<Job, HashSet<string>> _uniqueItemIdsByJob = new Dictionary<Job, HashSet<string>>();
+
     public void AddItem(string itemId)
     {
-        if (string.IsNullOrEmpty(itemId))
-        {
-            Debug.LogWarning("[InventoryManager] itemId가 비어 있습니다.");
-            return;
-        }
+        if (string.IsNullOrEmpty(itemId)) return;
 
-        if (_itemCounts.ContainsKey(itemId))
+        item itemData = ItemDatabase.Instance.GetItemById(itemId);
+        if (itemData != null)
         {
-            _itemCounts[itemId]++;
-        }
-        else
-        {
-            _itemCounts[itemId] = 1;
-        }
+            // 개수 증가
+            if (_itemCounts.ContainsKey(itemId))
+                _itemCounts[itemId]++;
+            else
+                _itemCounts[itemId] = 1;
 
-        Debug.Log($"[InventoryManager] 아이템 획득: {itemId}, 현재 개수 = {_itemCounts[itemId]}");
+            // 직업별 유니크 아이템 추적
+            Job job = JobParser.Parse(itemData.Job);
+            if (job != Job.All)
+            {
+                if (!_uniqueItemIdsByJob.ContainsKey(job))
+                {
+                    _uniqueItemIdsByJob[job] = new HashSet<string>();
+                }
+                _uniqueItemIdsByJob[job].Add(itemId);
+            }
+
+            Debug.Log($"[InventoryManager] 아이템 획득: {itemData.Name} ({itemId})");
+            OnItemAdded?.Invoke(itemData);
+
+            // 시너지 재계산
+            if (SynergyManager.Instance != null)
+            {
+                SynergyManager.Instance.RecalculateSynergy();
+            }
+        }
     }
 
-    /// <summary>
-    /// 특정 itemID를 몇 개 먹었는지 반환합니다.
-    /// </summary>
-    /// <param name="itemId">조회할 아이템의 ID</param>
-    /// <returns>획득한 개수, 없으면 0</returns>
-    public int GetItemCount(string itemId)
-    {
-        if (string.IsNullOrEmpty(itemId))
-            return 0;
-
-        if (_itemCounts.TryGetValue(itemId, out int count))
-            return count;
-
-        return 0;
-    }
-
-    /// <summary>
-    /// 지금까지 먹은 모든 아이템의 (itemID, 개수) 목록을 돌려줍니다.
-    /// UI나 디버그용으로 사용할 수 있습니다.
-    /// </summary>
-    /// <returns>모든 아이템의 (itemID, 개수) 쌍</returns>
-    public IEnumerable<KeyValuePair<string, int>> GetAllItemCounts()
-    {
-        return _itemCounts;
-    }
-
-    /// <summary>
-    /// 새 게임 시작 등에서 전체 초기화가 필요할 때 사용합니다.
-    /// </summary>
     public void ResetAll()
     {
         _itemCounts.Clear();
-        Debug.Log("[InventoryManager] 모든 획득 아이템 기록 초기화");
+        _uniqueItemIdsByJob.Clear();
+        Debug.Log("[InventoryManager] 인벤토리 초기화 완료");
+        OnInventoryReset?.Invoke();
+
+        if (SynergyManager.Instance != null)
+        {
+            SynergyManager.Instance.ResetSynergy();
+        }
+    }
+
+    public int GetUniqueCount(Job job)
+    {
+        if (_uniqueItemIdsByJob.TryGetValue(job, out var set))
+        {
+            return set.Count;
+        }
+        return 0;
+    }
+
+    public Dictionary<Job, int> GetUniqueCountsByJob()
+    {
+        var result = new Dictionary<Job, int>();
+        foreach (var kvp in _uniqueItemIdsByJob)
+        {
+            result[kvp.Key] = kvp.Value.Count;
+        }
+        return result;
     }
 }
-
