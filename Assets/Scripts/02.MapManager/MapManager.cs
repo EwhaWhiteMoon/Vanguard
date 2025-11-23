@@ -32,10 +32,12 @@ public class MapManager : MonoBehaviour
     private List<Vector2Int> endRooms = new List<Vector2Int>();
     private HashSet<Vector2Int> assignedRooms = new HashSet<Vector2Int>();
     private MiniMap miniMap;
+    public RoomVisualManager rvm;
 
     private void Awake()
     {
         miniMap = FindFirstObjectByType<MiniMap>();
+        rvm = FindFirstObjectByType<RoomVisualManager>();
     }
 
     private void Update()
@@ -78,6 +80,7 @@ public class MapManager : MonoBehaviour
 
         AssignRoomTypes();
         AssignRoomData();
+        rvm.ShowRoom(Map[playerPos.x, playerPos.y]);
         PrintMapToConsole();
     }
 
@@ -359,12 +362,8 @@ public class MapManager : MonoBehaviour
         Map[x, y].isVisited = true;
 
         miniMap.HighlightPlayerRoom();
+        rvm.ShowRoom(Map[playerPos.x, playerPos.y]);
 
         Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y})");
-    }
-
-    public void movePlayer(Vector2Int dir)
-    {
-        movePlayer(playerPos.x + dir.x, playerPos.y + dir.y);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RoomData", menuName = "Scriptable Objects/RoomData")]
@@ -15,4 +16,7 @@ public class RoomData : ScriptableObject
     [Header("Flags")]
     public bool canContainEnemies = true;
     public bool canContainLoot = true;
+
+    [Header("RoomVisuals")]
+    public List<GameObject> roomLayouts;
 }

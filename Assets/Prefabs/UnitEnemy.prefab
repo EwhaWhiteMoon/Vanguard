@@ -82,9 +82,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -622931311
+  m_SortingLayer: 2
+  m_SortingOrder: 2
   m_Sprite: {fileID: 8694195087365679211, guid: 68b68cc5c1b4e4716b29fbbc14f87af7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
     Range: 2
     AggroValue: 0
   Team: 0
-  uiPrefab: {fileID: 8053371168198987804, guid: 4b0862f1c75bd0f459c8ce17cd00ab0d, type: 3}
+  uiInstance: {fileID: 0}
   HPText: {fileID: 2433103659234665359}
   spriteRenderer: {fileID: 4191696996274288239}
   projectilePrefab: {fileID: -2935052931621927734, guid: d090328f764804056ab978237cb844b0, type: 3}
