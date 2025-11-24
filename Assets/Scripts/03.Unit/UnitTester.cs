@@ -20,12 +20,20 @@ public class UnitTester : MonoBehaviour, ICombatManager
 
     private MapManager mapManager;
     private int combatCnt;
+    private bool isBossCleared;
 
     public void OnGameStateChange(GameState state)
     {
         if (state == GameState.Combat)
         {
-            CombatStart();
+            if (mapManager.getCurrentRoomType() == RoomType.BossRoom && isBossCleared)
+            {
+                NextFloorDoor.Instance.ShowNextFloorDoor();
+            }
+            else
+            {
+                CombatStart();
+            }
         } // Combat이라면 살아남
     }
     private void Awake()
@@ -38,6 +46,7 @@ public class UnitTester : MonoBehaviour, ICombatManager
             mapManager = FindFirstObjectByType<MapManager>();
         }
         combatCnt = 0;
+        isBossCleared = false;
 
         // 유닛 초기화
         PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Warrior.ToString(), UnitClass.Warrior, UnitGrade.Common));
@@ -120,7 +129,13 @@ public class UnitTester : MonoBehaviour, ICombatManager
         for(int i = 0; i < enemyList.Count; i++)
         {
             GameObject u = Instantiate(enemyUnit, new Vector3(2, i - 2, 0), Quaternion.identity);
-            u.GetComponent<UnitObj>().Init(enemyList[i], 1, this);
+            if (isBoss) {
+                u.GetComponent<UnitObj>().Init(enemyList[i], 1, this, -1, isBoss);
+            }
+            else
+            {
+                u.GetComponent<UnitObj>().Init(enemyList[i], 1, this);
+            }
             units.Add(u);
         }
     }
@@ -167,6 +182,12 @@ public class UnitTester : MonoBehaviour, ICombatManager
 
         if (win)
         {
+            if (mapManager.getCurrentRoomType() == RoomType.BossRoom)
+            {
+                Debug.Log("전투 종료 및 보스방이였음.");
+                isBossCleared = true;
+                NextFloorDoor.Instance.ShowNextFloorDoor();
+            }
             GameManager.Instance.GameState = GameState.AfterCombat;
         }
         else
