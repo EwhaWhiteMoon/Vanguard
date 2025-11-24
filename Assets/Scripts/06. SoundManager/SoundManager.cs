@@ -84,13 +84,20 @@ public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
     /// <summary>보스방 BGM을 재생</summary>
     public void PlayBossBGM(int floor)
     {
-        bossBGMs = LoadBGMClips("Sound/BGM/BossRoom");
-        if (bossBGMs == null || bossBGMs.Count < floor)
+        bossBGMs = LoadBGMClips("Sound/BGM/BossRoom"); // 폴더 이름 일치
+        if (bossBGMs == null || bossBGMs.Count == 0)
         {
-            Debug.LogWarning($"[SoundManager] Boss BGM for floor {floor} not found!");
+            Debug.LogWarning("[SoundManager] Boss BGM folder empty!");
             return;
         }
-        StartFadeBGM(bossBGMs[floor - 1], 1f);
+
+        // floor이 리스트보다 크면 마지막 곡을 재생하도록 처리
+        int index = Mathf.Clamp(floor - 1, 0, bossBGMs.Count - 1);
+        var clip = bossBGMs[index];
+        Debug.Log($"[SoundManager] Playing Boss BGM for floor {floor}: {clip.name}");
+        StartFadeBGM(clip, 1f);
+
+        Debug.Log($"[SoundManager] bgmSource clip: {bgmSource.clip}, volume: {bgmSource.volume}, isPlaying: {bgmSource.isPlaying}");
     }
 
     /// <summary>이벤트 방 전용 BGM을 재생</summary>
@@ -132,6 +139,11 @@ public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
     public void SetBGMVolume(float value) => bgmSource.volume = value;
     public void SetSFXVolume(float value) => sfxSource.volume = value;
 
+    private void Awake()
+    {
+        if (sfxSource != null) sfxSource.volume = 0.1f; // SFX 50%
+    }
+
     // ================================================================
     //  내부 기능
     // ================================================================
@@ -161,8 +173,13 @@ public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
     // ================================================================
     private void StartFadeBGM(AudioClip newClip, float duration)
     {
+        if (bgmSource.clip == newClip) return;
+
         if (fadeCoroutine != null)
+        {
             StopCoroutine(fadeCoroutine);
+            fadeCoroutine = null;
+        }
         fadeCoroutine = StartCoroutine(FadeBGM(newClip, duration));
     }
 
@@ -181,10 +198,16 @@ public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
             yield return null;
         }
         bgmSource.Stop();
+
         bgmSource.clip = newClip;
+        yield return null;
+        bgmSource.clip = newClip;
+        bgmSource.volume = 0;
         bgmSource.Play();
+        Debug.Log($"[SoundManager] Now playing new clip: {bgmSource.clip.name}, isPlaying: {bgmSource.isPlaying}");
 
         // 페이드 인
+        float fadeInTime = duration * 0.5f;
         for (float t = 0; t < fadeTime; t += Time.deltaTime)
         {
             bgmSource.volume = Mathf.Lerp(0, startVolume, t / fadeTime);

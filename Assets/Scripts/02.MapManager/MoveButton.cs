@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,12 +38,50 @@ public class MoveButton : MonoBehaviour
         Vector2Int next = map.playerPos + dir;
         map.movePlayer(next.x, next.y);
 
-        if (map.GetCurrentRoom().Type == RoomType.CombatRoom || map.GetCurrentRoom().Type == RoomType.BossRoom)
+        //한윤구 추가
+        var CurrentRoom = map.GetCurrentRoom();
+        int floor = MySceneManagement.CurrentFloor; //현재 층 번호 가져오기
+
+        // BGM 변경
+        SoundManager.Instance.StopBGM();
+        Debug.Log("[MoveButton] Current room type: " + CurrentRoom.Type);
+
+        switch (CurrentRoom.Type)
+        {
+            case RoomType.EventRoom:
+                SoundManager.Instance.PlayEventRoomBGM();
+                break;
+
+            case RoomType.BossRoom:
+                SoundManager.Instance.PlayBossBGM(floor);
+                break;
+
+            case RoomType.CombatRoom:
+            default:
+                SoundManager.Instance.PlayFloorBGM(floor);
+                break;
+        }
+
+        // 전투 상태 설정
+        if (CurrentRoom.Type == RoomType.CombatRoom || CurrentRoom.Type == RoomType.BossRoom)
         {
             GameManager.Instance.GameState = GameState.Combat;
         }
 
         UpdateButtons();
+
+        //if (map.GetCurrentRoom().Type == RoomType.CombatRoom || map.GetCurrentRoom().Type == RoomType.BossRoom)
+        //{
+        //    GameManager.Instance.GameState = GameState.Combat;
+        //}
+
+        //UpdateButtons();
+    }
+    //한윤구 추가
+    private IEnumerator PlayBossRoomDelayed(int floor)
+    {
+        yield return null; // 한 프레임 대기 (다른 BGM 호출이 끝난 뒤 실행)
+        SoundManager.Instance.PlayBossBGM(floor);
     }
 
     private void Start()

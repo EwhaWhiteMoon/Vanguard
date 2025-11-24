@@ -1,4 +1,4 @@
-
+﻿
 using System;
 using UnityEngine;
 
@@ -18,6 +18,8 @@ public class SimpleProjectile : MonoBehaviour
     public void init(GameObject target)
     {
         this.Target = target;
+        //한윤구 추가
+        SoundManager.Instance.PlaySFX("ADCAttack");
     }
 
     private void Update()
