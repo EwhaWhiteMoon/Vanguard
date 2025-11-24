@@ -9,6 +9,7 @@ public class UnitObj : MonoBehaviour
     private SafeAnimatorLoader animatorLoader;
     public Stat stat;
     public int Team;
+    private bool isBoss;
 
     // 한윤구 추가
     public UnitUIController uiInstance; // 생성된 UI를 관리할 변수
@@ -48,7 +49,7 @@ public class UnitObj : MonoBehaviour
         }
     }
 
-    public void Init(UnitData data, int team, ICombatManager combatManager, float HP = -1)
+    public void Init(UnitData data, int team, ICombatManager combatManager, float HP = -1, bool isBoss = false)
     {
         this.unitData = data;
         Team = team;
@@ -57,6 +58,8 @@ public class UnitObj : MonoBehaviour
         // 스탯 설정해야함.
         this.stat = new Stat(this.unitData.BaseStat);
         this.HP = HP == -1 ? this.unitData.BaseStat.MaxHealth : HP;
+
+        this.isBoss = isBoss;
 
         // 애니메이터 적용
         animatorLoader.InitAnimator(data);
@@ -87,6 +90,10 @@ public class UnitObj : MonoBehaviour
         HP -= (damage - stat.Defense) * (1 - stat.DamageReducePct);
         if (HP <= 0)
         {
+            if (Team == 1 && isBoss)
+            {
+                NextFloorDoor.Instance.SetDoorPosition(transform.position);
+            }
             EffectManager.Instance.PlayEffect("Death", transform.position);
             //한윤구 추가
             SoundManager.Instance.PlaySFX("Death");
