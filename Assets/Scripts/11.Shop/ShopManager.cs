@@ -15,10 +15,10 @@ public class ShopOption
     public unit UnitData;
     public Sprite Icon; // 아이콘 추가
 
-    public string Name => Type == ShopOptionType.Item ? ItemData.Name : UnitData.unitID;
+    public string Name => Type == ShopOptionType.Item ? ItemData.Name : UnitData.Job;
     public int Price => Type == ShopOptionType.Item ? ItemData.Price : UnitData.Price;
     public string ID => Type == ShopOptionType.Item ? ItemData.itemID : UnitData.unitID;
-    public string Description => Type == ShopOptionType.Item ? ItemData.description : $"{UnitData.Job} 유닛입니다.";
+    public string Description => Type == ShopOptionType.Item ? ItemData.description : $"{UnitData.Job} 유닛";
 }
 
 /// <summary>
@@ -49,6 +49,13 @@ public class ShopManager : MonoSingleton<ShopManager>
     /// </summary>
     public void ShowShop()
     {
+        var mapManager = FindFirstObjectByType<MapManager>();
+        if (mapManager != null && mapManager.getCurrentRoomType() != RoomType.EventRoom)
+        {
+            Debug.LogWarning("[ShopManager] 현재 방이 상점(EventRoom)이 아니므로 상점을 열지 않습니다.");
+            return;
+        }
+
         if (shopPanel != null)
             shopPanel.SetActive(true);
 

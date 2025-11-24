@@ -162,13 +162,16 @@ public class RewardPanelController : MonoBehaviour
         Sprite icon = UnitVisualHelper.Instance != null ? UnitVisualHelper.Instance.GetIcon(selected.GetUnitId()) : null;
         string description = UnitVisualHelper.Instance != null ? UnitVisualHelper.Instance.GetDescription(selected.GetUnitId()) : $"{selected.unitClass} 유닛을 영입합니다.";
 
+        // 실제 유닛 데이터 가져오기 (Job 이름 사용을 위해)
+        var unitData = UnitDatabase.Instance.GetUnitByInfo(selected.unitClass, selected.unitGrade);
+
         return new RewardOption
         {
             Type = RewardType.Unit,
             UnitData = selected,
             Icon = icon ?? defaultUnitIcon,
-            Title = $"{selected.unitClass}{selected.unitGrade}",
-            Description = string.IsNullOrEmpty(description) ? $"{selected.unitGrade}등급의 {selected.unitClass} 유닛을 영입합니다." : description
+            Title = unitData != null ? unitData.Job : $"{selected.unitClass}",
+            Description = unitData != null ? $"{unitData.Job} 유닛" : $"{selected.unitClass} 유닛"
         };
     }
 

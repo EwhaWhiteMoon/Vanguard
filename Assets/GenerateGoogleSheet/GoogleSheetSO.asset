@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GoogleSheetSO
   unitList:
   - unitID: 00
-    Job: "\uC804\uC0AC1"
+    Job: "\uC804\uC0AC1\uC131"
     Hp: 100
     Atk: 10
     Def: 1
@@ -31,7 +31,7 @@ MonoBehaviour:
     Price: 200
     AniController: Warrior_Controller
   - unitID: 01
-    Job: "\uC804\uC0AC2"
+    Job: "\uC804\uC0AC2\uC131"
     Hp: 180
     Atk: 18
     Def: 1
@@ -48,7 +48,7 @@ MonoBehaviour:
     Price: 300
     AniController: Warrior_Controller
   - unitID: 02
-    Job: "\uC804\uC0AC3"
+    Job: "\uC804\uC0AC3\uC131"
     Hp: 320
     Atk: 32
     Def: 1
@@ -65,7 +65,7 @@ MonoBehaviour:
     Price: 700
     AniController: Warrior_Controller
   - unitID: 10
-    Job: "\uAD81\uC2181"
+    Job: "\uAD81\uC2181\uC131"
     Hp: 75
     Atk: 14
     Def: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
     Price: 200
     AniController: Archer_Controller
   - unitID: 11
-    Job: "\uAD81\uC2182"
+    Job: "\uAD81\uC2182\uC131"
     Hp: 135
     Atk: 25
     Def: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
     Price: 300
     AniController: Archer_Controller
   - unitID: 12
-    Job: "\uAD81\uC2183"
+    Job: "\uAD81\uC2183\uC131"
     Hp: 240
     Atk: 45
     Def: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
     Price: 700
     AniController: Archer_Controller
   - unitID: 20
-    Job: "\uB9C8\uBC95\uC0AC1"
+    Job: "\uB9C8\uBC95\uC0AC1\uC131"
     Hp: 65
     Atk: 12
     Def: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
     Price: 200
     AniController: Mage_Controller
   - unitID: 21
-    Job: "\uB9C8\uBC95\uC0AC2"
+    Job: "\uB9C8\uBC95\uC0AC2\uC131"
     Hp: 117
     Atk: 22
     Def: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
     Price: 300
     AniController: Mage_Controller
   - unitID: 22
-    Job: "\uB9C8\uBC95\uC0AC3"
+    Job: "\uB9C8\uBC95\uC0AC3\uC131"
     Hp: 208
     Atk: 38
     Def: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
     Price: 700
     AniController: Mage_Controller
   - unitID: 30
-    Job: "\uC554\uC0B4\uC7901"
+    Job: "\uC554\uC0B4\uC7901\uC131"
     Hp: 70
     Atk: 16
     Def: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
     Price: 200
     AniController: Assassin_Controller
   - unitID: 31
-    Job: "\uC554\uC0B4\uC7902"
+    Job: "\uC554\uC0B4\uC7902\uC131"
     Hp: 126
     Atk: 29
     Def: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
     Price: 300
     AniController: Assassin_Controller
   - unitID: 32
-    Job: "\uC554\uC0B4\uC7903"
+    Job: "\uC554\uC0B4\uC7903\uC131"
     Hp: 224
     Atk: 51
     Def: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
     Price: 700
     AniController: Assassin_Controller
   - unitID: 40
-    Job: "\uD0F1\uCEE41"
+    Job: "\uD0F1\uCEE41\uC131"
     Hp: 130
     Atk: 7
     Def: 4
@@ -235,7 +235,7 @@ MonoBehaviour:
     Price: 200
     AniController: Tanker_Controller
   - unitID: 41
-    Job: "\uD0F1\uCEE42"
+    Job: "\uD0F1\uCEE42\uC131"
     Hp: 234
     Atk: 13
     Def: 7
@@ -252,7 +252,7 @@ MonoBehaviour:
     Price: 300
     AniController: Tanker_Controller
   - unitID: 42
-    Job: "\uD0F1\uCEE43"
+    Job: "\uD0F1\uCEE43\uC131"
     Hp: 416
     Atk: 22
     Def: 10
@@ -269,7 +269,7 @@ MonoBehaviour:
     Price: 700
     AniController: Tanker_Controller
   - unitID: 50
-    Job: "\uD790\uB7EC1"
+    Job: "\uD790\uB7EC1\uC131"
     Hp: 80
     Atk: 8
     Def: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
     Price: 200
     AniController: Healer_Controller
   - unitID: 51
-    Job: "\uD790\uB7EC2"
+    Job: "\uD790\uB7EC2\uC131"
     Hp: 144
     Atk: 14
     Def: 0
@@ -303,7 +303,7 @@ MonoBehaviour:
     Price: 300
     AniController: Healer_Controller
   - unitID: 52
-    Job: "\uD790\uB7EC3"
+    Job: "\uD790\uB7EC3\uC131"
     Hp: 256
     Atk: 26
     Def: 0
@@ -491,7 +491,7 @@ MonoBehaviour:
     AniController: Trasgo_Controller
   itemList:
   - itemID: 00
-    Name: "\uAC80"
+    Name: "\uAC80(\uC804\uC0AC)"
     Job: "\uC804\uC0AC"
     Hp: 0
     Mp: 0
@@ -506,7 +506,7 @@ MonoBehaviour:
     Price: 200
     description: "\uACF5\uACA9\uB825 +1, \uCE58\uBA85\uD0C0 \uD53C\uD574 +5%"
   - itemID: 01
-    Name: "\uB3C4\uB07C"
+    Name: "\uB3C4\uB07C(\uC804\uC0AC)"
     Job: "\uC804\uC0AC"
     Hp: 0
     Mp: 0
@@ -521,7 +521,7 @@ MonoBehaviour:
     Price: 200
     description: "\uACF5\uACA9\uB825 +2"
   - itemID: 02
-    Name: "\uD22C\uAD6C"
+    Name: "\uD22C\uAD6C(\uC804\uC0AC)"
     Job: "\uC804\uC0AC"
     Hp: 0
     Mp: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
     Price: 200
     description: "\uBC29\uC5B4\uB825 +1"
   - itemID: 03
-    Name: "\uAC11\uC637"
+    Name: "\uAC11\uC637(\uC804\uC0AC)"
     Job: "\uC804\uC0AC"
     Hp: 10
     Mp: 0
@@ -551,7 +551,7 @@ MonoBehaviour:
     Price: 200
     description: "\uCCB4\uB825 +10"
   - itemID: 04
-    Name: "\uD65C"
+    Name: "\uD65C(\uAD81\uC218)"
     Job: "\uAD81\uC218"
     Hp: 0
     Mp: 0
@@ -566,7 +566,7 @@ MonoBehaviour:
     Price: 200
     description: "\uACF5\uACA9\uC18D\uB3C4 +5%"
   - itemID: 05
-    Name: "\uD654\uC0B4"
+    Name: "\uD654\uC0B4(\uAD81\uC218)"
     Job: "\uAD81\uC218"
     Hp: 0
     Mp: 0
@@ -581,7 +581,7 @@ MonoBehaviour:
     Price: 200
     description: "\uCE58\uBA85\uD0C0 \uD655\uB960 +4%"
   - itemID: 06
-    Name: "\uC190\uBAA9\uBCF4\uD638\uB300"
+    Name: "\uC190\uBAA9\uBCF4\uD638\uB300(\uAD81\uC218)"
     Job: "\uAD81\uC218"
     Hp: 0
     Mp: 0
@@ -596,7 +596,7 @@ MonoBehaviour:
     Price: 200
     description: "\uACF5\uACA9\uC18D\uB3C4 +3%, \uCE58\uBA85\uD0C0 \uD53C\uD574 +4%"
   - itemID: 07
-    Name: "\uAC00\uBCBC\uC6B4 \uC2E0\uBC1C"
+    Name: "\uAC00\uBCBC\uC6B4 \uC2E0\uBC1C(\uAD81\uC218)"
     Job: "\uAD81\uC218"
     Hp: 0
     Mp: 0
@@ -611,7 +611,7 @@ MonoBehaviour:
     Price: 200
     description: "\uC774\uB3D9\uC18D\uB3C4 +0.2"
   - itemID: 08
-    Name: "\uC9C0\uD321\uC774"
+    Name: "\uC9C0\uD321\uC774(\uB9C8\uBC95\uC0AC)"
     Job: "\uB9C8\uBC95\uC0AC"
     Hp: 0
     Mp: 0
@@ -626,7 +626,7 @@ MonoBehaviour:
     Price: 200
     description: "MP \uD68C\uBCF5 +2"
   - itemID: 09
-    Name: "\uB9C8\uBC95\uC11C"
+    Name: "\uB9C8\uBC95\uC11C(\uB9C8\uBC95\uC0AC)"
     Job: "\uB9C8\uBC95\uC0AC"
     Hp: 0
     Mp: 5
@@ -641,7 +641,7 @@ MonoBehaviour:
     Price: 200
     description: "MP +5, MP \uD68C\uBCF5 +1"
   - itemID: 10
-    Name: "\uB9C8\uB825\uAD6C\uC2AC"
+    Name: "\uB9C8\uB825\uAD6C\uC2AC(\uB9C8\uBC95\uC0AC)"
     Job: "\uB9C8\uBC95\uC0AC"
     Hp: 0
     Mp: 4
@@ -656,7 +656,7 @@ MonoBehaviour:
     Price: 200
     description: "\uACF5\uACA9\uB825 +1, MP +4"
   - itemID: 11
-    Name: "\uB85C\uBE0C"
+    Name: "\uB85C\uBE0C(\uB9C8\uBC95\uC0AC)"
     Job: "\uB9C8\uBC95\uC0AC"
     Hp: 6
     Mp: 0
@@ -671,7 +671,7 @@ MonoBehaviour:
     Price: 200
     description: "\uCCB4\uB825 +6, \uBC29\uC5B4\uB825 +1"
   - itemID: 12
-    Name: "\uB2E8\uAC80"
+    Name: "\uB2E8\uAC80(\uC554\uC0B4\uC790)"
     Job: "\uC554\uC0B4\uC790"
     Hp: 0
     Mp: 0
@@ -686,7 +686,7 @@ MonoBehaviour:
     Price: 200
     description: "\uCE58\uBA85\uD0C0 \uD655\uB960 +5%"
   - itemID: 13
-    Name: "\uB9F9\uB3C5\uBCD1"
+    Name: "\uB9F9\uB3C5\uBCD1(\uC554\uC0B4\uC790)"
     Job: "\uC554\uC0B4\uC790"
     Hp: 0
     Mp: 0
@@ -701,7 +701,7 @@ MonoBehaviour:
     Price: 200
     description: "\uACF5\uACA9\uB825 +1, \uCE58\uBA85\uD0C0 \uD53C\uD574 +5%"
   - itemID: 14
-    Name: "\uD6C4\uB4DC"
+    Name: "\uD6C4\uB4DC(\uC554\uC0B4\uC790)"
     Job: "\uC554\uC0B4\uC790"
     Hp: 0
     Mp: 0
@@ -716,7 +716,7 @@ MonoBehaviour:
     Price: 200
     description: "\uACF5\uACA9\uC18D\uB3C4 +5%"
   - itemID: 15
-    Name: "\uAC00\uBCBC\uC6B4 \uC0C1\uC758"
+    Name: "\uAC00\uBCBC\uC6B4 \uC0C1\uC758(\uC554\uC0B4\uC790)"
     Job: "\uC554\uC0B4\uC790"
     Hp: 0
     Mp: 0
@@ -731,7 +731,7 @@ MonoBehaviour:
     Price: 200
     description: "\uC774\uB3D9\uC18D\uB3C4 +0.2"
   - itemID: 16
-    Name: "\uBC29\uD328"
+    Name: "\uBC29\uD328(\uD0F1\uCEE4)"
     Job: "\uD0F1\uCEE4"
     Hp: 0
     Mp: 0
@@ -746,7 +746,7 @@ MonoBehaviour:
     Price: 200
     description: "\uBC29\uC5B4\uB825 +2"
   - itemID: 17
-    Name: "\uCCA0\uAC11"
+    Name: "\uCCA0\uAC11(\uD0F1\uCEE4)"
     Job: "\uD0F1\uCEE4"
     Hp: 10
     Mp: 0
@@ -761,7 +761,7 @@ MonoBehaviour:
     Price: 200
     description: "\uCCB4\uB825 +10"
   - itemID: 18
-    Name: "\uC804\uD22C\uC7A5\uAC11"
+    Name: "\uC804\uD22C\uC7A5\uAC11(\uD0F1\uCEE4)"
     Job: "\uD0F1\uCEE4"
     Hp: 0
     Mp: 0
@@ -776,7 +776,7 @@ MonoBehaviour:
     Price: 200
     description: "\uBC29\uC5B4\uB825 +1, \uCCB4\uB825\uD68C\uBCF5 +0.5"
   - itemID: 19
-    Name: "\uAC74\uD2C0\uB9BF"
+    Name: "\uAC74\uD2C0\uB9BF(\uD0F1\uCEE4)"
     Job: "\uD0F1\uCEE4"
     Hp: 10
     Mp: 0
@@ -791,7 +791,7 @@ MonoBehaviour:
     Price: 200
     description: "\uCCB4\uB825 +10"
   - itemID: 20
-    Name: "\uC131\uC218"
+    Name: "\uC131\uC218(\uD790\uB7EC)"
     Job: "\uD790\uB7EC"
     Hp: 5
     Mp: 5
@@ -806,7 +806,7 @@ MonoBehaviour:
     Price: 200
     description: "\uCCB4\uB825 +5, MP +5"
   - itemID: 21
-    Name: "\uAE30\uB3C4\uAD6C\uC2AC"
+    Name: "\uAE30\uB3C4\uAD6C\uC2AC(\uD790\uB7EC)"
     Job: "\uD790\uB7EC"
     Hp: 0
     Mp: 5
@@ -821,7 +821,7 @@ MonoBehaviour:
     Price: 200
     description: "MP +5, \uACF5\uACA9\uC18D\uB3C4 +3%"
   - itemID: 22
-    Name: "\uC131\uC11C"
+    Name: "\uC131\uC11C(\uD790\uB7EC)"
     Job: "\uD790\uB7EC"
     Hp: 0
     Mp: 0
@@ -836,7 +836,7 @@ MonoBehaviour:
     Price: 200
     description: "\uACF5\uACA9\uB825 +1, \uCCB4\uB825\uD68C\uBCF5 +0.5"
   - itemID: 23
-    Name: "\uCE58\uC720 \uB85C\uBE0C"
+    Name: "\uCE58\uC720 \uB85C\uBE0C(\uD790\uB7EC)"
     Job: "\uD790\uB7EC"
     Hp: 5
     Mp: 0

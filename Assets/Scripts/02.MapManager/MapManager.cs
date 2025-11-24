@@ -364,6 +364,19 @@ public class MapManager : MonoBehaviour
         miniMap.HighlightPlayerRoom();
         rvm.ShowRoom(Map[playerPos.x, playerPos.y]);
 
+        // 상점(EventRoom) 진입 시 상점 UI 열기
+        if (Map[playerPos.x, playerPos.y].Type == RoomType.EventRoom)
+        {
+            if (ShopManager.Instance != null)
+                ShopManager.Instance.ShowShop();
+        }
+        else
+        {
+            // 다른 방으로 이동하면 상점 닫기
+            if (ShopManager.Instance != null)
+                ShopManager.Instance.HideShop();
+        }
+
         Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y})");
     }
 
