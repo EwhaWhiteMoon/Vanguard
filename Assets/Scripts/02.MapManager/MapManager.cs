@@ -159,11 +159,11 @@ public class MapManager : MonoBehaviour
         for (int i = 0; i < currentStats.MysteryNum && index < pool.Count; i++)
             Map[pool[index++].x, pool[index - 1].y].Type = RoomType.MysteryRoom;
 
-        // Remaining rooms → default room type 
+        // Remaining rooms → default room type
         while (index < pool.Count)
         {
             var pos = pool[index++];
-            Map[pos.x, pos.y].Type = RoomType.CombatRoom; 
+            Map[pos.x, pos.y].Type = RoomType.CombatRoom;
         }
     }
 
@@ -364,6 +364,7 @@ public class MapManager : MonoBehaviour
         miniMap.HighlightPlayerRoom();
         rvm.ShowRoom(Map[playerPos.x, playerPos.y]);
 
+<<<<<<< HEAD
         // 상점(EventRoom) 진입 시 상점 UI 열기
         if (Map[playerPos.x, playerPos.y].Type == RoomType.EventRoom)
         {
@@ -378,6 +379,9 @@ public class MapManager : MonoBehaviour
         }
 
         Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y})");
+=======
+        Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y}) // is Boss Room: {getCurrentRoomType() == RoomType.BossRoom}");
+>>>>>>> 17aa8345d72bd3bcc4372cf51e9a858b36296e29
     }
 
     public RoomType getCurrentRoomType()
