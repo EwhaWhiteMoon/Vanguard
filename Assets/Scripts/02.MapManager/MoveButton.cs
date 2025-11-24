@@ -38,6 +38,11 @@ public class MoveButton : MonoBehaviour
         Vector2Int next = map.playerPos + dir;
         map.movePlayer(next.x, next.y);
 
+        if (map.GetCurrentRoom().Type != RoomType.BossRoom)
+        {
+            NextFloorDoor.Instance.HideNextFloorDoor();
+        }
+
         if (map.GetCurrentRoom().Type == RoomType.CombatRoom || map.GetCurrentRoom().Type == RoomType.BossRoom)
         {
             GameManager.Instance.GameState = GameState.Combat;
