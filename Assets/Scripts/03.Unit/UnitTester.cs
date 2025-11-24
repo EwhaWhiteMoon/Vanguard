@@ -18,6 +18,8 @@ public class UnitTester : MonoBehaviour, ICombatManager
 
     public bool OnCombat = false;
 
+    private MapManager mapManager;
+
     public void OnGameStateChange(GameState state)
     {
         if (state == GameState.Combat)
@@ -30,10 +32,13 @@ public class UnitTester : MonoBehaviour, ICombatManager
         Debug.Log("매번 불림?");
         InitStageMap();
 
+        if(mapManager == null)
+        {
+            mapManager = FindFirstObjectByType<MapManager>();
+        }
+
         // 유닛 초기화
         PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Warrior.ToString(), UnitClass.Warrior, UnitGrade.Common));
-        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Archer.ToString(), UnitClass.Archer, UnitGrade.Common));
-        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Mage.ToString(), UnitClass.Mage, UnitGrade.Common));
 
         GameManager.Instance.OnGameStateChange += OnGameStateChange;
         OnGameStateChange(GameManager.Instance.GameState); //지금 State에 맞게 한번 호출해줘야함.
@@ -75,9 +80,10 @@ public class UnitTester : MonoBehaviour, ICombatManager
     public void CombatStart()
     {
         OnCombat = true;
-
+        bool isBoss = mapManager.getCurrentRoomType() == RoomType.BossRoom;
         // stage 정보 기입 필요.
-        enemyList = MakeRandomEnemy(1, false);
+        enemyList = MakeRandomEnemy(1, isBoss);
+
         // 직업별로 몇 번째 줄(Y)을 사용했는지 저장
         Dictionary<UnitClass, int> classRowIndex = new Dictionary<UnitClass, int>();
 

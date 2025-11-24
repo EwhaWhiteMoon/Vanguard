@@ -159,11 +159,11 @@ public class MapManager : MonoBehaviour
         for (int i = 0; i < currentStats.MysteryNum && index < pool.Count; i++)
             Map[pool[index++].x, pool[index - 1].y].Type = RoomType.MysteryRoom;
 
-        // Remaining rooms → default room type 
+        // Remaining rooms → default room type
         while (index < pool.Count)
         {
             var pos = pool[index++];
-            Map[pos.x, pos.y].Type = RoomType.CombatRoom; 
+            Map[pos.x, pos.y].Type = RoomType.CombatRoom;
         }
     }
 
@@ -364,7 +364,7 @@ public class MapManager : MonoBehaviour
         miniMap.HighlightPlayerRoom();
         rvm.ShowRoom(Map[playerPos.x, playerPos.y]);
 
-        Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y})");
+        Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y}) // is Boss Room: {getCurrentRoomType() == RoomType.BossRoom}");
     }
 
     public RoomType getCurrentRoomType()
