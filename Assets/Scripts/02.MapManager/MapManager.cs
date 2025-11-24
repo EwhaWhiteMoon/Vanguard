@@ -366,4 +366,9 @@ public class MapManager : MonoBehaviour
 
         Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y})");
     }
+
+    public RoomType getCurrentRoomType()
+    {
+        return Map[playerPos.x, playerPos.y].Type;
+    }
 }
