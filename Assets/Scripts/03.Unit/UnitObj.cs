@@ -84,6 +84,9 @@ public class UnitObj : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        //한윤구 추가
+        SoundManager.Instance.PlaySFX("Hit");
+
         HP -= (damage - stat.Defense) * (1 - stat.DamageReducePct);
         if (HP <= 0)
         {
@@ -92,6 +95,9 @@ public class UnitObj : MonoBehaviour
                 NextFloorDoor.Instance.SetDoorPosition(transform.position);
             }
             EffectManager.Instance.PlayEffect("Death", transform.position);
+            //한윤구 추가
+            SoundManager.Instance.PlaySFX("Death");
+
             Destroy(this.gameObject);
         }
         EffectManager.Instance.PlayEffect("Hit", transform.position); // 이게 여기 들어가는 게 맞을까 생각 중. "피격"애니메이션이니까 괜찮지 않을까요?
