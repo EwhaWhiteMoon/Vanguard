@@ -140,12 +140,17 @@ public class RewardPanelController : MonoBehaviour
         Sprite icon = ItemVisualHelper.Instance != null ? ItemVisualHelper.Instance.GetIcon(selected.itemID) : null;
         string description = ItemVisualHelper.Instance != null ? ItemVisualHelper.Instance.GetDescription(selected.itemID) : selected.description;
 
+        // 보유 여부 확인
+        bool isOwned = InventoryManager.Instance != null && InventoryManager.Instance.HasItem(selected.itemID);
+        string title = selected.Name;
+        if (isOwned) title += " (보유중)";
+
         return new RewardOption
         {
             Type = RewardType.Item,
             ItemData = selected,
             Icon = icon,
-            Title = selected.Name,
+            Title = title,
             Description = description
         };
     }
@@ -165,12 +170,17 @@ public class RewardPanelController : MonoBehaviour
         // 실제 유닛 데이터 가져오기 (Job 이름 사용을 위해)
         var unitData = UnitDatabase.Instance.GetUnitByInfo(selected.unitClass, selected.unitGrade);
 
+        // 보유 여부 확인
+        bool isOwned = PlayerUnitRoster.Instance != null && PlayerUnitRoster.Instance.HasUnit(selected.unitClass, selected.unitGrade);
+        string title = unitData != null ? unitData.Job : $"{selected.unitClass}";
+        if (isOwned) title += " (보유중)";
+
         return new RewardOption
         {
             Type = RewardType.Unit,
             UnitData = selected,
             Icon = icon ?? defaultUnitIcon,
-            Title = unitData != null ? unitData.Job : $"{selected.unitClass}",
+            Title = title,
             Description = unitData != null ? $"{unitData.Job} 유닛" : $"{selected.unitClass} 유닛"
         };
     }

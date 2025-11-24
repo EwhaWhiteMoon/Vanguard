@@ -24,6 +24,19 @@ public class PlayerUnitRoster : MonoSingleton<PlayerUnitRoster>
         Debug.Log($"[PlayerUnitRoster] 유닛 획득: {unitData.Class} ({unitData.Grade})");
     }
 
+    /// <summary>
+    /// 해당 클래스와 등급의 유닛을 이미 보유하고 있는지 확인합니다.
+    /// </summary>
+    public bool HasUnit(UnitClass unitClass, UnitGrade unitGrade)
+    {
+        foreach (var info in _ownedUnits)
+        {
+            if (info.unitData.Class == unitClass && info.unitData.Grade == unitGrade)
+                return true;
+        }
+        return false;
+    }
+
     public void ClearUnits()
     {
         _ownedUnits.Clear();

@@ -364,7 +364,6 @@ public class MapManager : MonoBehaviour
         miniMap.HighlightPlayerRoom();
         rvm.ShowRoom(Map[playerPos.x, playerPos.y]);
 
-<<<<<<< HEAD
         // 상점(EventRoom) 진입 시 상점 UI 열기
         if (Map[playerPos.x, playerPos.y].Type == RoomType.EventRoom)
         {
@@ -378,10 +377,7 @@ public class MapManager : MonoBehaviour
                 ShopManager.Instance.HideShop();
         }
 
-        Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y})");
-=======
         Debug.Log($"Player moved to: ({playerPos.x}, {playerPos.y}) // is Boss Room: {getCurrentRoomType() == RoomType.BossRoom}");
->>>>>>> 17aa8345d72bd3bcc4372cf51e9a858b36296e29
     }
 
     public RoomType getCurrentRoomType()

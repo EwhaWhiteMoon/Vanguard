@@ -74,6 +74,14 @@ public class InventoryManager : MonoSingleton<InventoryManager>
         return 0;
     }
 
+    /// <summary>
+    /// 해당 아이템을 이미 보유하고 있는지 확인합니다.
+    /// </summary>
+    public bool HasItem(string itemId)
+    {
+        return _itemCounts.ContainsKey(itemId) && _itemCounts[itemId] > 0;
+    }
+
     public Dictionary<Job, int> GetUniqueCountsByJob()
     {
         var result = new Dictionary<Job, int>();

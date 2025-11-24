@@ -171,8 +171,23 @@ public class ShopManager : MonoSingleton<ShopManager>
                 var roster = FindFirstObjectByType<PlayerUnitRoster>();
                 if (roster != null)
                 {
-                    roster.AddUnit(new UnitData(option.UnitData.ToString(), UnitClass.Warrior, UnitGrade.Common));
-                    Debug.Log($"[ShopManager] 유닛 구매 성공: {option.Name}");
+                    // 기존 문제점: 무조건 Warrior/Common으로 생성하고 있었음.
+                    // 수정: unitID 파싱해서 올바른 클래스와 등급으로 생성.
+                    
+                    UnitClass uClass = UnitClass.Warrior; // default
+                    UnitGrade uGrade = UnitGrade.Common;  // default
+                    
+                    if (int.TryParse(option.UnitData.unitID, out int idInt))
+                    {
+                        int classInt = idInt / 10;
+                        int gradeInt = idInt % 10;
+                        
+                        uClass = (UnitClass)classInt;
+                        uGrade = (UnitGrade)gradeInt;
+                    }
+                    
+                    roster.AddUnit(new UnitData(option.Name, uClass, uGrade));
+                    Debug.Log($"[ShopManager] 유닛 구매 성공: {option.Name} (Class:{uClass}, Grade:{uGrade})");
                 }
                 else
                 {
