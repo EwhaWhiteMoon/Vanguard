@@ -1,10 +1,24 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StartScreen : MonoBehaviour
 {
+    //한윤구 추가 
+    //bgm 불러오기
     public void OnGameStateChange(GameState state)
     {
+        bool isStartMenu = state == GameState.StartMenu;
         gameObject.SetActive(state == GameState.StartMenu); // Combat이라면 살아남
+
+        if (isStartMenu)
+        {
+            SoundManager.Instance.PlayMenuBGM();
+        }
+        else
+        {
+            SoundManager.Instance.StopBGM();
+        }
+        
+    
     }
 
     public void StartGame()
