@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,6 +55,10 @@ public class RewardSlotUI : MonoBehaviour
     {
         if (_option == null)
             return;
+
+        //한윤구 추가
+        //보상 선택 효과음
+        SoundManager.Instance?.PlaySFX("GetReward");
 
         _onSelected?.Invoke(_option);
     }
