@@ -19,6 +19,7 @@ public class UnitTester : MonoBehaviour, ICombatManager
     public bool OnCombat = false;
 
     private MapManager mapManager;
+    private int combatCnt;
 
     public void OnGameStateChange(GameState state)
     {
@@ -36,9 +37,12 @@ public class UnitTester : MonoBehaviour, ICombatManager
         {
             mapManager = FindFirstObjectByType<MapManager>();
         }
+        combatCnt = 0;
 
         // 유닛 초기화
         PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Warrior.ToString(), UnitClass.Warrior, UnitGrade.Common));
+        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Archer.ToString(), UnitClass.Archer, UnitGrade.Common));
+        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Tanker.ToString(), UnitClass.Tanker, UnitGrade.Common));
 
         GameManager.Instance.OnGameStateChange += OnGameStateChange;
         OnGameStateChange(GameManager.Instance.GameState); //지금 State에 맞게 한번 호출해줘야함.
@@ -80,6 +84,8 @@ public class UnitTester : MonoBehaviour, ICombatManager
     public void CombatStart()
     {
         OnCombat = true;
+        combatCnt++;
+
         bool isBoss = mapManager.getCurrentRoomType() == RoomType.BossRoom;
         // stage 정보 기입 필요.
         enemyList = MakeRandomEnemy(1, isBoss);
@@ -174,9 +180,10 @@ public class UnitTester : MonoBehaviour, ICombatManager
         // 게임 스테이지 1~3, enum으로 변경 필요. 나중에 맵 스테이지가 모두 합쳐지면 변경예정
         List<UnitData> enemyDataList = new List<UnitData>();
         System.Random rand = new System.Random();
+        int enemyMaxCount = combatCnt > 2 ? gameStage * 5 : 3;
 
         List<UnitClass> enemyKinds = GetEnemies(gameStage, isBoss);
-        int enemyCount = isBoss ? 1 : rand.Next(1, gameStage*3);
+        int enemyCount = isBoss ? 1 : rand.Next(1, enemyMaxCount);
 
         for (int i = 0; i < enemyCount; i++)
         {
