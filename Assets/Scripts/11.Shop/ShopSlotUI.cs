@@ -61,7 +61,7 @@ public class ShopSlotUI : MonoBehaviour
 
                 if (isOwned)
                 {
-                    displayName += " (보유중)";
+                    displayName += "\n(보유중)";
                     // 필요하다면 색상 변경 등 추가 처리 가능
                     // nameText.color = Color.yellow; 
                 }

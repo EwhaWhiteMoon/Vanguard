@@ -143,7 +143,7 @@ public class RewardPanelController : MonoBehaviour
         // 보유 여부 확인
         bool isOwned = InventoryManager.Instance != null && InventoryManager.Instance.HasItem(selected.itemID);
         string title = selected.Name;
-        if (isOwned) title += " (보유중)";
+        if (isOwned) title += "\n(보유중)";
 
         return new RewardOption
         {
@@ -173,7 +173,7 @@ public class RewardPanelController : MonoBehaviour
         // 보유 여부 확인
         bool isOwned = PlayerUnitRoster.Instance != null && PlayerUnitRoster.Instance.HasUnit(selected.unitClass, selected.unitGrade);
         string title = unitData != null ? unitData.Job : $"{selected.unitClass}";
-        if (isOwned) title += " (보유중)";
+        if (isOwned) title += "\n(보유중)";
 
         return new RewardOption
         {
