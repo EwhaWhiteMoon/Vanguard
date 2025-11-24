@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// 전역 사운드 매니저
 /// - MonoSingleton으로 전체 접근 가능
 /// - 메뉴, 층, 방, 이벤트 BGM 관리
-/// - 유닛의 OnDamaged/OnDied 이벤트 기반 SFX 자동 재생
+/// - BGM 전환 시 페이드인/페이드아웃 적용
 /// </summary>
 
 /// <summary>
@@ -16,7 +17,7 @@ using UnityEngine;
 /// 
 /// 2. MapManager.cs
 ///     SoundManager.Instance.PlayFloorBGM(1);      // 1층 진입 시
-///     SoundManager.Instance.SwitchRoomBGM();      // 방 이동
+///     SoundManager.Instance.SwitchRoomBGM();      // 방 이동 시 (자동 페이드 전환)
 ///     SoundManager.Instance.PlayEventRoomBGM();   // 이벤트 방
 ///
 /// 3. UnitFactory.cs
@@ -37,19 +38,14 @@ public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
     [SerializeField] private AudioClip hitClip;       // 유닛 피격 효과음
     [SerializeField] private AudioClip deathClip;     // 유닛 사망 효과음
     [SerializeField] private AudioClip stepClip;      // 유닛 이동시 발걸음 효과음
-    [SerializeField] private AudioClip attackClip;    // 유닛 공격 효과음
+    [SerializeField] private AudioClip adcAttackClip; // 원거리 유닛 투사체 발사
+    [SerializeField] private AudioClip getRewardClip; // 리워드 선택 효과음
 
-    [Header("BGM Themes (층별)")]
-    [SerializeField] private List<BGMTheme> bgmThemes; // 층별 테마 리스트
-    private BGMTheme currentTheme;                     // 현재 활성화된 테마
-    private int currentFloor = 1;                      // 현재 층 번호
-
-    [Header("Boss Room BGM")]
-    [SerializeField] private List<AudioClip> bossBGMs; // 각 층의 보스방 BGM 리스트
-
-    [Header("Event Room BGM")]
-    [SerializeField] private List<AudioClip> eventRoomBGMs; // 이벤트 방 전용 BGM 리스트
-
+    private List<AudioClip> currentFloorBGMs = new();
+    private List<AudioClip> bossBGMs = new();
+    private List<AudioClip> eventRoomBGMs = new();
+    private int currentFloor = 1;
+    private Coroutine fadeCoroutine;
 
     // ================================================================
     //  BGM 관련
@@ -59,58 +55,50 @@ public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
     public void PlayMenuBGM()
     {
         if (menuBGM == null) return;
-        PlayClip(menuBGM, loop: true);
+        StartFadeBGM(menuBGM, 1f);
     }
 
     /// <summary>특정 층의 랜덤한 BGM을 재생</summary>
     public void PlayFloorBGM(int floor)
     {
-        if (floor <= 0 || floor > bgmThemes.Count)
-        {
-            Debug.LogWarning($"[SoundManager] Invalid floor index: {floor}");
-            return;
-        }
-
         currentFloor = floor;
-        currentTheme = bgmThemes[floor - 1];
-        PlayRandomBGMFromTheme();
-    }
-
-    public void PlayBGM(string themeName)
-    {
-        currentTheme = bgmThemes.Find(t => t.ThemeName == themeName);
-        if (currentTheme == null)
+        currentFloorBGMs = LoadBGMClips($"Sound/BGM/Floor{floor}");
+        if (currentFloorBGMs.Count == 0)
         {
-            Debug.LogWarning($"[SoundManager] Theme '{themeName}' not found!");
+            Debug.LogWarning($"[SoundManager] No BGMs found for Floor {floor}");
             return;
         }
-        PlayRandomBGMFromTheme();
+        PlayRandomBGMFromList(currentFloorBGMs);
     }
 
-
-    /// <summary>현재 테마 안에서 랜덤한 방 BGM을 재생</summary>
+    /// <summary>현재 층의 테마 안에서 방별 랜덤 BGM을 재생</summary>
     public void SwitchRoomBGM()
     {
-        PlayRandomBGMFromTheme();
+        if (currentFloorBGMs.Count == 0)
+        {
+            currentFloorBGMs = LoadBGMClips($"Sound/BGM/Floor{currentFloor}");
+        }
+        PlayRandomBGMFromList(currentFloorBGMs);
     }
 
     /// <summary>보스방 BGM을 재생</summary>
     public void PlayBossBGM(int floor)
     {
+        bossBGMs = LoadBGMClips("Sound/BGM/BossRoom");
         if (bossBGMs == null || bossBGMs.Count < floor)
         {
             Debug.LogWarning($"[SoundManager] Boss BGM for floor {floor} not found!");
             return;
         }
-        PlayClip(bossBGMs[floor - 1], loop: true);
+        StartFadeBGM(bossBGMs[floor - 1], 1f);
     }
 
     /// <summary>이벤트 방 전용 BGM을 재생</summary>
     public void PlayEventRoomBGM()
     {
+        eventRoomBGMs = LoadBGMClips("Sound/BGM/EventRoom");
         if (eventRoomBGMs.Count == 0) return;
-        var clip = eventRoomBGMs[Random.Range(0, eventRoomBGMs.Count)];
-        PlayClip(clip, loop: true);
+        StartFadeBGM(eventRoomBGMs[Random.Range(0, eventRoomBGMs.Count)], 1f);
     }
 
     /// <summary>현재 재생 중인 BGM을 정지</summary>
@@ -119,11 +107,9 @@ public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
         bgmSource.Stop();
     }
 
-
     // ================================================================
     //  SFX 관련
     // ================================================================
-    /// <summary>효과음 이름으로 해당 SFX를 재생</summary>
     public void PlaySFX(string sfxName)
     {
         AudioClip clip = sfxName switch
@@ -131,13 +117,13 @@ public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
             "Hit" => hitClip,
             "Death" => deathClip,
             "Step" => stepClip,
-            "Attack" => attackClip,
+            "ADCAttack" => adcAttackClip,
+            "GetReward" => getRewardClip,
             _ => null
         };
         if (clip != null)
             sfxSource.PlayOneShot(clip);
     }
-
 
     // ================================================================
     //  볼륨 설정 관련
@@ -146,33 +132,64 @@ public class SoundManager : MonoSingleton<SoundManager>, ISoundManager
     public void SetBGMVolume(float value) => bgmSource.volume = value;
     public void SetSFXVolume(float value) => sfxSource.volume = value;
 
-
     // ================================================================
     //  내부 기능
     // ================================================================
-    private void PlayRandomBGMFromTheme()
+    private void PlayRandomBGMFromList(List<AudioClip> list)
     {
-        if (currentTheme == null || currentTheme.BGMs.Count == 0) return;
-        var clip = currentTheme.BGMs[Random.Range(0, currentTheme.BGMs.Count)];
-        PlayClip(clip, loop: true);
+        if (list == null || list.Count == 0) return;
+        var clip = list[Random.Range(0, list.Count)];
+        StartFadeBGM(clip, 1f);
     }
 
-    private void PlayClip(AudioClip clip, bool loop)
+    private List<AudioClip> LoadBGMClips(string path)
     {
-        if (clip == null || bgmSource == null) return;
+        var clips = new List<AudioClip>(Resources.LoadAll<AudioClip>(path));
+        if (clips.Count == 0)
+        {
+            Debug.LogWarning($"[SoundManager] No clips found at path: {path}");
+        }
+        else
+        {
+            clips.Sort((a, b) => string.CompareOrdinal(a.name, b.name)); // Floor1_1 ~ Floor1_4 순서 유지
+        }
+        return clips;
+    }
+
+    // ================================================================
+    //  페이드 기능
+    // ================================================================
+    private void StartFadeBGM(AudioClip newClip, float duration)
+    {
+        if (fadeCoroutine != null)
+            StopCoroutine(fadeCoroutine);
+        fadeCoroutine = StartCoroutine(FadeBGM(newClip, duration));
+    }
+
+    private IEnumerator FadeBGM(AudioClip newClip, float duration)
+    {
+        if (bgmSource.clip == newClip)
+            yield break;
+
+        float startVolume = bgmSource.volume;
+        float fadeTime = duration * 0.5f;
+
+        // 페이드 아웃
+        for (float t = 0; t < fadeTime; t += Time.deltaTime)
+        {
+            bgmSource.volume = Mathf.Lerp(startVolume, 0, t / fadeTime);
+            yield return null;
+        }
         bgmSource.Stop();
-        bgmSource.clip = clip;
-        bgmSource.loop = loop;
+        bgmSource.clip = newClip;
         bgmSource.Play();
-    }
-}
 
-/// <summary>
-/// 층별 테마 데이터 구조
-/// </summary>
-[System.Serializable]
-public class BGMTheme
-{
-    public string ThemeName;       // ex: "Adventure", "Happiness"
-    public List<AudioClip> BGMs;   // 각 방마다 다른 곡들
+        // 페이드 인
+        for (float t = 0; t < fadeTime; t += Time.deltaTime)
+        {
+            bgmSource.volume = Mathf.Lerp(0, startVolume, t / fadeTime);
+            yield return null;
+        }
+        bgmSource.volume = startVolume;
+    }
 }
