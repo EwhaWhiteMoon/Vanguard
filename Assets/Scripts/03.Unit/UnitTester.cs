@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class UnitTester : MonoBehaviour, ICombatManager
@@ -38,7 +35,6 @@ public class UnitTester : MonoBehaviour, ICombatManager
     }
     private void Awake()
     {
-        Debug.Log("매번 불림?");
         InitStageMap();
 
         if(mapManager == null)
