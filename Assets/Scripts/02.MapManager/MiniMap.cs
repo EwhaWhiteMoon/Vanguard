@@ -4,7 +4,11 @@ using static UnityEditor.PlayerSettings;
 
 public class MiniMap : MonoBehaviour
 {
-
+    public void OnGameStateChange(GameState state)
+    {
+        gameObject.SetActive(state == GameState.AfterCombat);
+    }
+    
     [Header("Visual Settings")]
     public Sprite playerMarkerSprite;
 
@@ -21,6 +25,10 @@ public class MiniMap : MonoBehaviour
         {
             map = FindFirstObjectByType<MapManager>();
         }
+        
+        GameManager.Instance.OnGameStateChange += OnGameStateChange;
+        gameObject.SetActive(false); // 구독하고, 일단 필요해질때까지 꺼두기.
+        OnGameStateChange(GameManager.Instance.GameState); //지금 State에 맞게 한번 호출해줘야함.
     }
 
     void Update()

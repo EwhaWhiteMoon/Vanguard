@@ -451,9 +451,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9010632911472293599}
     m_Modifications:
+    - target: {fileID: 2537273239277135399, guid: 4b0862f1c75bd0f459c8ce17cd00ab0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3194864863341394131, guid: 4b0862f1c75bd0f459c8ce17cd00ab0d, type: 3}
       propertyPath: m_Name
       value: UnitHPMPBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4245070162130761488, guid: 4b0862f1c75bd0f459c8ce17cd00ab0d, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5466641616700806653, guid: 4b0862f1c75bd0f459c8ce17cd00ab0d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -567,6 +575,10 @@ PrefabInstance:
       propertyPath: unit
       value: 
       objectReference: {fileID: 198760524063631071}
+    - target: {fileID: 9210210800042349413, guid: 4b0862f1c75bd0f459c8ce17cd00ab0d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2046147125
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
