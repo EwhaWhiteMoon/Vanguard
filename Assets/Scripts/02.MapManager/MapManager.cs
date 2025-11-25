@@ -42,11 +42,13 @@ public class MapManager : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
             InitMap();
             miniMap.RefreshMiniMap();
         }
+#endif
     }
 
     public void InitMap()
