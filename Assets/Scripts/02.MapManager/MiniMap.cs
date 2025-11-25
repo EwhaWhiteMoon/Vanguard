@@ -4,7 +4,6 @@ using static UnityEditor.PlayerSettings;
 
 public class MiniMap : MonoBehaviour
 {
-
     [Header("Visual Settings")]
     public Sprite playerMarkerSprite;
 
