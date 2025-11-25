@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MapStats", menuName = "Scriptable Objects/MapStats")]
 public class MapStats : ScriptableObject
 {
+
+
     [Header("Map Size")]
     [SerializeField] private int width = 7;
     [SerializeField] private int height = 7;

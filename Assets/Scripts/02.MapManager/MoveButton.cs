@@ -38,14 +38,11 @@ public class MoveButton : MonoBehaviour
         Vector2Int next = map.playerPos + dir;
         map.movePlayer(next.x, next.y);
 
-<<<<<<< HEAD
         if (map.GetCurrentRoom().Type != RoomType.BossRoom)
         {
             NextFloorDoor.Instance.HideNextFloorDoor();
         }
 
-        if (map.GetCurrentRoom().Type == RoomType.CombatRoom || map.GetCurrentRoom().Type == RoomType.BossRoom)
-=======
         //한윤구 추가
         var CurrentRoom = map.GetCurrentRoom();
         int floor = MySceneManagement.CurrentFloor; //현재 층 번호 가져오기
@@ -72,7 +69,6 @@ public class MoveButton : MonoBehaviour
 
         // 전투 상태 설정
         if (CurrentRoom.Type == RoomType.CombatRoom || CurrentRoom.Type == RoomType.BossRoom)
->>>>>>> Sound-Apply
         {
             GameManager.Instance.GameState = GameState.Combat;
         }
@@ -93,14 +89,14 @@ public class MoveButton : MonoBehaviour
         SoundManager.Instance.PlayBossBGM(floor);
     }
 
-    private void Start()
-    {
-        //StartCoroutine(LateInit());
-    }
+    //private void Start()
+    //{
+    //    StartCoroutine(LateInit());
+    //}
 
-    IEnumerator LateInit()
-    {
-        yield return null;
-        UpdateButtons();
-    }
+    //IEnumerator LateInit()
+    //{
+    //    yield return null;
+    //    UpdateButtons();
+    //}
 }
