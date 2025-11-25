@@ -62,19 +62,12 @@ public class MoveButton : MonoBehaviour
         }
 
         // 전투 상태 설정
-        if (CurrentRoom.Type == RoomType.CombatRoom || CurrentRoom.Type == RoomType.BossRoom)
+        if ((CurrentRoom.Type is RoomType.CombatRoom or RoomType.BossRoom) && !CurrentRoom.isVisited)
         {
             GameManager.Instance.GameState = GameState.Combat;
         }
 
         UpdateButtons();
-
-        //if (map.GetCurrentRoom().Type == RoomType.CombatRoom || map.GetCurrentRoom().Type == RoomType.BossRoom)
-        //{
-        //    GameManager.Instance.GameState = GameState.Combat;
-        //}
-
-        //UpdateButtons();
     }
     //한윤구 추가
     private IEnumerator PlayBossRoomDelayed(int floor)
