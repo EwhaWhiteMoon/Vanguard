@@ -11,10 +11,9 @@ using UnityEngine;
 
 /// <summary>
 /// 사용 예시
-/// 
 /// 1. GameManager.cs
 ///     SoundManager.Instance.PlayMenuBGM();  // 메뉴 진입 시
-/// 
+///
 /// 2. MapManager.cs
 ///     SoundManager.Instance.PlayFloorBGM(1);      // 1층 진입 시
 ///     SoundManager.Instance.SwitchRoomBGM();      // 방 이동 시 (자동 페이드 전환)
