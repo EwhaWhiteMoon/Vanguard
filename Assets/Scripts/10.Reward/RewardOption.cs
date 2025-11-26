@@ -4,7 +4,8 @@ public enum RewardType
 {
     Item,
     Gold,
-    Unit
+    Unit,
+    Soul
 }
 
 public class UnitRewardInfo
@@ -27,6 +28,7 @@ public class RewardOption
     public item ItemData;
     public UnitRewardInfo UnitData;
     public int GoldAmount;
+    public int SoulAmount; // 영혼석 수량
     public Sprite Icon;
     public string Title;
     public string Description;

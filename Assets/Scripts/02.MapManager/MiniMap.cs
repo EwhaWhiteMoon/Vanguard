@@ -4,7 +4,6 @@ using static UnityEditor.PlayerSettings;
 
 public class MiniMap : MonoBehaviour
 {
-
     [Header("Visual Settings")]
     public Sprite playerMarkerSprite;
 
@@ -25,12 +24,10 @@ public class MiniMap : MonoBehaviour
 
     void Update()
     {
-#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.M))
         {
             RefreshMiniMap();
         }
-#endif
     }
 
     public void DrawMiniMap()

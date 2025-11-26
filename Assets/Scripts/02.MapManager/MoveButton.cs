@@ -37,12 +37,6 @@ public class MoveButton : MonoBehaviour
 
         Vector2Int next = map.playerPos + dir;
         map.movePlayer(next.x, next.y);
-
-        if (map.GetCurrentRoom().Type != RoomType.BossRoom)
-        {
-            NextFloorDoor.Instance.HideNextFloorDoor();
-        }
-
         //한윤구 추가
         var CurrentRoom = map.GetCurrentRoom();
         int floor = MySceneManagement.CurrentFloor; //현재 층 번호 가져오기
@@ -68,19 +62,12 @@ public class MoveButton : MonoBehaviour
         }
 
         // 전투 상태 설정
-        if (CurrentRoom.Type == RoomType.CombatRoom || CurrentRoom.Type == RoomType.BossRoom)
+        if (CurrentRoom.Type is RoomType.CombatRoom or RoomType.BossRoom)
         {
             GameManager.Instance.GameState = GameState.Combat;
         }
 
         UpdateButtons();
-
-        //if (map.GetCurrentRoom().Type == RoomType.CombatRoom || map.GetCurrentRoom().Type == RoomType.BossRoom)
-        //{
-        //    GameManager.Instance.GameState = GameState.Combat;
-        //}
-
-        //UpdateButtons();
     }
     //한윤구 추가
     private IEnumerator PlayBossRoomDelayed(int floor)
@@ -89,14 +76,14 @@ public class MoveButton : MonoBehaviour
         SoundManager.Instance.PlayBossBGM(floor);
     }
 
-    //private void Start()
-    //{
-    //    StartCoroutine(LateInit());
-    //}
+    private void Start()
+    {
+        //StartCoroutine(LateInit());
+    }
 
-    //IEnumerator LateInit()
-    //{
-    //    yield return null;
-    //    UpdateButtons();
-    //}
+    IEnumerator LateInit()
+    {
+        yield return null;
+        UpdateButtons();
+    }
 }

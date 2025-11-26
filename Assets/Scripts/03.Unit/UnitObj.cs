@@ -57,7 +57,20 @@ public class UnitObj : MonoBehaviour
 
         // 스탯 설정해야함.
         this.stat = new Stat(this.unitData.BaseStat);
-        this.HP = HP == -1 ? this.unitData.BaseStat.MaxHealth : HP;
+        
+        // 플레이어 유닛(Team 0)인 경우 영구 강화 스탯 적용
+        if (Team == 0 && GlobalUpgradeManager.Instance != null)
+        {
+            this.stat.MaxHealth += GlobalUpgradeManager.Instance.GetStatBonus(StatUpgradeType.Health);
+            this.stat.Attack += GlobalUpgradeManager.Instance.GetStatBonus(StatUpgradeType.Attack);
+            this.stat.Defense += GlobalUpgradeManager.Instance.GetStatBonus(StatUpgradeType.Defense);
+            this.stat.CritChance += GlobalUpgradeManager.Instance.GetStatBonus(StatUpgradeType.CritChance);
+            this.stat.MoveSpeed += GlobalUpgradeManager.Instance.GetStatBonus(StatUpgradeType.MoveSpeed);
+            this.stat.AttackSpeed += GlobalUpgradeManager.Instance.GetStatBonus(StatUpgradeType.AttackSpeed);
+            this.stat.CritMultiplier += GlobalUpgradeManager.Instance.GetStatBonus(StatUpgradeType.CritDamage);
+        }
+
+        this.HP = HP == -1 ? this.stat.MaxHealth : HP;
 
         this.isBoss = isBoss;
 

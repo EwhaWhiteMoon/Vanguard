@@ -33,7 +33,7 @@ public class StartScreen : MonoBehaviour
                 {
                     for (int i = 0; i < statsArray.Length; i++)
                     {
-                        if (statsArray[i] == currentStats)
+                        if (statsArray[i] == (Object)currentStats)
                         {
                             currentFloor = i + 1;
                             break;
