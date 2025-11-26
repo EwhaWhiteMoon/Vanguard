@@ -9,6 +9,7 @@ public class RewardPanelController : MonoBehaviour
 {
     [SerializeField] private RewardSlotUI[] slots;
     [SerializeField] private Sprite goldIcon;
+    [SerializeField] private Sprite soulIcon; // 영혼석 아이콘
     [SerializeField] private Sprite defaultUnitIcon;
 
     // 더 이상 필요 없음 (UnitVisualHelper 사용)
@@ -25,6 +26,7 @@ public class RewardPanelController : MonoBehaviour
     };
 
     [SerializeField] private string goldDescription = "골드를 획득합니다.";
+    [SerializeField] private string soulDescription = "영혼석을 획득합니다.\n(시작 화면에서 영구 강화에 사용)";
 
     private readonly List<RewardOption> _currentOptions = new List<RewardOption>();
     private bool _rewardChosen;
@@ -104,15 +106,30 @@ public class RewardPanelController : MonoBehaviour
 
     private RewardOption CreateRandomReward()
     {
-        RewardType randomType = (RewardType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(RewardType)).Length);
-        switch (randomType)
+        float randomValue = UnityEngine.Random.value; // 0.0 ~ 1.0
+
+        // 확률 조정 (합계 1.0이 되도록 설정)
+        // 예: 아이템 37%, 유닛 37%, 골드 21%, 영혼석 5%
+        float itemChance = 0.37f;
+        float unitChance = 0.37f;
+        float goldChance = 0.21f;
+        // 나머지 0.05f는 영혼석
+
+        if (randomValue < itemChance)
         {
-            case RewardType.Item:
-                return CreateItemReward();
-            case RewardType.Unit:
-                return CreateUnitReward();
-            default:
-                return CreateGoldReward();
+            return CreateItemReward();
+        }
+        else if (randomValue < itemChance + unitChance)
+        {
+            return CreateUnitReward();
+        }
+        else if (randomValue < itemChance + unitChance + goldChance)
+        {
+            return CreateGoldReward();
+        }
+        else
+        {
+            return CreateSoulReward();
         }
     }
 
@@ -127,6 +144,20 @@ public class RewardPanelController : MonoBehaviour
             Icon = goldIcon,
             Title = $"{amount} 골드",
             Description = goldDescription
+        };
+    }
+
+    private RewardOption CreateSoulReward()
+    {
+        int amount = UnityEngine.Random.Range(1, 6); // 1~5개
+
+        return new RewardOption
+        {
+            Type = RewardType.Soul,
+            SoulAmount = amount,
+            Icon = soulIcon, // 인스펙터에서 할당 필요
+            Title = $"{amount} 영혼석",
+            Description = soulDescription
         };
     }
 
@@ -246,6 +277,10 @@ public class RewardPanelController : MonoBehaviour
             case RewardType.Gold:
                 GoldManager.Instance?.AddGold(option.GoldAmount);
                 Debug.Log($"[RewardPanel] 골드 {option.GoldAmount} 획득");
+                break;
+            case RewardType.Soul:
+                GlobalUpgradeManager.Instance?.AddSoul(option.SoulAmount);
+                Debug.Log($"[RewardPanel] 영혼석 {option.SoulAmount} 획득");
                 break;
             case RewardType.Item:
                 if (option.ItemData != null)
