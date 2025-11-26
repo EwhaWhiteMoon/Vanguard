@@ -178,9 +178,9 @@ public class UnitTester : MonoBehaviour, ICombatManager
 
         if (win)
         {
+            mapManager.Map[mapManager.playerPos.x, mapManager.playerPos.y].Type = RoomType.Empty;
             if (mapManager.getCurrentRoomType() == RoomType.BossRoom)
             {
-                Debug.Log("전투 종료 및 보스방이였음.");
                 isBossCleared = true;
                 NextFloorDoor.Instance.ShowNextFloorDoor();
             }

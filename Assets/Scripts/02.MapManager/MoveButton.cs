@@ -62,7 +62,7 @@ public class MoveButton : MonoBehaviour
         }
 
         // 전투 상태 설정
-        if ((CurrentRoom.Type is RoomType.CombatRoom or RoomType.BossRoom) && !CurrentRoom.isVisited)
+        if (CurrentRoom.Type is RoomType.CombatRoom or RoomType.BossRoom)
         {
             GameManager.Instance.GameState = GameState.Combat;
         }

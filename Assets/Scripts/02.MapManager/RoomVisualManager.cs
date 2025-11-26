@@ -7,7 +7,7 @@ public class RoomVisualManager : MonoBehaviour
 
     public void ShowRoom(Room room)
     {
-        if (activeRoom != null)
+        if (activeRoom)
         {
             Destroy(activeRoom);
         }

@@ -11,7 +11,6 @@ public class NextFloorDoor : MonoSingleton<NextFloorDoor>
     {
         if (doorPrefab != null)
         {
-            Debug.Log("문 만들었음.");
             doorObj = Instantiate(doorPrefab, Vector3.zero, Quaternion.identity);
             doorObj.SetActive(false);
         }
