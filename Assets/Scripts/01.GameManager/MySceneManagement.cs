@@ -49,6 +49,11 @@ public class MySceneManagement : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void quitGame()
+    {
+        Application.Quit();
+    }
+
     #region Cheat
     public void WinGame()
     {
