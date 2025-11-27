@@ -110,9 +110,9 @@ public class RewardPanelController : MonoBehaviour
 
         // 확률 조정 (합계 1.0이 되도록 설정)
         // 예: 아이템 37%, 유닛 37%, 골드 21%, 영혼석 5%
-        float itemChance = 0.37f;
-        float unitChance = 0.37f;
-        float goldChance = 0.21f;
+        float itemChance = 0.4f;
+        float unitChance = 0.08f;
+        float goldChance = 0.4f;
         // 나머지 0.05f는 영혼석
 
         if (randomValue < itemChance)
