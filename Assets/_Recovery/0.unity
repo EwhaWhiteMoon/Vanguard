@@ -841,6 +841,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8377228076648911452, guid: 0409635426d615243a38bc73f0eec634, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 163.998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377228076648911452, guid: 0409635426d615243a38bc73f0eec634, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 227.9365
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377228076648911452, guid: 0409635426d615243a38bc73f0eec634, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377228076648911452, guid: 0409635426d615243a38bc73f0eec634, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 58.9683
+      objectReference: {fileID: 0}
     - target: {fileID: 8519937083706848349, guid: 0409635426d615243a38bc73f0eec634, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2129,6 +2145,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1633397358}
+  - {fileID: 108260446}
   - {fileID: 1534567367}
   - {fileID: 362741878}
   - {fileID: 1686250649}
@@ -2136,7 +2153,6 @@ RectTransform:
   - {fileID: 272469449}
   - {fileID: 1881756682}
   - {fileID: 617726865}
-  - {fileID: 108260446}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4451,6 +4467,7 @@ MonoBehaviour:
   maxRooms: 10
   rvm: {fileID: 1560063422}
   floor: 1
+  moveButton: {fileID: 829529635}
 --- !u!4 &551295681
 Transform:
   m_ObjectHideFlags: 0

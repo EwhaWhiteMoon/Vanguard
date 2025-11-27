@@ -169,10 +169,6 @@ public class UnitObj : MonoBehaviour
         HP -= (damage - stat.Defense) * (1 - stat.DamageReducePct);
         if (HP <= 0)
         {
-            if (Team == 1 && isBoss)
-            {
-                NextFloorDoor.Instance.SetDoorPosition(transform.position);
-            }
             EffectManager.Instance.PlayEffect("Death", transform.position);
             //한윤구 추가
             SoundManager.Instance.PlaySFX("Death");

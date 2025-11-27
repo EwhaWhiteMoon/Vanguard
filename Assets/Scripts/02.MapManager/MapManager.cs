@@ -43,6 +43,7 @@ public class MapManager : MonoBehaviour
     private MiniMap miniMap;
     public RoomVisualManager rvm;
     public int floor = 1;
+    public MoveButton moveButton;
 
     private void Awake()
     {
@@ -98,7 +99,7 @@ public class MapManager : MonoBehaviour
         
         miniMap.RefreshMiniMap();
         movePlayer(playerPos.x, playerPos.y);
-        FindFirstObjectByType<MoveButton>().UpdateButtons();
+        moveButton.UpdateButtons();
     }
 
     private bool GenerateMap()
