@@ -33,8 +33,15 @@ public class GameManager : MonoSingleton<GameManager>
             
             FindFirstObjectByType<MapManager>().InitMap();
             FindFirstObjectByType<MiniMap>().DrawMiniMap();
+            FindFirstObjectByType<ItemBonusManager>().ResetBonuses();
+            FindFirstObjectByType<UnitTester>().ResetRoaster();
             Debug.Log("Loading Done...");
             GameState = GameState.StartMenu;
         }
+    }
+
+    public void ResetGame()
+    {
+        GameState = GameState.Loading;
     }
 }

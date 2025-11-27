@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -41,17 +42,20 @@ public class UnitTester : MonoBehaviour, ICombatManager
         {
             mapManager = FindFirstObjectByType<MapManager>();
         }
-        combatCnt = 0;
-        isBossCleared = false;
-
-        // 유닛 초기화
-        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Warrior.ToString(), UnitClass.Warrior, UnitGrade.Common));
-        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Archer.ToString(), UnitClass.Archer, UnitGrade.Common));
-        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Tanker.ToString(), UnitClass.Tanker, UnitGrade.Common));
 
         GameManager.Instance.OnGameStateChange += OnGameStateChange;
         OnGameStateChange(GameManager.Instance.GameState); //지금 State에 맞게 한번 호출해줘야함.
 
+    }
+
+    public void ResetRoaster()
+    {
+        combatCnt = 0;
+        isBossCleared = false;
+        
+        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Warrior.ToString(), UnitClass.Warrior, UnitGrade.Common));
+        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Archer.ToString(), UnitClass.Archer, UnitGrade.Common));
+        PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Tanker.ToString(), UnitClass.Tanker, UnitGrade.Common));
     }
 
     void InitStageMap()
