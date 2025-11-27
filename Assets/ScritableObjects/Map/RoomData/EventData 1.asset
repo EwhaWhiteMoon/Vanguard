@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58fe3ca36de72c44a2a1966f1386447, type: 3}
+  m_Name: EventData 1
+  m_EditorClassIdentifier: Assembly-CSharp::RoomData
+  Type: 2
+  PrizeTable: 1
+  EnemyTable: 0
+  minimapSprite: {fileID: 533690499, guid: ba9de2fa260e14a4aa5377b485dbc9c5, type: 3}
+  canContainEnemies: 0
+  canContainLoot: 1
+  roomLayouts:
+  - {fileID: 5167497076990136964, guid: 82664fff0dc23db4d820bee2779ffac7, type: 3}
+  - {fileID: 3044973223362306081, guid: 2ea6a83f9d9d60e42953a6ff21191b37, type: 3}
+  - {fileID: 1325757700027278503, guid: 864c7f98a04fc8c468b877c7662c4c0f, type: 3}
+  - {fileID: 5260318586698051911, guid: 229c9a9891068064ebdb8bcc79c033a4, type: 3}
+  - {fileID: 2628448266824932273, guid: 1e3d988cbc093154aa131b06a8c8f8fc, type: 3}
+  - {fileID: 3976031407892911679, guid: 3cba216841102dd4188a26777a918be6, type: 3}

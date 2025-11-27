@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using RangeAttribute = UnityEngine.RangeAttribute;
 
@@ -15,6 +16,14 @@ public class MapManager : MonoBehaviour
     public RoomData combatData;
     public RoomData mysteryData;
     public RoomData bossData;
+    
+    
+    [Header("Room Data by Type_2nd")]
+    public RoomData emptyData2;
+    public RoomData eventData2;
+    public RoomData combatData2;
+    public RoomData mysteryData2;
+    public RoomData bossData2;
 
     private int width = 7;
     private int height = 7;
@@ -33,6 +42,7 @@ public class MapManager : MonoBehaviour
     private HashSet<Vector2Int> assignedRooms = new HashSet<Vector2Int>();
     private MiniMap miniMap;
     public RoomVisualManager rvm;
+    public int floor = 1;
 
     private void Awake()
     {
@@ -51,8 +61,9 @@ public class MapManager : MonoBehaviour
 #endif
     }
 
-    public void InitMap()
+    public void InitMap(int floor = 1)
     {
+        this.floor = floor;
         if (Map != null)
         {
             Map = null;
@@ -84,6 +95,10 @@ public class MapManager : MonoBehaviour
         AssignRoomData();
         rvm.ShowRoom(Map[playerPos.x, playerPos.y]);
         PrintMapToConsole();
+        
+        miniMap.RefreshMiniMap();
+        movePlayer(playerPos.x, playerPos.y);
+        FindFirstObjectByType<MoveButton>().UpdateButtons();
     }
 
     private bool GenerateMap()
@@ -179,19 +194,19 @@ public class MapManager : MonoBehaviour
                 switch(room.Type)
                 {
                     case RoomType.Empty:
-                        room.Data = emptyData;
+                        room.Data = floor < 2 ? emptyData : emptyData2;
                         break;
                     case RoomType.EventRoom:
-                        room.Data = eventData;
+                        room.Data = floor < 2 ? eventData : eventData2;
                         break;
                     case RoomType.MysteryRoom:
-                        room.Data = mysteryData;
+                        room.Data = floor < 2 ? mysteryData : mysteryData2;
                         break;
                     case RoomType.CombatRoom:
-                        room.Data = combatData;
+                        room.Data = floor < 2 ? combatData : combatData2;
                         break;
                     case RoomType.BossRoom:
-                        room.Data = bossData;
+                        room.Data = floor < 2 ? bossData : bossData2;
                         break;
                     default:
                         room.Data = null;

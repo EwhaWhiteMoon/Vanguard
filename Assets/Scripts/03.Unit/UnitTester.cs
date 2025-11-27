@@ -93,7 +93,7 @@ public class UnitTester : MonoBehaviour, ICombatManager
 
         bool isBoss = mapManager.getCurrentRoomType() == RoomType.BossRoom;
         // stage 정보 기입 필요.
-        enemyList = MakeRandomEnemy(1, isBoss);
+        enemyList = MakeRandomEnemy(mapManager.floor, isBoss);
 
         // 직업별로 몇 번째 줄(Y)을 사용했는지 저장
         Dictionary<UnitClass, int> classRowIndex = new Dictionary<UnitClass, int>();
@@ -178,7 +178,7 @@ public class UnitTester : MonoBehaviour, ICombatManager
 
         if (win)
         {
-            mapManager.Map[mapManager.playerPos.x, mapManager.playerPos.y].Type = RoomType.Empty;
+            //mapManager.Map[mapManager.playerPos.x, mapManager.playerPos.y].Type = RoomType.Empty;
             if (mapManager.getCurrentRoomType() == RoomType.BossRoom)
             {
                 isBossCleared = true;

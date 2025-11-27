@@ -123,29 +123,39 @@ public class UnitObj : MonoBehaviour
             case UnitClass.Warrior:
             case UnitClass.Tanker:
                 HP += stat.MaxHealth / 5;
+                Debug.Log("Skill Use 1");
                 break;
             case UnitClass.Archer:
                 foreach (var unit in combatManager.units.Where(unit => unit != null && unit.GetComponent<UnitObj>().Team != Team))
                 {
                     Attack(unit.GetComponent<UnitObj>(), false);
                 }
+                Debug.Log("Skill Use 2");
                 break;
             case UnitClass.Mage:
-                Attack(target, false);
-                Attack(target, false);
-                Attack(target, false);
-                break;
             case UnitClass.Assassin:
                 Attack(target, false);
                 Attack(target, false);
                 Attack(target, false);
+                Debug.Log("Skill Use 3");
                 break;
             case UnitClass.Healer:
                 foreach (var unit in combatManager.units.Where(unit => unit != null && unit.GetComponent<UnitObj>().Team == Team))
                 {
                     unit.GetComponent<UnitObj>().HP += stat.MaxHealth / 10;
                 }
+                Debug.Log("Skill Use 4");
                 break;
+            case UnitClass.Slime:
+            case UnitClass.Goblin:
+            case UnitClass.Wolf:
+            case UnitClass.GoblinArcher:
+            case UnitClass.TrollWarrior:
+            case UnitClass.TrollLeader:
+            case UnitClass.SkeletonSoldier:
+            case UnitClass.SkeletonArcher:
+            case UnitClass.SkeletonLeader:
+            case UnitClass.Trassgo:
             default:
                 break;
         }

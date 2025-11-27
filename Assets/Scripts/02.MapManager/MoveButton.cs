@@ -8,6 +8,7 @@ public class MoveButton : MonoBehaviour
     public Button btnDown;
     public Button btnLeft;
     public Button btnRight;
+    public Button btnNext;
 
     public MapManager map;
     private void Awake()
@@ -24,12 +25,14 @@ public class MoveButton : MonoBehaviour
         btnDown.gameObject.SetActive(map.CanMove(Vector2Int.down));
         btnLeft.gameObject.SetActive(map.CanMove(Vector2Int.left));
         btnRight.gameObject.SetActive(map.CanMove(Vector2Int.right));
+        btnNext.gameObject.SetActive(map.getCurrentRoomType() == RoomType.BossRoom);
     }
 
     public void OnMoveUp() { Move(Vector2Int.up); }
     public void OnMoveDown() { Move(Vector2Int.down); }
     public void OnMoveLeft() { Move(Vector2Int.left); }
     public void OnMoveRight() { Move(Vector2Int.right); }
+    public void OnMoveNext() { map.InitMap(2); }
 
     void Move(Vector2Int dir)
     {
