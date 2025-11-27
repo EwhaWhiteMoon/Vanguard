@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="80c258ed-8b3a-4b72-93ab-ec199ace5ce6" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Vanguard/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Vanguard/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Galmuri11-Condensed SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Galmuri11-Condensed SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/1stFloor.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/1stFloor.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/02.MapManager/MoveButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/02.MapManager/MoveButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/02.MapManager/RoomVisualManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/02.MapManager/RoomVisualManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/03.Unit/UnitTester.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/03.Unit/UnitTester.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/07.GameFlow/NextFloorDoor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/07.GameFlow/NextFloorDoor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/03.Unit/DefaultAI.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/03.Unit/DefaultAI.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/03.Unit/UnitObj.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/03.Unit/UnitObj.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/08.UI/UnitUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/08.UI/UnitUIController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +17,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/03.Unit/SkillCheck.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProjectColorInfo">{
@@ -30,21 +30,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.environmentSetup&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "UpdatedMap2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.environmentSetup",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Unity 에디터에 연결.Unity 에디터에 연결">
     <configuration name="유닛 테스트(배치 모드)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.2.7f2/Unity.app/Contents/MacOS/Unity" />
@@ -113,6 +113,7 @@
       <workItem from="1764025094309" duration="35000" />
       <workItem from="1764025142724" duration="42000" />
       <workItem from="1764025235851" duration="3424000" />
+      <workItem from="1764200037122" duration="2241000" />
     </task>
     <servers />
   </component>

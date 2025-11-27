@@ -1,6 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [DisallowMultipleComponent]
 public class UnitObj : MonoBehaviour
@@ -16,6 +19,7 @@ public class UnitObj : MonoBehaviour
     //---------------------------------------
 
     private float _hp;
+    private float _mp;
 
     public float HP
     {
@@ -23,6 +27,19 @@ public class UnitObj : MonoBehaviour
         set
         {
             _hp = value;
+            if(uiInstance)
+                uiInstance.UpdateUI();
+            //if(HPText)
+            //    HPText.text = _hp.ToString("N0");
+
+        }
+    }
+    public float MP
+    {
+        get => _mp;
+        set
+        {
+            _mp = value;
             if(uiInstance)
                 uiInstance.UpdateUI();
             //if(HPText)
@@ -49,7 +66,7 @@ public class UnitObj : MonoBehaviour
         }
     }
 
-    public void Init(UnitData data, int team, ICombatManager combatManager, float HP = -1, bool isBoss = false)
+    public void Init(UnitData data, int team, ICombatManager combatManager, float HP = -1, bool isBoss = false, float MP = -1)
     {
         this.unitData = data;
         Team = team;
@@ -71,6 +88,7 @@ public class UnitObj : MonoBehaviour
         }
 
         this.HP = HP == -1 ? this.stat.MaxHealth : HP;
+        this.MP = MP == -1 ? 0 : MP;
 
         this.isBoss = isBoss;
 
@@ -78,11 +96,12 @@ public class UnitObj : MonoBehaviour
         animatorLoader.InitAnimator(data);
     }
 
-    public void Attack(UnitObj target)
+    public void Attack(UnitObj target, bool getMana = true)
     {
         if (stat.Range <= 1.0f)
         {
             target.TakeDamage(stat.Attack * (Random.Range(0f, 1f) < stat.CritChance ? stat.CritMultiplier : 1f));
+            MP += unitData.BaseStat.ManaRegenPerHit * 1.5f;
         }
         else
         {
@@ -91,7 +110,44 @@ public class UnitObj : MonoBehaviour
             Bullet.onHit += () =>
             {
                 target.TakeDamage(stat.Attack * (Random.Range(0f, 1f) < stat.CritChance ? stat.CritMultiplier : 1f));
+                MP += unitData.BaseStat.ManaRegenPerHit * 1.5f;
             };
+        }
+    }
+    
+
+    public void UseSkill(UnitObj target)
+    {
+        switch (unitData.Class)
+        {
+            case UnitClass.Warrior:
+            case UnitClass.Tanker:
+                HP += stat.MaxHealth / 5;
+                break;
+            case UnitClass.Archer:
+                foreach (var unit in combatManager.units.Where(unit => unit != null && unit.GetComponent<UnitObj>().Team != Team))
+                {
+                    Attack(unit.GetComponent<UnitObj>(), false);
+                }
+                break;
+            case UnitClass.Mage:
+                Attack(target, false);
+                Attack(target, false);
+                Attack(target, false);
+                break;
+            case UnitClass.Assassin:
+                Attack(target, false);
+                Attack(target, false);
+                Attack(target, false);
+                break;
+            case UnitClass.Healer:
+                foreach (var unit in combatManager.units.Where(unit => unit != null && unit.GetComponent<UnitObj>().Team == Team))
+                {
+                    unit.GetComponent<UnitObj>().HP += stat.MaxHealth / 10;
+                }
+                break;
+            default:
+                break;
         }
     }
 
