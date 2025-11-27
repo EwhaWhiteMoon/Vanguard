@@ -31,10 +31,12 @@ public class UnitUIController : MonoBehaviour
         {
             hpRatio = currentHealth / maxHealth;
         }
-
-        // [디버깅용 로그] 이 줄을 추가해서 콘솔창(Console)을 확인해보세요!
-        // 빨간 글씨나 흰 글씨로 값이 계속 변하는지 확인해야 합니다.
-        // Debug.Log($"[UI] HP: {currentHealth} / {maxHealth} = 비율: {hpRatio}");
+        
+        float mpRatio = 0f;
+        if (unit.stat.ManaMax > 0)
+        {
+            mpRatio = unit.MP / unit.stat.ManaMax;
+        }
 
         // 3. HP 슬라이더 적용
         if (HPBar != null)
@@ -46,7 +48,7 @@ public class UnitUIController : MonoBehaviour
         // 나중에 UnitObj에 MP가 생기면 위 HP 로직처럼 바꾸세요.
         if (MPBar != null)
         {
-            MPBar.value = 1f;
+            MPBar.value = mpRatio;
         }
     }
 }
