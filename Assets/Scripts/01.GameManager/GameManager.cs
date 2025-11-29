@@ -42,6 +42,17 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void ResetGame()
     {
+        // 런 단위 데이터 초기화 (골드, 인벤토리/시너지 등)
+        if (GoldManager.Instance != null)
+        {
+            GoldManager.Instance.ResetGold();
+        }
+
+        if (InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.ResetAll();
+        }
+
         GameState = GameState.Loading;
     }
 }

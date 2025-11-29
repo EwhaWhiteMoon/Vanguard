@@ -23,6 +23,16 @@ public class GoldManager : MonoSingleton<GoldManager>
     }
 
     /// <summary>
+    /// 골드를 지정한 값으로 초기화합니다. 기본값은 0입니다.
+    /// </summary>
+    /// <param name="value">초기 골드 값</param>
+    public void ResetGold(int value = 500)
+    {
+        currentGold = value;
+        NotifyChange();
+    }
+
+    /// <summary>
     /// 지정된 양만큼 골드를 추가합니다. 음수 값은 무시됩니다.
     /// </summary>
     /// <param name="amount">추가할 골드 양</param>

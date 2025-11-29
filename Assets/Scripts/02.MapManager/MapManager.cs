@@ -77,19 +77,33 @@ public class MapManager : MonoBehaviour
         playerPos = new Vector2Int(width / 2, height / 2);
 
         Map = new Room[width, height];
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                Map[i, j] = new Room();
-            }
-        }
 
         bool success = false;
+        int attempts = 0;
+        const int maxAttempts = 1000;
 
-        while (!success)
+        // 맵 생성이 어떤 이유로든 계속 실패하면 게임이 멈출 수 있으므로,
+        // 최대 시도 횟수를 두고, 초과 시 에러만 남기고 빠져나오도록 방어 코드 추가.
+        while (!success && attempts < maxAttempts)
         {
+            attempts++;
+            
+            // 각 시도마다 맵을 새로 초기화해야 이전 실패 시도의 흔적이 남지 않음
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    Map[i, j] = new Room();
+                }
+            }
+
             success = GenerateMap();
+        }
+
+        if (!success)
+        {
+            Debug.LogError($"[MapManager] 맵 생성 실패: {maxAttempts}번 시도 후에도 유효한 맵을 만들지 못했습니다.");
+            return;
         }
 
         AssignRoomTypes();
