@@ -21,6 +21,8 @@ public class RoomVisualManager : MonoBehaviour
         }
 
         GameObject prefab = layouts[Random.Range(0, layouts.Count)];
-        activeRoom = Instantiate(prefab, roomParent.position, Quaternion.identity);
+
+        activeRoom = Instantiate(prefab, roomParent);
+        activeRoom.transform.localPosition = Vector3.zero;
     }
 }
