@@ -26,7 +26,7 @@ public class CombatManager : MonoBehaviour, ICombatManager
         {
             if (mapManager.getCurrentRoomType() == RoomType.BossRoom && isBossCleared)
             {
-                NextFloorDoor.Instance.ShowNextFloorDoor();
+                OnCombatDone(true);
             }
             else
             {
@@ -149,7 +149,7 @@ public class CombatManager : MonoBehaviour, ICombatManager
             Debug.Log("Combat End (Team 1 Eliminated : WIN)");
             OnCombatDone(true);
         }
-        if(units.All(u => !u || u.GetComponent<UnitObj>().Team == 1 ))
+        else if(units.All(u => !u || u.GetComponent<UnitObj>().Team == 1 ))
         {
             Debug.Log("Combat End (Team 0 Eliminated : LOSE)");
             OnCombatDone(false);
@@ -182,7 +182,15 @@ public class CombatManager : MonoBehaviour, ICombatManager
 
         if (win)
         {
-            //mapManager.Map[mapManager.playerPos.x, mapManager.playerPos.y].Type = RoomType.Empty;
+            if (mapManager.getCurrentRoomType() == RoomType.BossRoom)
+            {
+                // 이미 한번 꺠낸 보스방을 또 방문하면.
+                if (isBossCleared)
+                {
+                    GameManager.Instance.IsBossCleared = true;
+                }
+                isBossCleared = true;
+            }
             GameManager.Instance.GameState = GameState.AfterCombat;
         }
         else

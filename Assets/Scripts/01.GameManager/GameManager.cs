@@ -8,6 +8,13 @@ using UnityEngine;
 public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private GameState gameState = GameState.Loading;
+    [SerializeField] private bool isBossCleared = false;
+
+    public bool IsBossCleared
+    {
+        get { return isBossCleared; }
+        set { isBossCleared = value; }
+    }
 
     public GameState GameState
     {
