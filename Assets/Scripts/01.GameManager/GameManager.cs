@@ -18,7 +18,7 @@ public class GameManager : MonoSingleton<GameManager>
             OnGameStateChange?.Invoke(value);
         }
     }
-    
+
     public event Action<GameState> OnGameStateChange; // GameState가 변경되면 호출할 함수
 
     private void Start()
@@ -30,11 +30,11 @@ public class GameManager : MonoSingleton<GameManager>
     {
         if (GameState == GameState.Loading)
         {
-            
+
             FindFirstObjectByType<MapManager>().InitMap();
             FindFirstObjectByType<MiniMap>().DrawMiniMap();
             FindFirstObjectByType<ItemBonusManager>().ResetBonuses();
-            FindFirstObjectByType<UnitTester>().ResetRoaster();
+            FindFirstObjectByType<CombatManager>().ResetRoaster();
             Debug.Log("Loading Done...");
             GameState = GameState.StartMenu;
         }

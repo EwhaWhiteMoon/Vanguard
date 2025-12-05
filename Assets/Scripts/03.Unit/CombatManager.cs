@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UnitTester : MonoBehaviour, ICombatManager
+public class CombatManager : MonoBehaviour, ICombatManager
 {
     public GameObject unit;
     public GameObject enemyUnit;
@@ -52,7 +52,7 @@ public class UnitTester : MonoBehaviour, ICombatManager
     {
         combatCnt = 0;
         isBossCleared = false;
-        
+
         PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Warrior.ToString(), UnitClass.Warrior, UnitGrade.Common));
         PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Archer.ToString(), UnitClass.Archer, UnitGrade.Common));
         PlayerUnitRoster.Instance.AddUnit(new UnitData(UnitClass.Tanker.ToString(), UnitClass.Tanker, UnitGrade.Common));
