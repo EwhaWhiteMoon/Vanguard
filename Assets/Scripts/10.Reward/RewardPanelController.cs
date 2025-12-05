@@ -53,7 +53,8 @@ public class RewardPanelController : MonoBehaviour
 
     private void HandleGameStateChanged(GameState state)
     {
-        if (state == GameState.AfterCombat)
+        // 보스방은 한번만 보상이 나오도록 함
+        if (state == GameState.AfterCombat && !GameManager.Instance.IsBossCleared)
         {
             ShowRewardPanel();
         }
