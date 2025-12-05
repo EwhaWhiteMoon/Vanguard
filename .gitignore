@@ -2,6 +2,8 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+
+# --- Unity generated directories ---
 .utmp/
 /[Ll]ibrary/
 /[Tt]emp/
@@ -10,7 +12,11 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
 *.log
+
+# --- Unity Collaborate ---
+/[Uu]serSettings/CollaborateSettings.asset
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
 *.blend1
@@ -65,21 +71,36 @@ ExportedObj/
 # Unity3D generated file on crash reports
 sysinfo.txt
 
+# --- OS files ---
+.DS_Store
+Thumbs.db
+
 # Mono auto generated files
 mono_crash.*
 
-# Builds
+# --- Build artifacts ---
 *.apk
 *.aab
+*.exe
+*.app
+*.unitypackage
+*.zip
+*.7z
 *.unitypackage
 *.unitypackage.meta
-*.app
 
 # Crashlytics generated file
 crashlytics-build.properties
 
 # TestRunner generated files
 InitTestScene*.unity*
+
+# --- Test results ---
+/[Tt]est[Rr]esult*/
+
+# --- Other caches ---
+*.config
+*.asset
 
 # Addressables default ignores, before user customizations
 /ServerData
@@ -101,3 +122,7 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 .idea/.idea.Vanguard/.idea/workspace.xml
 /.idea
+
+# --- JetBrains Rider ---
+.idea/
+*.sln.iml
