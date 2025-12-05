@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class MiniMap : MonoBehaviour
 {
@@ -45,9 +44,9 @@ public class MiniMap : MonoBehaviour
 
         // Calculate tile size to fit container
         float tileSize = Mathf.Min(
-        container.rect.width / (width * tileSpacing),
-        container.rect.height / (height * tileSpacing)
-    );
+            container.rect.width / (width * tileSpacing),
+            container.rect.height / (height * tileSpacing)
+        );
 
 
         for (int y = 0; y < height; y++)
@@ -109,16 +108,24 @@ public class MiniMap : MonoBehaviour
         }
         return room.Data.minimapSprite;
     }
-    public void RefreshMiniMap()
+
+    public void ClearMiniMap()
     {
         if (tiles != null)
         {
-            foreach (var tile in tiles)
+            for (int i = container.childCount - 1; i >= 0; i--)
             {
-                if (tile != null) Destroy(tile.gameObject);
+                if (container.GetChild(i) == null || container.GetChild(i).gameObject.name == "Image") continue;
+                Destroy(container.GetChild(i).gameObject);
             }
-        }
 
+            tiles = null;
+        }
+    }
+
+    public void RefreshMiniMap()
+    {
+        ClearMiniMap();
         DrawMiniMap();
     }
 }

@@ -16,8 +16,8 @@ public class MapManager : MonoBehaviour
     public RoomData combatData;
     public RoomData mysteryData;
     public RoomData bossData;
-    
-    
+
+
     [Header("Room Data by Type_2nd")]
     public RoomData emptyData2;
     public RoomData eventData2;
@@ -70,6 +70,9 @@ public class MapManager : MonoBehaviour
             Map = null;
         }
 
+        GameManager.Instance.IsBossCleared = false;
+        miniMap.ClearMiniMap();
+
         ChooseRandomMapStats();
         width = currentStats.Width;
         height = currentStats.Height;
@@ -87,7 +90,7 @@ public class MapManager : MonoBehaviour
         while (!success && attempts < maxAttempts)
         {
             attempts++;
-            
+
             // 각 시도마다 맵을 새로 초기화해야 이전 실패 시도의 흔적이 남지 않음
             for (int i = 0; i < width; i++)
             {
@@ -110,7 +113,7 @@ public class MapManager : MonoBehaviour
         AssignRoomData();
         rvm.ShowRoom(Map[playerPos.x, playerPos.y]);
         PrintMapToConsole();
-        
+
         miniMap.RefreshMiniMap();
         movePlayer(playerPos.x, playerPos.y);
         moveButton.UpdateButtons();
