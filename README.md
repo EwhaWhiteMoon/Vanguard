@@ -5,6 +5,7 @@
 <p align="center"> <img src="https://img.shields.io/badge/Unity-6.0-black?logo=unity" /> <img src="https://img.shields.io/badge/Genre-Roguelike%20%2B%20AutoBattle-blue" /> <img src="https://img.shields.io/badge/Platform-PC-lightgrey" /> <img src="https://img.shields.io/badge/Status-Development-green" /> </p> <p align="center"> 가볍게 즐길 수 있는 자동 전투 기반 로그라이크 게임 프로젝트 </p>
 
 # 🗂️ Table of Contents
+
 - [🎬 Play Vedio](#-play-vedio)
 
 - [✨ Features](#-features)
@@ -22,9 +23,11 @@
 - [📡 Google Sheet SO Auto-Generation](#-google-sheet-so-auto-generation)
 
 # 🎬 Play Vedio
-<iframe width="560" height="315" src="[임베드_URL_주소](https://youtu.be/yjH6giL_0z0)" frameborder="0" allowfullscreen></iframe>
+
+[![2025 2학기 게임소프트웨어 7조 게임 플레이 영상](http://img.youtube.com/vi/yjH6giL_0z0/0.jpg)](https://youtu.be/yjH6giL_0z0?t=0s)
 
 # ✨ Features
+
 **✔ 자동 전투 기반 전투 시스템**
 
 - 유저는 유닛을 수집/배치하고 전투는 자동으로 진행
@@ -68,27 +71,31 @@
 # ⚙️ Installation & Run
 
 > ⚠️ 이 게임은 Build 파일이 아닌 프로젝트 실행 방식입니다.
-반드시 Unity에서 직접 열고 Main 씬을 Play 해야 합니다.
+> 반드시 Unity에서 직접 열고 Main 씬을 Play 해야 합니다.
 
 > 빌드 파일을 만들어 보려고 했으나, 알수없는 버그를 고치지 못하여 불가피하게 Unity에서 직접 Main 씬을 Play 해야 합니다.
 
 1. 프로젝트 다운로드
-    ``` bash
-    git clone https://github.com/your-repo/roguelike-autobattle.git
-    ```
+
+   ```bash
+   git clone https://github.com/your-repo/roguelike-autobattle.git
+   ```
 
 2. Unity Hub에서 프로젝트 열기
 
-    Unity 버전: **`Unity 6`**
+   Unity 버전: **`Unity 6`**
 
 3. 메인 씬 실행
-    ``` bash
-    Assets/Scenes/mainScene.unity
-    ```
+
+   ```bash
+   Assets/Scenes/mainScene.unity
+   ```
 
 4. ▶ 버튼 클릭 후 게임 시작
+
 # 🧩 Project Structure
-``` bash
+
+```bash
 Assets/
  ├── Scripts/
  │    ├── Combat/              # CombatManager, 전투 흐름 제어
@@ -103,6 +110,7 @@ Assets/
  └── Scenes/
        └── Main.unity          # 게임 실행 메인 씬
 ```
+
 # 🗺 MiniMap System
 
 미니맵은 맵 크기에 따라 동적으로 생성되며, UI Panel 아래에 타일이 배치됩니다.
@@ -112,12 +120,13 @@ Assets/
 - RoomType에 따라 스프라이트 표시
 
 - `RefreshMiniMap()` 시 미니맵 전체 재구성
-    ``` csharp
-    tileGO.transform.SetParent(container, false);
-    img.rectTransform.anchoredPosition = new Vector2(x * tileSize, y * tileSize);
-    ```
+  ```csharp
+  tileGO.transform.SetParent(container, false);
+  img.rectTransform.anchoredPosition = new Vector2(x * tileSize, y * tileSize);
+  ```
 
 # ⚔️ Combat System
+
 ## 🔥 기존 문제
 
 전투 종료 판정을 `Update()`에서 검사하면:
@@ -127,9 +136,10 @@ Assets/
 - `All()`이 빈 리스트에서도 true를 반환하는 문제 발생
 
 ## 🔧 해결: 이벤트 기반 전투 종료 방식
+
 ## UnitObj
 
-``` csharp
+```csharp
 public event Action<UnitObj> OnDied;
 
 void Die()
@@ -139,7 +149,8 @@ void Die()
 ```
 
 ## CombatManager
-``` csharp
+
+```csharp
 private void HandleUnitDied(UnitObj unit)
 {
     if (unit.Team == 0) aliveTeam0--;
@@ -167,7 +178,8 @@ private void HandleUnitDied(UnitObj unit)
 데이터 관리 간소화를 위해 Google Sheets → SO 변환 기능을 구현했습니다.
 
 ## Editor 메뉴에서 자동 실행
-``` csharp
+
+```csharp
 #if UNITY_EDITOR
 [ContextMenu("FetchGoogleSheet")]
 async void FetchGoogleSheet()
