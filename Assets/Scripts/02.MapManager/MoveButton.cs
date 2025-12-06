@@ -26,6 +26,11 @@ public class MoveButton : MonoBehaviour
         btnLeft.gameObject.SetActive(map.CanMove(Vector2Int.left));
         btnRight.gameObject.SetActive(map.CanMove(Vector2Int.right));
         btnNext.gameObject.SetActive(map.getCurrentRoomType() == RoomType.BossRoom);
+
+        if (map.getCurrentRoomType() == RoomType.BossRoom)
+        {
+            GameManager.Instance.IsBossCleared = true;
+        }
     }
 
     public void OnMoveUp() { Move(Vector2Int.up); }

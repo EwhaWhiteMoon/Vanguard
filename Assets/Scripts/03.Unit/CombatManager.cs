@@ -20,13 +20,21 @@ public class CombatManager : MonoBehaviour, ICombatManager
     private int combatCnt;
     private bool isBossCleared;
 
+    private int aliveTeam0;
+    private int aliveTeam1;
+    private bool combatEnded;
+
     public void OnGameStateChange(GameState state)
     {
         if (state == GameState.Combat)
         {
-            if (mapManager.getCurrentRoomType() == RoomType.BossRoom && isBossCleared)
+            Debug.Log($"[OnGameStateChange - CombatCheck] units.Count = {units.Count}, " +
+          $"team0 = {units.Count(u => u && u.GetComponent<UnitObj>().Team == 0)}, " +
+          $"team1 = {units.Count(u => u && u.GetComponent<UnitObj>().Team == 1)}");
+
+            if (mapManager.getCurrentRoomType() == RoomType.BossRoom && GameManager.Instance.IsBossCleared)
             {
-                OnCombatDone(true);
+                GameManager.Instance.GameState = GameState.AfterCombat;
             }
             else
             {
@@ -92,8 +100,11 @@ public class CombatManager : MonoBehaviour, ICombatManager
 
     public void CombatStart()
     {
-        OnCombat = true;
         combatCnt++;
+        aliveTeam0 = 0;
+        aliveTeam1 = 0;
+        combatEnded = false;
+        OnCombat = true;
 
         bool isBoss = mapManager.getCurrentRoomType() == RoomType.BossRoom;
         // stage 정보 기입 필요.
@@ -124,6 +135,10 @@ public class CombatManager : MonoBehaviour, ICombatManager
             GameObject u = Instantiate(unit, new Vector3(x, y, 0), Quaternion.identity);
             u.GetComponent<UnitObj>().Init(data, 0, this, hp);
             units.Add(u);
+
+            aliveTeam0++;
+            u.GetComponent<UnitObj>().onDied -= HandleUnitDied;
+            u.GetComponent<UnitObj>().onDied += HandleUnitDied;
         }
 
         for(int i = 0; i < enemyList.Count; i++)
@@ -137,20 +152,35 @@ public class CombatManager : MonoBehaviour, ICombatManager
                 u.GetComponent<UnitObj>().Init(enemyList[i], 1, this);
             }
             units.Add(u);
+
+            aliveTeam1++;
+            u.GetComponent<UnitObj>().onDied -= HandleUnitDied;
+            u.GetComponent<UnitObj>().onDied += HandleUnitDied;
         }
     }
 
-    private void Update()
+    private void HandleUnitDied(UnitObj unit)
     {
+        if (combatEnded) return;
         if (!OnCombat) return;
 
-        if(units.All(u => !u || u.GetComponent<UnitObj>().Team == 0 )) // 당연히!! 최적화해야 하지만 일단 작동함
+        if (unit.Team == 0)
+            aliveTeam0--;
+        else if (unit.Team == 1)
+            aliveTeam1--;
+
+        // 디버깅용
+        Debug.Log($"[HandleUnitDied] Team0={aliveTeam0}, Team1={aliveTeam1}");
+
+        if (aliveTeam1 <= 0 && aliveTeam0 > 0)
         {
+            combatEnded = true;
             Debug.Log("Combat End (Team 1 Eliminated : WIN)");
-            OnCombatDone(true);
+            OnCombatDone(true); // 기존 메서드
         }
-        else if(units.All(u => !u || u.GetComponent<UnitObj>().Team == 1 ))
+        else if (aliveTeam0 <= 0 && aliveTeam1 >= 0)
         {
+            combatEnded = true;
             Debug.Log("Combat End (Team 0 Eliminated : LOSE)");
             OnCombatDone(false);
         }
@@ -180,17 +210,11 @@ public class CombatManager : MonoBehaviour, ICombatManager
             Destroy(u);
         }
 
+        units.Clear();
+        Debug.Log("Cleared all units from combat.");
+
         if (win)
         {
-            if (mapManager.getCurrentRoomType() == RoomType.BossRoom)
-            {
-                // 이미 한번 꺠낸 보스방을 또 방문하면.
-                if (isBossCleared)
-                {
-                    GameManager.Instance.IsBossCleared = true;
-                }
-                isBossCleared = true;
-            }
             GameManager.Instance.GameState = GameState.AfterCombat;
         }
         else

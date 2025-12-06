@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,6 +13,7 @@ public class UnitObj : MonoBehaviour
     private SafeAnimatorLoader animatorLoader;
     public Stat stat;
     public int Team;
+    public event Action<UnitObj> onDied;
     private bool isBoss;
 
     // 한윤구 추가
@@ -47,6 +49,17 @@ public class UnitObj : MonoBehaviour
 
         }
     }
+
+    void Die()
+    {
+        EffectManager.Instance.PlayEffect("Death", transform.position);
+        //한윤구 추가
+        SoundManager.Instance.PlaySFX("Death");
+
+        Destroy(this.gameObject);
+
+        onDied?.Invoke(this);
+    }
     public TextMeshPro HPText;
     public ICombatManager combatManager;
 
@@ -74,7 +87,7 @@ public class UnitObj : MonoBehaviour
 
         // 스탯 설정해야함.
         this.stat = new Stat(this.unitData.BaseStat);
-        
+
         // 플레이어 유닛(Team 0)인 경우 영구 강화 스탯 적용
         if (Team == 0 && GlobalUpgradeManager.Instance != null)
         {
@@ -114,7 +127,7 @@ public class UnitObj : MonoBehaviour
             };
         }
     }
-    
+
 
     public void UseSkill(UnitObj target)
     {
@@ -169,11 +182,7 @@ public class UnitObj : MonoBehaviour
         HP -= (damage - stat.Defense) * (1 - stat.DamageReducePct);
         if (HP <= 0)
         {
-            EffectManager.Instance.PlayEffect("Death", transform.position);
-            //한윤구 추가
-            SoundManager.Instance.PlaySFX("Death");
-
-            Destroy(this.gameObject);
+            Die();
         }
         EffectManager.Instance.PlayEffect("Hit", transform.position); // 이게 여기 들어가는 게 맞을까 생각 중. "피격"애니메이션이니까 괜찮지 않을까요?
     }
