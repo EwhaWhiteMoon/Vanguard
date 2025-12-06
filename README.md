@@ -4,8 +4,9 @@
 
 <p align="center"> <img src="https://img.shields.io/badge/Unity-6.0-black?logo=unity" /> <img src="https://img.shields.io/badge/Genre-Roguelike%20%2B%20AutoBattle-blue" /> <img src="https://img.shields.io/badge/Platform-PC-lightgrey" /> <img src="https://img.shields.io/badge/Status-Development-green" /> </p> <p align="center"> 가볍게 즐길 수 있는 자동 전투 기반 로그라이크 게임 프로젝트 </p>
 
-
 # 🗂️ Table of Contents
+- [🎬 Play Vedio](#-play-vedio)
+
 - [✨ Features](#-features)
 
 - [🎲 Gameplay Overview](#-gameplay-overview)
@@ -19,6 +20,9 @@
 - [⚔️ Combat System](#combatmanager)
 
 - [📡 Google Sheet SO Auto-Generation](#-google-sheet-so-auto-generation)
+
+# 🎬 Play Vedio
+<iframe width="560" height="315" src="[임베드_URL_주소](https://youtu.be/yjH6giL_0z0)" frameborder="0" allowfullscreen></iframe>
 
 # ✨ Features
 **✔ 자동 전투 기반 전투 시스템**
